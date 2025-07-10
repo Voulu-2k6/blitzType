@@ -1,0 +1,182 @@
+/*Structure styling as follows: 
+    position and display of *this* element
+
+    box model (margin, padding, etc.)
+
+    Size, color, text-color
+
+    Positioning of child elements
+*/
+
+/*everything*/
+* {
+    margin: 0px;
+    color: white;
+}
+
+/*main structure*/
+body {
+    height: 100%;
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+}
+header {
+    height: 12vh;
+    background-color: rgb(10,10,10);
+
+    border-bottom: 1px solid orangered;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+main {
+    flex-grow: 1;
+
+    background-color: rgb(20, 20, 20);
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+footer {
+    height: 5vh;
+    background-color: rgb(10,10,10);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+section {
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-direction: center;
+}
+#examSettings {
+    width: 15vw;
+
+    border-right: 1px solid orangered;
+}
+#examBox {
+    flex-grow: 1;
+
+    height: 100%;
+    width: 75vw;
+}
+#statsBox {
+    width: 20vw;
+
+    border-left: 1px solid orangered;
+}
+#examHolder {
+    flex-grow: 1;
+    width: 90%;
+    align-self: center;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#examText {
+    flex-shrink: 1;
+
+    margin-bottom: 40px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#keyDisplay {
+    margin-bottom: 100px;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#keyDisplay div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/*smaller elements*/
+#examText div {
+    display: flex;
+    line-height: 1;
+    font-size: 30px;
+}
+h1 {
+    flex-grow: 1;
+
+    margin: 10px 30px;
+
+    font-size: 2vw;
+}
+header a,footer p{
+    flex-shrink: 1;
+
+    margin: 5px 20px;
+}
+#keyDisplay p {
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid white;
+    border-radius: 3px;
+
+    width: 22px;
+    height: 22px;
+    background-color: rgb(95, 95, 95);
+    font-size: 1vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/*virtual keyboard*/
+#keyDisplay #backspace {
+    width: 55px;
+}
+#keyDisplay #backtick {
+    width: 14px;
+}
+#keyDisplay #tab {
+    width: 39px;
+}
+#keyDisplay #backslash {
+    width: 31px;
+}
+#keyDisplay #capslock {
+    width: 50px;
+}
+#keyDisplay #enter {
+    width: 56px;
+}
+#keyDisplay #shift {
+    width: 71px;
+}
+#keyDisplay #space {
+    width: 186px;
+}  
+#keyDisplay #hold {
+    width: 100px;
+}
