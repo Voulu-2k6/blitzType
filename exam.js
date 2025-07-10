@@ -25,58 +25,71 @@ async function getWords(){
 let words = await getWords();
 words = words.split(/\r?\n/);
 
-//generate test
-let myExam = [];
-let myRow = [];
-let characters = 0;
-for(let i = 0; i < 30; i++){
+document.querySelector("#makeExamButton").addEventListener('onclick', takeExam());
 
-    let addMe = words[Math.floor((Math.random()*2993))];
-    characters += addMe.length;
-    if(characters > 50){
-        myExam.push(myRow.join(" ").split(''));
-        myRow = [];
-        characters = addMe.length;
+function takeExam(){
+    //clear previous test
+    const examBoxDiv = document.querySelectorAll("#examText div");
+    for(let i = 0; i < 5; i++){
+        examBoxDiv[i].innerHTML = '';
     }
-    myRow.push(addMe);
 
-}
+    //generate test
+    let myExam = [];
+    let myRow = [];
+    let characters = 0;
+    for(let i = 0; i < 30; i++){
 
-//upload test
-let myCarry = [];
-const examBoxDiv = document.querySelectorAll("#examText div");
-for(let line in myExam){
-    for(let char of myExam[line]){
-        let pageChar = document.createElement('p');
-        pageChar.innerHTML = (char === " ") ? '&nbsp;' : char;
-        examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
-        myCarry.push(char);
+        let addMe = words[Math.floor((Math.random()*2993))];
+        characters += addMe.length;
+        if(characters > 50){
+            myExam.push(myRow.join(" ").split(''));
+            myRow = [];
+            characters = addMe.length;
+        }
+        myRow.push(addMe);
+
     }
-}
 
-//TBI: even lisener for a button that says 'start'
-//Listen for good input and progress the test
-let myProgress = 0;
-myExam = myCarry;
-let myChars = document.querySelectorAll("#examText p");
-document.addEventListener('keydown', (e) => {
-    if(myProgress < myExam.length && !(e.key in metaMap)){keyPress(e.key);}
-    let pressed = (e.key in metaMap) ? metaMap[e.key] : keyMap[e.key];
-    document.querySelector(`#${pressed}`).setAttribute('style','border: 1px solid orangered; background-color:rgb(0,0,0); box-shadow: 0 0 3px orangered');
-    if(pressed === 'meta' || pressed === 'tab'){setTimeout(() => {document.querySelector(`#${pressed}`).setAttribute('style','');}, 1000);}
-});
-document.addEventListener('keyup', (e) => {
-    let released = (e.key in metaMap) ? metaMap[e.key] : keyMap[e.key];
-    document.querySelector(`#${released}`).setAttribute('style','border: 1px solid white; background-color:rgb(95,95,95);');
-});
+    //upload test
+    let myCarry = [];
+    for(let line in myExam){
+        for(let char of myExam[line]){
+            let pageChar = document.createElement('p');
+            pageChar.innerHTML = (char === " ") ? '&nbsp;' : char;
+            examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
+            myCarry.push(char);
+        }
+    }
+
+    //Listen for good input and progress the test
+    let myProgress = 0;
+    myExam = myCarry;
+    let myChars = document.querySelectorAll("#examText p");
+    document.addEventListener('keydown', (e) => {
+        if(myProgress < myExam.length && !(e.key in metaMap)){
+            if(myExam[myProgress] === e.key){
+                myChars[myProgress].setAttribute('style', 'background-color: rgb(255, 102, 0);');
+                myProgress++;
+                if(myProgress === myExam.length){console.log("Test complete!");}}
+            else{myChars[myProgress].setAttribute('style', 'background-color: red;');}
+        }
+        keyPress(e.key);
+    });
+    document.addEventListener('keyup', (e) => {
+        keyRelease(e.key);
+    });
+}
 
 function keyPress(key){
-    if(myExam[myProgress] === key){
-        myChars[myProgress].setAttribute('style', 'background-color: green;');
-        myProgress++;
-        if(myProgress === myExam.length){console.log("Test complete!");}
-    }
-    else{
-        myChars[myProgress].setAttribute('style', 'background-color: red;');
-    }
+    let pressed = (key in metaMap) ? metaMap[key] : keyMap[key];
+    document.querySelector(`#${pressed}`).setAttribute('style','border: 1px solid orangered; background-color:rgb(0,0,0); box-shadow: 0 0 3px orangered');
+    if(pressed === 'meta' || pressed === 'tab'){setTimeout(() => {document.querySelector(`#${pressed}`).setAttribute('style','');}, 1000);}
 }
+
+function keyRelease(key){
+    let released = (key in metaMap) ? metaMap[key] : keyMap[key];
+    document.querySelector(`#${released}`).setAttribute('style','border: 1px solid white; background-color:rgb(95,95,95);');
+}
+
+takeExam();
