@@ -123,10 +123,11 @@ section {
     line-height: 1;
     font-size: 30px;
 }
-#makeExamButton {
+#examText #makeExamButton {
     margin-top: 15px;
     border: 3px solid orangered;
-    border-radius: 2px;
+    border-radius: 3px;
+    padding: 5px;
 
     background-color: black;
     font-size: 18px;
@@ -161,30 +162,30 @@ header a,footer p{
 }
 
 /*virtual keyboard*/
-#keyDisplay #backspace {
+#keyDisplay #Backspace {
     width: 55px;
 }
-#keyDisplay #backtick {
+#keyDisplay #Backquote {
     width: 14px;
 }
-#keyDisplay #tab {
+#keyDisplay #Tab {
     width: 39px;
 }
-#keyDisplay #backslash {
+#keyDisplay #Backslash {
     width: 31px;
 }
-#keyDisplay #capslock {
+#keyDisplay #CapsLock {
     width: 50px;
 }
-#keyDisplay #enter {
+#keyDisplay #Enter {
     width: 56px;
 }
-#keyDisplay #shift {
+#keyDisplay #ShiftLeft, #keyDisplay #ShiftRight {
     width: 71px;
 }
-#keyDisplay #space {
+#keyDisplay #Space {
     width: 186px;
 }  
-#keyDisplay #hold {
+#keyDisplay #HoldRight {
     width: 100px;
 }
