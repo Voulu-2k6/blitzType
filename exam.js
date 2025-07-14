@@ -35,7 +35,7 @@ const keyMap = {'\`': 'Backquote', '~': 'Backquote', '1': 'Digit1', '!': 'Digit1
     'b': 'KeyB', 'B': 'KeyB','c': 'KeyC', 'C': 'KeyC','d': 'KeyD', 'D': 'KeyD','e': 'KeyE', 'E': 'KeyE','f': 'KeyF', 'F': 'KeyF','g': 'KeyG', 'G': 'KeyG','h': 'KeyH', 'H': 'KeyH',
     'i': 'KeyI', 'I': 'KeyI','j': 'KeyJ', 'J': 'KeyJ','k': 'KeyK', 'K': 'KeyK','l': 'KeyL', 'L': 'KeyL','m': 'KeyM', 'M': 'KeyM','n': 'KeyN', 'N': 'KeyN','o': 'KeyO', 'O': 'KeyO',
     'p': 'KeyP', 'P': 'KeyP','q': 'KeyQ', 'Q': 'KeyQ','r': 'KeyR', 'R': 'KeyR','s': 'KeyS', 'S': 'KeyS','t': 'KeyT', 'T': 'KeyT','u': 'KeyU', 'U': 'KeyU','v': 'KeyV', 'V': 'KeyV',
-    'w': 'KeyW', 'W': 'KeyW','x': 'KeyX', 'X': 'KeyX','y': 'KeyY', 'Y': 'KeyY','z': 'KeyZ', 'Z': 'KeyZ',' ': 'Space', '&nbsp;': 'Space', 'Shift': 'ShiftLeft'};
+    'w': 'KeyW', 'W': 'KeyW','x': 'KeyX', 'X': 'KeyX','y': 'KeyY', 'Y': 'KeyY','z': 'KeyZ', 'Z': 'KeyZ',' ': 'Space', '&nbsp;': 'Space', 'Shift': 'ShiftLeft', 'shift':'ShiftLeft'};
 const reverseKeyMap = {"Backquote": "`", "Backslash": "\\", "BracketLeft": "[", "BracketRight": "]", "Comma": ",", 
     "Digit0": "0", "Digit1": "1", "Digit2": "2", "Digit3": "3", "Digit4": "4", "Digit5": "5", 
     "Digit6": "6", "Digit7": "7", "Digit8": "8", "Digit9": "9", "Equal": "=", "KeyA": "a", "KeyB": "b", 
@@ -398,7 +398,7 @@ function advanceEndless(){
     showNext(myExam[0]);
 
     //stats
-    preferences.key = problemKeys.length > 0 ? reverseKeyMap[problemKeys[0]] : targetKey;
+    preferences.key = problemKeys.length > 0 ? reverseKeyMap[problemKeys[Math.floor(Math.random()*problemKeys.length)]] : targetKey;
     console.log(preferences.key);
     startTimer();
     examTime = 0;
@@ -484,7 +484,7 @@ function getNewWord(){
     //word or letter?
     if(Math.random() >= preferences.Numbers){
         myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*2993))]; //required key?
-        if(Math.random() < preferences.Capitals){myWord = toTitleCase(myWord);} //uppercase?
+        if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?
     }
     else{myWord = Number(Math.floor(Math.random()*1000));}
 
@@ -537,6 +537,7 @@ function highlightKeys(){
     for(let code of problemKeys){
         document.querySelector(`#${code}`).setAttribute('class','problemKey');
     }
+    console.log(problemKeys);
     let highlightedKeys = document.querySelectorAll(".problemKey");
     if(highlightedKeys.length > 0){
         for(let key of highlightedKeys){
