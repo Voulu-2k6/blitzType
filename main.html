@@ -15,11 +15,48 @@
             </header>
             <main>
                 <section id="examSettings">
-                    <p id="includeCapitals" class="slider">Capitals</p>
-                    <div id="punctuationBox" class="selectorBox">Punctuation: </div>
-                    <p id="includeNumbers" class="slider">Numbers</p>
-                    <div id="specialCharactersBox" class="selectorBox">Special characters: </div>
-                    <div id="keyFocus" class="selectorBox">Targeted Key: </div>
+                    <div id="includeWords" class="slider"><p>Words: 10</p></div>
+                    <div id="includeCapitals" class="slider"><p>Capitals</p></div>
+                    <div id="punctuationBox" class="selectorBox">
+                        <div class="selectorBoxHeader"><p>Punctuation:</p><button class="dropDownButton" id="punctuationDropdownButton">v</button></div>
+                        <div id="punctuationDropdownMenu" class="dropDown">
+                            <div id="periodButton" class="button">.</div>
+                            <div id="commaButton" class="button">,</div>
+                            <div id="questionButton" class="button">?</div>
+                            <div id="exclaimationButton" class="button">!</div>
+                            <div id="semicolonButton" class="button">;</div>
+                            <div id="colonButton" class="button">:</div>
+                            <div id="dashButton" class="button">-</div>
+                            <div id="singleQuoteButton" class="button">'</div>
+                            <div id="quoteButton" class="button">"</div>
+                        </div>
+                    </div>
+                    <div id="includeNumbers" class="slider"><p>Numbers</p></div>
+                    <div id="specialCharactersBox" class="selectorBox">
+                        <div class="selectorBoxHeader"><p>Special characters:</p><button class="dropDownButton" id="specialsDropdownButton">v</button></div>
+                        <div id="specialsDropdownMenu" class="dropDown">
+                            <div id="tildeButton" class="button">~</div>
+                            <div id="backquoteButton" class="button">`</div>
+                            <div id="hashtagButton" class="button">#</div>
+                            <div id="atButton" class="button">@</div>
+                            <div id="dollarButton" class="button">$</div>
+                            <div id="percentButton" class="button">%</div>
+                            <div id="carotButton" class="button">^</div>
+                            <div id="andButton" class="button">&amp;</div>
+                            <div id="starButton" class="button">*</div>
+                            <div id="parenthesesButton" class="button">()</div>
+                            <div id="underscoreButton" class="button">_</div>
+                            <div id="plusButton" class="button">+</div>
+                            <div id="equalsButton" class="button">=</div>
+                            <div id="braceButton" class="button">{}</div>
+                            <div id="bracketButton" class="button">[]</div>
+                            <div id="backslashButton" class="button">\</div>
+                            <div id="slashButton" class="button">/</div>
+                            <div id="verticalbarButton" class="button">|</div>
+                            <div id="anglebracketButton" class="button">&lt;&gt;</div>
+                        </div>
+                    </div>
+                    <div id="keyFocus"><p>Targeted Key: </p><input type="text" id="targetedKeyButton"></div>
                 </section>
                 <section id="examBox">
                     <div id="examHolder">
@@ -29,7 +66,10 @@
                             <div id="eRow3"></div>
                             <div id="eRow4"></div>
                             <div id="eRow5"></div>
-                            <div id="makeExamButton">new test</div>
+                            <div id="testButtons" class="selectorBoxHeader">
+                                <div id="makeExamButton">new test</div>
+                                <div id="endlessModeButton" class="button">endless mode</div>
+                            </div>
                         </div>
                     </div>
                     <div id="keyDisplay">
@@ -43,7 +83,8 @@
                 <section id="statsBox">
                     <p id="statsWords">Words: </p><p id="statsTime">Time: </p><p id="statsWPM">Words per minute: </p>
                     <p id="statsHits">Keys hit: </p><p id="statsMisses">Keys missed: </p><p id="statsAccuracy">Accuracy: </p>
-                    <p>Total hits: </p><p>Total misses: </p><p>True Accuracy: </p>
+                    <p id="trueHits">True hits: </p><p id="trueMisses">True misses: </p><p id="trueAcc">True accuracy: </p>
+                    <p id="averageAccuracy">Average accuracy: </p><p id="averageWPM">Average words per minute: </p>
                     <p id="needWork">Keys that need work: </p>
                 </section>
             </main>

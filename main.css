@@ -118,15 +118,18 @@ section {
 }
 
 /*smaller elements*/
+#examSettings > div {
+    margin: 10px;
+}
 #examText div {
     display: flex;
     line-height: 1;
     font-size: 30px;
 }
-#examText #makeExamButton {
-    margin-top: 15px;
-    border: 3px solid orangered;
-    border-radius: 3px;
+#examText #makeExamButton, #examText #endlessModeButton {
+    margin: 15px 10px 0 10px;
+    border: 2px solid orangered;
+    border-radius: 5px;
     padding: 5px;
 
     background-color: black;
@@ -159,6 +162,73 @@ header a,footer p{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+#keyFocus {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#targetedKeyButton, #howManyWords {
+    margin: 3px;
+    border: 1px solid orangered;
+    border-radius: 3px;
+    padding: 4px;
+    
+    width: 1em;
+    background-color: black;
+    text-indent: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider {
+    background-color: black;
+    border-radius: 4px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.dropDown {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.slider .button {
+    margin-left: 15px;
+}
+.button, button {
+    margin: 3px;
+    border: 1px solid orangered;
+    border-radius: 3px;
+    padding: 4px;
+    
+    min-width: 1em;
+    min-height: 1em;
+    background-color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selectorBoxHeader {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#keyDisplay .problemKey {
+    font-size: 0.8em; 
+    border: 1px solid white; 
+    background-color:rgb(0,0,0); 
+    box-shadow: 0 0 6px 4px white;
 }
 
 /*virtual keyboard*/
