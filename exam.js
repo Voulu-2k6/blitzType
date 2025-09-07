@@ -9,7 +9,7 @@
     
 */
 
-import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/constants.js';
+import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/Voulu-2k6.github.io/constants.js';
 
 //for creating and running the exam
 let hold = await getWords();
