@@ -1,16 +1,12 @@
-/*
-Exam
+/*Exam
     Need: 
         Implement backspace function ***
-        error skipping ***
     Tweaks:
         Timer starts on exam load, not on first character clicked. 
-        double letters fuck up keystrokes
+        double letters mess up keystrokes
         getNewLine and preferences.words aren't aligned
-        elimintate space before enter on endless
-        make enter look better
+        additional space before enter on endless
     
-    Future: Gamify
 */
 
 import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/constants.js';

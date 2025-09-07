@@ -3,10 +3,7 @@
         storing settings in local storage
         implement target accuracy, current hardcoded at 0.7
         implement specials frequency, current hardcoded at 0.3
-    Tweaks:
-        targeted key selection sucks
-        punctuation lacks em dashes and en dashes
-        nothing to show how far the slider is before setting value*/
+        */
         
 import {nonLetters} from '/blitzType/constants.js';
 
