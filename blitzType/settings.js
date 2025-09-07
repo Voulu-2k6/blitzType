@@ -5,7 +5,7 @@
         implement specials frequency, current hardcoded at 0.3
         */
         
-import {nonLetters} from '/Voulu-2k6.github.io/constants.js';
+import {nonLetters} from '/blitzType/constants.js';
 
 let preferences = { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,

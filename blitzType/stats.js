@@ -9,7 +9,7 @@
         Spacebar doesn't highlight on problem, nor does Enter*/
 
 let userStats = JSON.parse(localStorage.getItem('userStats'));
-import {keyMap, reverseKeyMap} from '/Voulu-2k6.github.io/constants.js';
+import {keyMap, reverseKeyMap} from '/blitzType/constants.js';
 
 let statsTemplate = {
         wordCount: 10,
