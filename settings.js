@@ -1,16 +1,22 @@
 /*Settings
     Need:
-        storing settings in local storage
+        storing settings in local storage, pulling settings from local storage.
         implement target accuracy, current hardcoded at 0.7
         implement specials frequency, current hardcoded at 0.3
+    Tweaks:
+        show selected settings on page load.
         */
         
 import {nonLetters} from '/blitzType/constants.js';
 
-let preferences = { 
+let userPreferences = JSON.parse(localStorage.getItem('userPreferences'));
+
+let preferences = userPreferences ? userPreferences : { // default settings. if settings exists in localStorage, update it with that instead. 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
     key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
 }
+
+if(userPreferences){showMySettings();}
 
 //rate button listeners
 let sliderSwitches = {'Capitals' : false, 'Numbers' : false, 'Words' : false}
@@ -132,4 +138,8 @@ function updatePreferences(preference, value){
 
 function pushPreferences(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
+}
+
+function showMySettings(){
+    
 }

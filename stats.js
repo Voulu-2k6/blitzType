@@ -3,10 +3,15 @@
         need backspace function for true accuracy integration
         display key stats when hovering on keystrokes
         display keys to work on on the keystrokes between tests.
+        add key counts to saved stats
+        Wipe stats button
     Tweaks:
         change hits from code to keys
         Spacebar on problemkeys is invisible
-        Spacebar doesn't highlight on problem, nor does Enter*/
+        Spacebar doesn't highlight on problem, nor does Enter
+    In settings:
+        Determine one's own threshold for a problem key
+        */
 
 let userStats = JSON.parse(localStorage.getItem('userStats')); // locally stored user stats
 import {keyMap, reverseKeyMap} from '/blitzType/constants.js'; // maps between keys and codes, see constants.js
@@ -41,9 +46,10 @@ let statsTemplate = { // fresh load stats + saved historical stats
 // For showing stats after a test is completed. 
 function showStats(){
 
+    // get updated stats from most recent test
     let sessionStats = JSON.parse(sessionStorage.getItem('sessionStats')); 
 
-    //update variables
+    // recalculate problem keys
     sessionStats.problemKeys = [];
     for(let key in sessionStats.keyStats){
         if(sessionStats.keyStats[key].hits != 0 || sessionStats.keyStats[key].misses != 0){
@@ -56,10 +62,12 @@ function showStats(){
         }
     }
     console.log(sessionStats.keyStats);
+
+    // add time and number of words used
     sessionStats.totalWords += sessionStats.wordCount;
     sessionStats.totalTime += sessionStats.examTime;
 
-    //push to localStorage
+    // push updated sums to localStorage
     let localStats = {
         totalHits: sessionStats.totalHits,
         totalMisses: sessionStats.totalMisses,
@@ -73,7 +81,6 @@ function showStats(){
     needWork.innerHTML = "Keys that need work:"; 
     for(let key of sessionStats.problemKeys){needWork.innerHTML += " " + reverseKeyMap[key];} 
     highlightKeys(sessionStats.problemKeys);
-
     document.querySelector("#statsHits").innerHTML = "Keys hit: " + sessionStats.hits;
     document.querySelector("#statsMisses").innerHTML = "Keys missed: " + sessionStats.misses;
     document.querySelector("#statsAccuracy").innerHTML = "Accuracy: " + Number(((sessionStats.hits/(sessionStats.hits+sessionStats.misses))*100).toFixed(2));
@@ -87,6 +94,7 @@ function showStats(){
     document.querySelector("#statsWords").innerHTML = 'Words: ' + sessionStats.wordCount;
 }
 
+// visual indicator for the user on what they should pay attention to
 function highlightKeys(problemKeys){
     for(let code of problemKeys){
         document.querySelector(`#${code}`).setAttribute('class','problemKey');
