@@ -34,7 +34,7 @@ function switchListener(sw){
     if(on){
         let newSpot = document.querySelector(`#${rest}Off`);
         newSpot.appendChild(clone);
-        preferences.mySpecials.splice(mySpecials.indexOf(myChar));
+        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar));
     }
     else{
         let newSpot = document.querySelector(`#${rest}n`);
