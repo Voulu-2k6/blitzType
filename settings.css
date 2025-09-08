@@ -1,7 +1,7 @@
 /*Split file to reduce clutter*/
-#previewBox {
-    color: grey;
-    font-size: 40;
+#previewBox {background-color: grey;
+    color: lightgray;
+    font-size: 20px;
 }
 #settingsBox, .buttonSliderContainer, .switchHolder, .switchLists div{
     display: flex;
@@ -17,4 +17,10 @@
 }
 #onList {
     border-bottom: 2px solid orangered;
+}
+
+#settingsBox{
+    flex-grow: 1;
+
+
 }

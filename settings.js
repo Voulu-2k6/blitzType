@@ -15,7 +15,6 @@ let preferences = userSettings ? userSettings : {
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
 }
-
 if(userSettings){showMySettings();} // show which settings are on on page load
 
 //rate button listeners
