@@ -17,7 +17,7 @@ mySwitches.forEach((sw) => {
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
     for(const spec of userSettings.mySpecials){
-        switchListener(document.querySelector(`#${switchMap(spec)}`, true));
+        switchListener(document.querySelector(`#${switchMap[spec]}`, true));
     }
 }
 
