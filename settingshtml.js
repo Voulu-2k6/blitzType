@@ -28,11 +28,13 @@ for(let sw of mySwitches){
         let clone = sw.cloneNode(true);
         if(on){
             let newSpot = document.querySelector(`#${rest}ff`);
+            console.log(`#${rest}ff`);
             newSpot.appendChild(clone);
             preferences.mySpecials.splice(mySpecials.indexOf(myChar));
         }
         else{
             let newSpot = document.querySelector(`#${rest}On`);
+            console.log(`#${rest}On`);
             newSpot.appendChild(clone);
             preferences.mySpecials.push(myChar);
         }
