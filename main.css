@@ -201,6 +201,7 @@ header a,footer p{
     align-items: center;
 }
 
+/*classes*/
 .slider {
     background-color: black;
     border-radius: 4px;
@@ -219,7 +220,7 @@ header a,footer p{
 .slider .button {
     margin-left: 15px;
 }
-.button, button {
+.button, button, .switch {
     margin: 3px;
     border: 1px solid orangered;
     border-radius: 3px;

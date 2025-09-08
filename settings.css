@@ -1,0 +1,11 @@
+/*Split file to reduce clutter*/
+#previewBox {
+    color: grey;
+    font-size: 20;
+}
+#settingsBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
