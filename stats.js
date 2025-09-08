@@ -8,10 +8,10 @@
         Spacebar on problemkeys is invisible
         Spacebar doesn't highlight on problem, nor does Enter*/
 
-let userStats = JSON.parse(localStorage.getItem('userStats'));
-import {keyMap, reverseKeyMap} from '/blitzType/constants.js';
+let userStats = JSON.parse(localStorage.getItem('userStats')); // locally stored user stats
+import {keyMap, reverseKeyMap} from '/blitzType/constants.js'; // maps between keys and codes, see constants.js
 
-let statsTemplate = {
+let statsTemplate = { // fresh load stats + saved historical stats
         wordCount: 10,
         examTime: 0,
         hits: 0,
@@ -38,9 +38,10 @@ let statsTemplate = {
         problemKeys: []
 };
 
+// For showing stats after a test is completed. 
 function showStats(){
 
-    let sessionStats = JSON.parse(sessionStorage.getItem('sessionStats'));
+    let sessionStats = JSON.parse(sessionStorage.getItem('sessionStats')); 
 
     //update variables
     sessionStats.problemKeys = [];

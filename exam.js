@@ -203,7 +203,7 @@ function onMiss(){
 }
 
 async function getWords(){
-    const response = await fetch('words.text');
+    const response = await fetch('words.txt');
     const text = response.text();
     return text;
 }
