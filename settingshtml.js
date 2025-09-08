@@ -17,7 +17,8 @@ else{
 
 }
 
-let mySwitches = document.querySelectorAll('.list > *');
+let mySwitches = document.querySelectorAll('.list div');
+console.log(mySwitches);
 for(let sw of mySwitches){
     sw.addEventListener('OnClick', () => {
         let pId = sw.parentElement.id;
