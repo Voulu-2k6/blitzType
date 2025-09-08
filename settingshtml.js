@@ -1,31 +1,35 @@
-//on load, seperate page from the rest
+//on load of settings.html
 
-import {keyMap} from '/blitzType/constants.js';
-
+//get known preferences
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
 }
 
+// getting ids mapped to the character for the below if statement.
+let mySwitches = document.querySelectorAll('.list div');
+let switchMap = new Map();
+mySwitches.forEach((sw) => {
+    switchMap.set(sw.innerHTML, sw.id);
+});
+
+// if we had settings, here is where we will set up the page correctly.
 if(userSettings){
     for(const spec of userSettings.mySpecials){
-        console.log(spec);
+        switchListener(document.querySelector(`#${switchMap(spec)}`, true));
     }
 }
-else{
 
-}
-
-let mySwitches = document.querySelectorAll('.list div');
-console.log(mySwitches);
+// allow interaction
 for(let sw of mySwitches){
     sw.addEventListener('click', () => {
-        switchListener(sw);
+        switchListener(sw, false);
     });
 }
 
-function switchListener(sw){
+// flipping mechanic
+function switchListener(sw, pageLoad){
     let pId = sw.parentElement.id;
     let myChar = sw.textContent; //improve to catch all
     let on = 'On' == pId.substring(pId.length -2);
@@ -34,16 +38,26 @@ function switchListener(sw){
     if(on){
         let newSpot = document.querySelector(`#${rest}Off`);
         newSpot.appendChild(clone);
-        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar));
+        if(!pageLoad){updateSpecial(myChar, true);}
     }
     else{
         let newSpot = document.querySelector(`#${rest}n`);
         newSpot.appendChild(clone);
-        preferences.mySpecials.push(myChar);
+        if(!pageLoad){updateSpecial(myChar, false);}
     }
     sw.remove();
-    clone.addEventListener('click', () => {switchListener(clone);})
+    clone.addEventListener('click', () => {switchListener(clone, false);})
     updatePreview(); //TBI
+}
+
+//called only if flipping on a non-pageload instance
+function updateSpecial(myChar, remove){
+    if(remove){
+        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar));
+    }
+    else{
+        preferences.mySpecials.push(myChar);
+    }
     pushNewPref();
 }
 
@@ -80,4 +94,6 @@ function switchListener(sw){
 
 function updatePreview(){}
 
-function pushNewPref(){}
+function pushNewPref(){
+    localStorage.setItem('userPreferences', JSON.stringify(preferences));
+}
