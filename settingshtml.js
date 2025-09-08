@@ -14,10 +14,12 @@ let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
 });
+console.log(switchMap);
 
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
     for(const spec of userSettings.mySpecials){
+        console.log(switchMap[spec]);
         console.log(`#${switchMap[spec]}`);
         switchListener(document.querySelector(`#${switchMap[spec]}`, true));
     }
@@ -65,6 +67,8 @@ function updateSpecial(myChar, remove){
 }
 
 // SLIDER SECTION
+
+// TARGETED KEY
 
 // function getSliderValue(button){
 //     let which = button.getAttribute('id').substring(7);
