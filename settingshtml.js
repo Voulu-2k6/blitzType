@@ -20,29 +20,32 @@ else{
 let mySwitches = document.querySelectorAll('.list div');
 console.log(mySwitches);
 for(let sw of mySwitches){
-    sw.addEventListener('click', () => {
-        let pId = sw.parentElement.id;
-        let myChar = sw.textContent; //improve to catch all
-        let on = 'On' == pId.substring(pId.length -2);
-        let rest = pId.substring(0, pId.length -2);
-        let clone = sw.cloneNode(true);
-        if(on){
-            let newSpot = document.querySelector(`#${rest}Off`);
-            console.log(`#${rest}ff`);
-            newSpot.appendChild(clone);
-            preferences.mySpecials.splice(mySpecials.indexOf(myChar));
-        }
-        else{
-            let newSpot = document.querySelector(`#${rest}n`);
-            console.log(`#${rest}On`);
-            newSpot.appendChild(clone);
-            preferences.mySpecials.push(myChar);
-        }
-        sw.remove();
-        updatePreview(); //TBI
+    sw.addEventListener('click', (sw) => {
+        switchListener(sw);
     });
 }
 
+function switchListener(sw){
+    let pId = sw.parentElement.id;
+    let myChar = sw.textContent; //improve to catch all
+    let on = 'On' == pId.substring(pId.length -2);
+    let rest = pId.substring(0, pId.length -2);
+    let clone = sw.cloneNode(true);
+    if(on){
+        let newSpot = document.querySelector(`#${rest}Off`);
+        newSpot.appendChild(clone);
+        preferences.mySpecials.splice(mySpecials.indexOf(myChar));
+    }
+    else{
+        let newSpot = document.querySelector(`#${rest}n`);
+        newSpot.appendChild(clone);
+        preferences.mySpecials.push(myChar);
+    }
+    sw.remove();
+    clone.addEventListener('click', (clone) => {switchListener(clone);})
+    updatePreview(); //TBI
+    pushNewPref();
+}
 
 // function getSliderValue(button){
 //     let which = button.getAttribute('id').substring(7);
@@ -76,3 +79,5 @@ for(let sw of mySwitches){
 // }
 
 function updatePreview(){}
+
+function pushNewPref(){}
