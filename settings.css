@@ -3,9 +3,15 @@
     color: grey;
     font-size: 20;
 }
-#settingsBox {
+#settingsBox, .buttonSliderContainer {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+#settingsLeft{
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
