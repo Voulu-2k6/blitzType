@@ -1,9 +1,17 @@
 /*Split file to reduce clutter*/
-#previewBox {background-color: grey;
+#previewBox {
+    background-color: grey;
     color: lightgray;
     font-size: 20px;
+    margin: 0px 30px;
+    border-radius: 3px;
 }
-#settingsBox, .buttonSliderContainer, .switchHolder, .switchLists div{
+#settingsBox, #targetBox{
+    flex-grow: 1;
+    margin: 0px 50px;
+}
+
+#settingsBox, .buttonSliderContainer, .switchHolder, .list {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -15,12 +23,7 @@
     justify-content: flex-start;
     align-items: center;
 }
-#onList {
+#puncOn, #specialOn {
     border-bottom: 2px solid orangered;
 }
 
-#settingsBox{
-    flex-grow: 1;
-
-
-}
