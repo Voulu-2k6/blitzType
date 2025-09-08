@@ -20,10 +20,20 @@ else{
 let mySwitches = document.querySelectorAll('.list div');
 console.log(mySwitches);
 for(let sw of mySwitches){
-    sw.addEventListener('OnClick', () => {
+    sw.addEventListener('click', () => {
         let pId = sw.parentElement.id;
         let on = 'On' == pId.substring(pId.length -2);
+        let rest = pId.substring(0, pId.length -3);
         console.log(pId.substring(pId.length -2));
+        console.log(pId.substring(0, pId.length -3));
+
+        let clone = sw.cloneNode(true);
+        if(on){
+            
+        }
+        else{
+
+        }
     });
 }
 
