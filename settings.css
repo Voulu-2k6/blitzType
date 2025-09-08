@@ -3,7 +3,7 @@
     background-color: grey;
     color: lightgray;
     font-size: 20px;
-    margin: 40px 12vw;
+    margin: 40px 12vw 10px 12vw;
     border-radius: 10px;
 
     align-items: center;
@@ -47,5 +47,5 @@
     align-items: center;
 }
 .buttonSliderContainer > * {
-    margin: 8px 0;
+    margin: 0px 8px;
 }

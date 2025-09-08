@@ -1,5 +1,7 @@
 //on load, seperate page from the rest
 
+import {keyMap} from 'constants.js';
+
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
@@ -7,10 +9,21 @@ let preferences = userSettings ? userSettings : {
 }
 
 if(userSettings){
-
+    for(const spec of userSettings.mySpecials){
+        console.log(spec);
+    }
 }
 else{
 
+}
+
+let mySwitches = document.querySelectorAll('.list > *');
+for(let sw of mySwitches){
+    sw.addEventListener('OnClick', () => {
+        let pId = sw.parentElement.id;
+        let on = 'On' == pId.substring(pId.length -2);
+        console.log(pId.substring(pId.length -2));
+    });
 }
 
 
