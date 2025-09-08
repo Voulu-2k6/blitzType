@@ -71,12 +71,6 @@ section {
     justify-content: flex-start;
     align-items: center;
 }
-#settingsBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
 #examSettings {
     width: 15vw;
 

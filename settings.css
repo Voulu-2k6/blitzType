@@ -1,17 +1,20 @@
 /*Split file to reduce clutter*/
 #previewBox {
     color: grey;
-    font-size: 20;
+    font-size: 40;
 }
-#settingsBox, .buttonSliderContainer {
+#settingsBox, .buttonSliderContainer, .switchHolder, .switchLists div{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
-#settingsLeft{
+#settingsLeft, .switchLists{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+#onList {
+    border-bottom: 2px solid orangered;
 }
