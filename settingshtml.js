@@ -20,7 +20,7 @@ else{
 let mySwitches = document.querySelectorAll('.list div');
 console.log(mySwitches);
 for(let sw of mySwitches){
-    sw.addEventListener('click', (sw) => {
+    sw.addEventListener('click', () => {
         switchListener(sw);
     });
 }
@@ -42,7 +42,7 @@ function switchListener(sw){
         preferences.mySpecials.push(myChar);
     }
     sw.remove();
-    clone.addEventListener('click', (clone) => {switchListener(clone);})
+    clone.addEventListener('click', () => {switchListener(clone);})
     updatePreview(); //TBI
     pushNewPref();
 }
