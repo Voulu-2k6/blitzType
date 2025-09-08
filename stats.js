@@ -18,10 +18,10 @@ let statsTemplate = {
         trueHits: 0,
         misses: 0,
         trueMisses: 0,
-        totalHits: userStats.totalHits,
-        totalMisses: userStats.totalMisses,
-        totalTime: userStats.totalTime,
-        totalWords: userStats.totalWords,
+        totalHits: userStats ? userStats.totalHits : 0,
+        totalMisses: userStats ? userStats.totalMisses : 0,
+        totalTime: userStats ? userStats.totalTime : 0,
+        totalWords: userStats ? userStats.totalWords : 0,
         keyStats: Object.fromEntries(
             Object.keys(keyMap).map(key => [
                 keyMap[key], 
