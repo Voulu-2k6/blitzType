@@ -7,6 +7,7 @@ let preferences = userSettings ? userSettings : {
     adapt: false, key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
 }
 
+// STARTUP SECTION
 // getting ids mapped to the character for the below if statement.
 let mySwitches = document.querySelectorAll('.list div');
 let switchMap = new Map();
@@ -17,11 +18,13 @@ mySwitches.forEach((sw) => {
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
     for(const spec of userSettings.mySpecials){
+        console.log(`#${switchMap[spec]}`);
         switchListener(document.querySelector(`#${switchMap[spec]}`, true));
     }
 }
 
-// allow interaction
+// SPECIALS SECTION 
+// allow interaction of special switches
 for(let sw of mySwitches){
     sw.addEventListener('click', () => {
         switchListener(sw, false);
@@ -60,6 +63,8 @@ function updateSpecial(myChar, remove){
     }
     pushNewPref();
 }
+
+// SLIDER SECTION
 
 // function getSliderValue(button){
 //     let which = button.getAttribute('id').substring(7);
