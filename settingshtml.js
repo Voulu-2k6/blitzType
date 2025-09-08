@@ -19,9 +19,7 @@ console.log(switchMap);
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
     for(const spec of userSettings.mySpecials){
-        console.log(switchMap[spec]);
-        console.log(`#${switchMap[spec]}`);
-        switchListener(document.querySelector(`#${switchMap[spec]}`, true));
+        switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 }
 
