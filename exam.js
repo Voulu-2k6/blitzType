@@ -44,7 +44,7 @@ document.addEventListener('keyup', (e) => {
 });
 
 function exam(){
-    getPreferences();
+    getPreferences(); //pulls 
     clearExam();
     if(preferences.endless){createEndless();}
     else{createExam();}
@@ -317,8 +317,12 @@ function updateStats(hit, e = null){
 }
 
 import {showStats} from '/blitzType/stats.js';
+// presents and updates stats, handles key adaptation
 function doStats(){
     sessionStorage.setItem('sessionStats', JSON.stringify(myStats));
     showStats();
     myStats = JSON.parse(sessionStorage.getItem('sessionStats'));
+    if(preferences.adapt){adaptKey();}
 }
+
+function adaptKey(){} //TBI

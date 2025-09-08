@@ -7,9 +7,11 @@
         
 import {nonLetters} from '/blitzType/constants.js';
 
-let preferences = { 
+//pull preferences and/or create them
+let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
+let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
-    key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
+    adapt: false, key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
 }
 
 //rate button listeners
