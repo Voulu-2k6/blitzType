@@ -1,6 +1,6 @@
 //on load, seperate page from the rest
 
-import {keyMap} from 'constants.js';
+import {keyMap} from '/blitzType/constants.js';
 
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
