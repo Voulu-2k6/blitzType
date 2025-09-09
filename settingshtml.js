@@ -55,7 +55,7 @@ function switchListener(sw, pageLoad){
 //called only if flipping on a non-pageload instance
 function updateSpecial(myChar, remove){
     if(remove){
-        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar));
+        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar, 1));
     }
     else{
         preferences.mySpecials.push(myChar);
