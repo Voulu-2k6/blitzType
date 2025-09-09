@@ -267,10 +267,11 @@ function getASpecial(){
 
 function getNewLine(){
     //generate test
-    let myRow = [];
-
-    let characters = 0;
+    let addMe = getNewWord();
+    let myRow = [addMe];
+    let characters = addMe.length;
     while(characters < 50){
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
         let addMe = getNewWord();
         characters += addMe.length;
         if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); return myRow;}
