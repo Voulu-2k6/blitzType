@@ -106,7 +106,7 @@ function updateSliderPrefs(closing, mySlider){
     let newValue = closing ? 0 : mySlider.value;
     mySlider.nextElementSibling.innerHTML = (newValue) + '%';
     newValue = Number(newValue)/100;
-    if(type == 'capitals'){
+    if(mySlider.id.substring(6) == 'capital'){
         preferences.Capitals = newValue;
     }
     else{
