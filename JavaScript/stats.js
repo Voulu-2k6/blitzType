@@ -17,36 +17,6 @@
 let userStats = JSON.parse(localStorage.getItem('userStats')); // locally stored user stats
 import {keyMap, reverseKeyMap} from '/blitzType/JavaScript/constants.js'; // maps between keys and codes, see constants.js
 
-let loadStats = { // fresh load stats + saved historical stats
-        wordCount: 10,
-        examTime: 0,
-        hits: 0,
-        trueHits: 0,
-        misses: 0,
-        trueMisses: 0,
-        bestWpm: userStats ? bestWpm : 0,
-        bestAccuracy: userStats ? bestAccuracy : 0,
-        startDate: userStats ? userStats.startDate : Date.now(),
-        totalHits: userStats ? userStats.totalHits : 0,
-        totalMisses: userStats ? userStats.totalMisses : 0,
-        totalTime: userStats ? userStats.totalTime : 0,
-        totalWords: userStats ? userStats.totalWords : 0,
-        keyStats: Object.fromEntries(
-            Object.keys(keyMap).map(key => [
-                keyMap[key], 
-                {
-                    hits: 0,
-                    misses: 0,
-                    accuracy: 0,
-                    trueHits: 0,
-                    trueMisses: 0,
-                    trueAccuracy: 0
-                }
-            ])
-        ), 
-        problemKeys: []
-};
-
 let runStatsTemplate = {
     // basic stats
     wordCount: 0,
@@ -63,10 +33,7 @@ let runStatsTemplate = {
             {
                 hits: 0,
                 misses: 0,
-                accuracy: 0,
-                trueHits: 0,
-                trueMisses: 0,
-                trueAccuracy: 0}])), 
+                accuracy: 0}])), 
     problemKeys: []
 }
 
@@ -83,59 +50,9 @@ let storedStatsTemplate = {
         Object.keys(keyMap).map(key => [
             keyMap[key], 
             {
-                trueHits: 0,
-                trueMisses: 0}]))
-}
-
-// For showing stats after a test is completed. 
-function showStats(){
-
-    // get updated stats from most recent test
-    let sessionStats = JSON.parse(sessionStorage.getItem('sessionStats')); 
-
-    // recalculate problem keys
-    sessionStats.problemKeys = [];
-    for(let key in sessionStats.keyStats){
-        if(sessionStats.keyStats[key].hits != 0 || sessionStats.keyStats[key].misses != 0){
-            sessionStats.keyStats[key].accuracy = sessionStats.keyStats[key].hits / (sessionStats.keyStats[key].hits+sessionStats.keyStats[key].misses);
-            if(sessionStats.keyStats[key].accuracy < 0.92 && (sessionStats.keyStats[key].hits + sessionStats.keyStats[key].misses) > 15){sessionStats.problemKeys.push(key);}
-        }
-        if(sessionStats.keyStats[key].trueHits != 0){
-            sessionStats.keyStats[key].trueAccuracy = sessionStats.keyStats[key].trueHits / (sessionStats.keyStats[key].trueHits+sessionStats.keyStats[key].trueMisses);
-            if(sessionStats.keyStats[key].trueAccuracy < 0.88 && (sessionStats.keyStats[key].hits + sessionStats.keyStats[key].misses) > 15 && !sessionStats.problemKeys.includes(key)){sessionStats.problemKeys.push(key);}
-        }
-    }
-    console.log(sessionStats.keyStats);
-
-    // add time and number of words used
-    sessionStats.totalWords += sessionStats.wordCount;
-    sessionStats.totalTime += sessionStats.examTime;
-
-    // push updated sums to localStorage
-    let localStats = {
-        totalHits: sessionStats.totalHits,
-        totalMisses: sessionStats.totalMisses,
-        totalWords: sessionStats.totalWords,
-        totalTime: sessionStats.totalTime
-    };
-    localStorage.setItem('userStats', JSON.stringify(localStats));
-
-    //update display
-    let needWork = document.querySelector("#needWork");
-    needWork.innerHTML = "Keys that need work:"; 
-    for(let key of sessionStats.problemKeys){needWork.innerHTML += " " + reverseKeyMap[key];} 
-    highlightKeys(sessionStats.problemKeys);
-    document.querySelector("#statsHits").innerHTML = "Keys hit: " + sessionStats.hits;
-    document.querySelector("#statsMisses").innerHTML = "Keys missed: " + sessionStats.misses;
-    document.querySelector("#statsAccuracy").innerHTML = "Accuracy: " + Number(((sessionStats.hits/(sessionStats.hits+sessionStats.misses))*100).toFixed(2));
-    document.querySelector("#statsTime").innerHTML = "Time: " + formatMS(sessionStats.examTime);
-    document.querySelector("#statsWPM").innerHTML = "Words per minute: " + Number((sessionStats.wordCount/(sessionStats.examTime/(1000*60))).toFixed(2));
-    document.querySelector("#trueHits").innerHTML = "True hits: " + sessionStats.trueHits;
-    document.querySelector("#trueMisses").innerHTML = "True misses: " + sessionStats.trueMisses;
-    document.querySelector("#trueAcc").innerHTML = "True Accuracy: " + Number(((sessionStats.trueHits/(sessionStats.trueHits+sessionStats.trueMisses))*100).toFixed(2));
-    document.querySelector("#averageAccuracy").innerHTML = "Average accuracy: " + Number(((sessionStats.totalHits/(sessionStats.totalHits+sessionStats.totalMisses))*100).toFixed(2));
-    document.querySelector("#averageWPM").innerHTML = "Average words per minute: " + Number(((sessionStats.totalWords/(sessionStats.totalTime/(1000*60)))).toFixed(2));
-    document.querySelector("#statsWords").innerHTML = 'Words: ' + sessionStats.wordCount;
+                hits: 0,
+                misses: 0,
+                accuracy: 0}]))
 }
 
 // visual indicator for the user on what they should pay attention to
@@ -162,13 +79,50 @@ function formatMS(ms){
     return output + Number(seconds.toFixed(3)) + " Seconds";
 }
 
-export {statsTemplate, showStats, highlightKeys, formatMS};
+//algorithm for determining which keys need work
+function getProblems(sessionStats){
+    sessionStats.problemKeys = [];
+    for(let key in sessionStats.keyStats){
+        if(sessionStats.keyStats[key].hits != 0 || sessionStats.keyStats[key].misses != 0){
+            sessionStats.keyStats[key].accuracy = sessionStats.keyStats[key].hits / (sessionStats.keyStats[key].hits+sessionStats.keyStats[key].misses);
+            if(sessionStats.keyStats[key].accuracy < 0.92 && (sessionStats.keyStats[key].hits + sessionStats.keyStats[key].misses) > 15){sessionStats.problemKeys.push(key);}
+        }
+    }
+}
+
+function updateDisplay(sessionStats){
+    let needWork = document.querySelector("#needWork");
+    needWork.innerHTML = "Keys that need work:"; 
+    for(let key of sessionStats.problemKeys){needWork.innerHTML += " " + reverseKeyMap[key];} 
+    highlightKeys(sessionStats.problemKeys);
+    document.querySelector("#statsAccuracy").innerHTML = "Accuracy: " + Number(((sessionStats.hits/(sessionStats.hits+sessionStats.misses))*100).toFixed(2));
+    document.querySelector("#statsWPM").innerHTML = "Words per minute: " + Number((sessionStats.wordCount/(sessionStats.examTime/(1000*60))).toFixed(2));
+}
+
+export {runStatsTemplate, storedStatsTemplate, newStats, highlightKeys, formatMS};
 
 function newStats(){
+
     let runStats = JSON.parse(sessionStorage.get('runStats'));
-    //update current run stats
+    let localStats = JSON.parse(localStorage.getItem('localStats'));
+
+    //calculate what to show
+    getProblems(runStats);
+
     //show current run stats
+    updateDisplay(runStats);
 
     //update locally stored stats
+    localStats.totalWords += runStats.wordCount;
+    localStats.totalTime += runStats.examTime;
+    localStats.totalHits += runStats.hits;
+    localStats.totalMisses += runStats.misses;
+    for(let key of runStats.keyStats){
+
+    }
+    
     //if new high score, tell the user!
+
+    localStorage.setItem('localStats', JSON.stringify(localStats));
 }
+

@@ -19,14 +19,12 @@ let myExam = [];
 let myLines = [];
 let myChars = [];
 let myProgress = 0;
-let miss = false;
-let firstMiss = true;
 let examOn = false;
 let preferences = JSON.parse(localStorage.getItem('userPreferences'));
 
 //for recording stats
-import {loadStats} from '/blitzType/JavaScript/stats.js';
-let myStats = loadStats;
+import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
+let myStats = runStatsTemplate;
 
 //exam button listener 
 if(document.querySelector("#makeExamButton")){
@@ -160,13 +158,10 @@ function advanceEndless(){
     myChars = document.querySelectorAll("#examText p");
     showNext(myExam[0]);
 
-    //stats
-    // preferences.key = problemKeys.length > 0 ? reverseKeyMap[problemKeys[Math.floor(Math.random()*problemKeys.length)]] : targetKey;
     startTimer();
     myStats.examTime = 0;
     myStats.hits = 0;
     myStats.misses = 0;
-    // myStats.wordCount = preferences.Words;
 }
 
 function hitCheck(e){
@@ -185,7 +180,7 @@ function hitCheck(e){
             }
         }
         else{
-            onMiss();
+            onMiss(e);
         }
     }
 }
@@ -194,15 +189,11 @@ function onHit(e){
     myChars[myProgress].setAttribute('style', 'background-color: rgb(255, 102, 0);');
     myProgress++;
     updateStats(true, e);
-    miss = false;
-    firstMiss = true;
 }
 
-function onMiss(){
+function onMiss(e){
     myChars[myProgress].setAttribute('style', 'background-color: aqua;');
-    updateStats(false);
-    firstMiss = false;
-    miss = true;
+    updateStats(false, e);
 }
 
 async function getWords(){
@@ -294,34 +285,26 @@ function endTimer() {
   myStats.examTime = Date.now() - startTimestamp;
 }
 
-function updateStats(hit, e = null){
+function updateStats(hit, e){
     if(hit){
         myStats.hits++;
         myStats.keyStats[e.code].hits++;
         if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].hits++;}
-        if(!miss){
-            myStats.trueHits++;
-            myStats.keyStats[e.code].trueHits++;
-            if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].trueHits++;}
-        }
     }
     else{
-        myStats.trueMisses++;
-            myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].trueMisses++;
-            if(myChars[myProgress].innerHTML in shiftMap){myStats.keyStats['ShiftLeft'].trueMisses++;}
-            if(firstMiss){
-                myStats.misses++;
-                myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].misses++;
-                if(myChars[myProgress].innerHTML in shiftMap){myStats.keyStats['ShiftLeft'].misses++;}
-            }
+        myStats.misses++;
+        myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].misses++;
+        if(myChars[myProgress].innerHTML in shiftMap){
+            if(reverseKeyMap[shiftMap[myChars[myProgress].innerHTML]] != e.key)
+                myStats.keyStats['ShiftLeft'].misses++;}
     }
 }
 
-import {showStats} from '/blitzType/JavaScript/stats.js';
+import {newStats} from '/blitzType/JavaScript/stats.js';
 // presents and updates stats
 function doStats(){
     sessionStorage.setItem('runStats', JSON.stringify(myStats));
-    showStats();
-    myStats = JSON.parse(sessionStorage.getItem('runStats'));
+    newStats();
+    myStats = runStatsTemplate;
 }
 
