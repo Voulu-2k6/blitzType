@@ -2,7 +2,6 @@ import {letters, nonLetters} from '/blitzType/constants.js';
 
 export function getNewLine(words){
     let preferences = JSON.parse(localStorage.getItem('userPreferences'));
-    let words = getWords();
     // MY FUNCTIONS
     function toTitleCase(word){
         return (word.substring(0,1).toUpperCase()) + word.substring(1);}
