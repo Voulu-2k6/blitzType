@@ -40,20 +40,21 @@ function switchListener(sw, pageLoad){
     if(on){
         let newSpot = document.querySelector(`#${rest}Off`);
         newSpot.appendChild(clone);
-        if(!pageLoad){updateSpecial(myChar, true);}
+        if(!pageLoad){updateSpecial(myChar, true); updatePreview();}
     }
     else{
         let newSpot = document.querySelector(`#${rest}n`);
         newSpot.appendChild(clone);
-        if(!pageLoad){updateSpecial(myChar, false);}
+        if(!pageLoad){updateSpecial(myChar, false); updatePreview();}
     }
     sw.remove();
     clone.addEventListener('click', () => {switchListener(clone, false);})
-    updatePreview(); //TBI
+    
 }
 
 //called only if flipping on a non-pageload instance
 function updateSpecial(myChar, remove){
+    preferences = JSON.parse(localStorage.getItem('userPreferences'));
     if(remove){
         preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar, 1));
     }
