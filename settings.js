@@ -53,7 +53,7 @@ function updatePreferences(button, value){
     switch(button.id) {
         case "capitalsButton": preferences.Capitals = value ? 0.4 : 0; break;
         case "punctuationButton": if(value){preferences.mySpecials = [',', '.', '!', '?']; preferences.Specials = 0.4} else {preferences.mySpecials = []; preferences.Specials = 0;} break;
-        case "endlessModeButon": preferences["endless"] = value; break;
+        case "endlessModeButton": preferences["endless"] = value; break;
         default: console.log('failed to update preferences: found element with id ' + button.id); break;}
     pushPreferences();
 }
