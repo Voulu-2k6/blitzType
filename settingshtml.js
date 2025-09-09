@@ -10,6 +10,7 @@ let preferences = userSettings ? userSettings : {
 // STARTUP SECTION
 // getting ids mapped to the character for the below if statement.
 let mySwitches = document.querySelectorAll('.list div');
+let myButtons = document.querySelector('.button');
 let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
@@ -21,6 +22,9 @@ if(userSettings){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
+    for(const setting of ['Capitals', 'Numbers']){
+        document.querySelector(`${setting}Holder`).innerHTML = preferences[setting] + '%';
+    }
 }
 
 // SPECIALS SECTION 
