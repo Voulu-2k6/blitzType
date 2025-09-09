@@ -1,3 +1,5 @@
+// built specifically to export a function built for the main exam
+
 import {letters, nonLetters} from '/blitzType/constants.js';
 
 export function getNewLine(words){
@@ -61,7 +63,7 @@ export function getNewLine(words){
         addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
     }
-    myRow = myRow.join('').split(''); 
+    myRow = myRow.join(''); 
     return myRow;
 }
 
