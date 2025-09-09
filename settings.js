@@ -1,111 +1,60 @@
 /*Settings
     Need:
-        storing settings in local storage, pulling settings from local storage.
-        implement target accuracy, current hardcoded at 0.7
-        implement specials frequency, current hardcoded at 0.3
-    Tweaks:
+        Words: small med large
+        Capitals: T/F shortcut: 0.4 rate
+        Punctuation: T/F shortcut: (. , ? !) 0.3 rate
         show selected settings on page load.
         */
         
-import {nonLetters} from '/blitzType/constants.js';
-
 //pull preferences and/or create them
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
-if(userSettings){showMySettings();} // show which settings are on on page load
+if(userSettings){showMySettings();} // show which settings are on on page load, TBI
 
-//rate button listeners
-let sliderSwitches = {'Capitals' : false, 'Numbers' : false, 'Words' : false}
-const sliders = document.querySelectorAll(".slider");
-for (let slider of sliders){
-    slider.firstElementChild.addEventListener('click', () => {
-        if(!(sliderSwitches[slider.getAttribute('id').substring(7)])){
-            sliderSwitches[slider.getAttribute('id').substring(7)] = true;
-            getSliderValue(slider);
-        }
-    });
-}
-
-//targetedKeyListener
-let targetKey = null;
-let targetKeyBox = document.querySelector("#keyFocus");
-let targetSwitch = false;
-targetKeyBox.addEventListener('click', () => {
-    if(!targetSwitch){
-        targetSwitch = true;
-        targetKeyBox.innerHTML = `<p>Targeted Key: </p><input type="text" id="targetedKeyButton">`;
-        let userTarget = document.querySelector("#targetedKeyButton");
-        userTarget.addEventListener('keydown', (e) => {
-            if(!specialKeyCodes.includes(e.code)){
-                targetKeyBox.innerHTML = `<p>Targeted Key: </p><div id="targetedKeyButton">${e.key}</div>`
-                targetKey = e.key;
-                preferences.key = e.key;
-                targetSwitch = false;
-                pushPreferences();
-            }
-        });
-    }
-});
-
-//other button listeners
+//other button listeners To be fixed...
 const buttons = document.querySelectorAll(".button");
 for(let button of buttons){
     button.addEventListener('click', () => {
-        let value;
-        if(button.getAttribute('style') == null || button.getAttribute('style') == ''){
-            button.setAttribute('style', 'background-color: rgb(255, 102, 0);');
-            value = true;
+        let value = button.getAttribute('style') == null || button.getAttribute('style') == '';
+        console.log(button.id.substring(button.id.length-4));
+        if(button.id.substring(button.id.length-4) == 'Test'){
+            if(value){
+                let curr = button.id.substring(0, button.id.length-4);
+                console.log(curr);
+                let sizes = ['small', 'medium', 'large'];
+                let others = sizes.splice(sizes.indexOf(curr), 1);
+                button.setAttribute('style', 'background-color: rgb(255, 102, 0);');
+                for(let other of others){document.querySelector(`#${other}Test`).setAttribute('style', '');}
+                switch (curr){
+                    case 'small': preferences.Words = 6; break;
+                    case 'medium': preferences.Words = 15; break;
+                    case 'Large': preferences.Words = 24; break;
+                    default: break;
+                }
+                pushPreferences();
+            }
         }
         else{
-            button.setAttribute('style', '');
-            value = false;
+            updatePreferences(button, value);
         }
-        updatePreferences(button.innerHTML, value);
     });
 }
 
-function getSliderValue(button){
-    let which = button.getAttribute('id').substring(7);
-    let value = 0.5;
-
-    button.innerHTML = `<p>${which}</p><div id="finish${which}" class="button">done</div>
-    <input type="range" id="mySlider${which}" min="0" max="100" value="50" step="1">`;
-
-    const mySlider = document.querySelector(`#mySlider${which}`);
-    mySlider.addEventListener('input', () => {
-        value = mySlider.value/100;
-    });
-
-    document.querySelector(`#finish${which}`).addEventListener('click', () => {
-        if(which == "Capitals"){preferences.Capitals = value;}
-        else if(which == "Numbers"){preferences.Numbers = value;}
-        else if(which == "Words"){preferences.Words = 5+Math.floor(value*25);}
-        else{console.log("error: unknown slider");}
-
-        if(which == "Words"){button.innerHTML = `<p>${which}: ` + (5+Math.floor(value*25)) + `</>`;}
-        else{button.innerHTML = `<p>${which}: ` + value + `</>`;}
-        sliderSwitches[which] = false;
-        button.firstElementChild.addEventListener('click', () => {
-            if(!(sliderSwitches[which])){
-            sliderSwitches[which] = true;
-            getSliderValue(button);
-        }
-    });
-    });
-    pushPreferences();
+function swapButtonVisual(button, value){
+    let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
+    button.setAttribute('style', newBg);
 }
 
-function updatePreferences(preference, value){
-    switch(preference) {
-        case "Capitals": preferences.Capitals = value; break;
-        case "Numbers": preferences.Numbers = value; break;
-        case "key": preferences.key = value; break;
-        case "endless mode": preferences["endless"] = value; break;
-        default: // our smaller buttons here TO DO
-        }
+function updatePreferences(button, value){
+    swapButtonVisual(button);
+    switch(button.id) {
+        case "capitalButton": preferences.Capitals = value ? 0.4 : 0; break;
+        case "punctuationButton": if(value){preferences.mySpecials = [',', '.', '!', '?']; preferences.Specials = 0.4} else {preferences.mySpecials = []; preferences.Specials = 0;} break;
+        case "endlessModeButon": preferences["endless"] = value; break;
+        default: console.log('failed to update preferences: found element with id ' + button.id); break;}
     pushPreferences();
 }
 
