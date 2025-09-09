@@ -65,6 +65,16 @@ function updateSpecial(myChar, remove){
 
 // SLIDER SECTION
 
+let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
+let buttons = document.querySelectorAll('.button');
+for(let button of buttons){
+    let type = button.previousElementSibling.innerHTML;
+    if(type = 'capitals:'){
+
+    }
+}
+
+
 // TARGETED KEY
 
 // function getSliderValue(button){
@@ -101,7 +111,7 @@ function updateSpecial(myChar, remove){
 import {getWords} from "/blitzType/functions.js";
 let words = getWords();
 function updatePreview(){
-    document.querySelector('#previewBox').innerHTML = utils.getNewLine();
+    document.querySelector('#previewBox').innerHTML = getNewLine(words);
 }
 
 function pushNewPref(){
