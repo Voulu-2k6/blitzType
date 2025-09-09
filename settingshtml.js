@@ -69,11 +69,22 @@ let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let buttons = document.querySelectorAll('.button');
 for(let button of buttons){
     let type = button.previousElementSibling.innerHTML;
-    if(type = 'capitals:'){
-
-    }
+    button.addEventListener('click', (e) => {
+        generateSlider(type, button);
+    });
 }
 
+function generateSlider(type, button){
+    let trySlider = document.querySelector(`#slider${type.substring(0, type.length)}`);
+    if(trySlider){
+        // turn off Slider
+    }
+    else{
+        button.insertAdjacentHTML("afterend", slider);
+        let mySlider = button.nextElementSibling;
+        mySlider.id = `slider${type.substring(0, type.length)}`;
+    }
+}
 
 // TARGETED KEY
 
