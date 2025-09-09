@@ -125,7 +125,7 @@ function newStats(){
     localStats.totalTime += runStats.examTime;
     localStats.totalHits += runStats.hits;
     localStats.totalMisses += runStats.misses;
-    for(let key of runStats.keyStats){
+    for(let key of Object.keys(runStats.keyStats)){
         localStats.keyStats[key].hits += runStats.keyStats[key].hits;
         localStats.keyStats[key].misses += runStats.keyStats[key].misses;
         localStats.keyStats[key].accuracy = localStats.keyStats[key].hits/(localStats.totalHits += runStats.hits + localStats.keyStats[key].misses);
