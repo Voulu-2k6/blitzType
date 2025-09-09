@@ -50,6 +50,8 @@ TO DO:
         TBL
     Create stats page.
 
+    condense functions?
+
 
 
 
