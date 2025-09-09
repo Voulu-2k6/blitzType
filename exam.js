@@ -86,7 +86,7 @@ export function createExam(){
             myRow = [];
             characters = addMe.length;
         }
-        for(let char of getNewWord().split('')){myRow.push(char);}
+        for(let char of addMe.split('')){myRow.push(char);}
     }
     return myRow;
 }
@@ -103,9 +103,12 @@ function uploadExam(){
                 pageChar.innerHTML = '\\n';
                 myExam.push('\n');
             }
-            else{
+            else if(line != myLines.length-1){
                 pageChar.innerHTML = '&nbsp;';
                 myExam.push(' ');
+            }
+            else{
+                break;
             }
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }
