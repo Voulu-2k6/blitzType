@@ -76,18 +76,19 @@ function createEndless(){
 export function createExam(){
     let myRow = [];
     let characters = 0;
+    for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
     for(let i = 0; i < preferences.Words; i++){
+        if(['/', '\\', "|", '-', '=', '+', '*', '^'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
-        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         characters += addMe.length;
         if(characters > 50){
-            myLines.push(myRow.splice(0,myRow.length));
+            myLines.push(myRow);
             myRow = [];
-            characters = 0;
+            characters = addMe.length;
         }
-        for(let char of addMe.split('')){myRow.push(char);}
+        for(let char of getNewWord().split('')){myRow.push(char);}
     }
-    return myRow.splice(0,myRow.length-1);
+    return myRow;
 }
 
 function uploadExam(){
