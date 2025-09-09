@@ -45,5 +45,15 @@ Iplementing features:
     Settings: punctuation lacks em dashes and en dashes
     Exam: reset/pause endless
 
+TO DO:
+    Finalize settings page. 
+        Add sliders for punctuation and specials freq.
+        implement adjusting selected key
+        polish UI
+    Finalize exam page.
+        TBL
+    Create stats page.
+
+
 
 
