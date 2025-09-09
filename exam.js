@@ -103,12 +103,10 @@ function uploadExam(){
                 pageChar.innerHTML = '\\n';
                 myExam.push('\n');
             }
-            else if(line != myLines.length-1){
-                pageChar.innerHTML = '&nbsp;';
-                myExam.push(' ');
-            }
             else{
-                break;
+                let endLine = line == myLines.length-1 ? myLines[line][char] : ' ';
+                pageChar.innerHTML = endLine == ' ' ? '&nbsp;' : endLine;
+                myExam.push(endLine);
             }
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }
