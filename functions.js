@@ -69,6 +69,3 @@ export async function getWords(){
     const text = response.text();
     return text;
 }
-
-
-export {getWords, getNewLine};
