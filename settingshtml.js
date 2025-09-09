@@ -100,7 +100,7 @@ function createHandler(mySlider){
 }
 
 function readSlider(mySlider, value){
-    let inner = value == -1 ? '' : (mySlider.value);
+    let inner = value == -1 ? '' : (mySlider.value) + '%';
     mySlider.nextElementSibling.innerHTML = inner;
     updateSliderPrefs(false, mySlider.id.substring(6), value)
 }
