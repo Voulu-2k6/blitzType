@@ -38,8 +38,8 @@ let runStatsTemplate = {
 }
 
 let storedStatsTemplate = {
-    bestWpm: userStats ? bestWpm : 0,
-    bestAccuracy: userStats ? bestAccuracy : 0,
+    bestWpm: userStats ? bestWpm : [0],
+    bestAccuracy: userStats ? bestAccuracy : [0],
     startDate: userStats ? userStats.startDate : Date.now(),
     totalHits: userStats ? userStats.totalHits : 0,
     totalMisses: userStats ? userStats.totalMisses : 0,
@@ -95,8 +95,16 @@ function updateDisplay(sessionStats){
     needWork.innerHTML = "Keys that need work:"; 
     for(let key of sessionStats.problemKeys){needWork.innerHTML += " " + reverseKeyMap[key];} 
     highlightKeys(sessionStats.problemKeys);
-    document.querySelector("#statsAccuracy").innerHTML = "Accuracy: " + Number(((sessionStats.hits/(sessionStats.hits+sessionStats.misses))*100).toFixed(2));
-    document.querySelector("#statsWPM").innerHTML = "Words per minute: " + Number((sessionStats.wordCount/(sessionStats.examTime/(1000*60))).toFixed(2));
+    document.querySelector("#statsAccuracy").innerHTML = "Accuracy: " + getAccuracy(sessionStats.hits, sessionStats.misses);
+    document.querySelector("#statsWPM").innerHTML = "Words per minute: " + getWPM(sessionStats.wordCount, sessionStats.examTime);
+}
+
+function getAccuracy(hits, misses){
+    return Number(((hits/(hits+misses))*100).toFixed(2));
+}
+
+function getWPM(words, ms){
+    return Number((words/(ms/(1000*60))).toFixed(2));
 }
 
 export {runStatsTemplate, storedStatsTemplate, newStats, highlightKeys, formatMS};
@@ -104,7 +112,7 @@ export {runStatsTemplate, storedStatsTemplate, newStats, highlightKeys, formatMS
 function newStats(){
 
     let runStats = JSON.parse(sessionStorage.get('runStats'));
-    let localStats = JSON.parse(localStorage.getItem('localStats'));
+    let localStats = localStorage.getItem('localStats') ? JSON.parse(localStorage.getItem('localStats')) : storedStatsTemplate;
 
     //calculate what to show
     getProblems(runStats);
@@ -118,10 +126,20 @@ function newStats(){
     localStats.totalHits += runStats.hits;
     localStats.totalMisses += runStats.misses;
     for(let key of runStats.keyStats){
-
+        localStats.keyStats[key].hits += runStats.keyStats[key].hits;
+        localStats.keyStats[key].misses += runStats.keyStats[key].misses;
+        localStats.keyStats[key].accuracy = localStats.keyStats[key].hits/(localStats.totalHits += runStats.hits + localStats.keyStats[key].misses);
     }
-    
-    //if new high score, tell the user!
+
+    //compare bests
+    if(getAccuracy(runStats.hits, runStats.misses) == 1){
+        if(localStats.bestAccuracy.length == 1){
+            localStats.bestAccuracy.push(1);
+        }
+        else{localStats.bestAccuracy[1]++;}
+    }
+    else if(getAccuracy(runStats.hits, runStats.misses) > localStats.bestAccuracy[0]){localStats.bestAccuracy[0] = getAccuracy(runStats.hits, runStats.misses);}
+    localStats.bestWpm = Math.max([getWPM(runStats.wordCount, runStats.examTime), localStats.bestWpm]);
 
     localStorage.setItem('localStats', JSON.stringify(localStats));
 }
