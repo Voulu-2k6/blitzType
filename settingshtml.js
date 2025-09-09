@@ -67,24 +67,25 @@ function updateSpecial(myChar, remove){
 
 // SLIDER SECTION
 
+//handles buttons that open the sliders
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let buttons = document.querySelectorAll('.button');
 for(let button of buttons){
     let type = button.previousElementSibling.innerHTML;
-    type = type.substring(0, type.length-1);
+    type = type.substring(0, type.length-2);
     button.addEventListener('click', (e) => {
         generateSlider(type, button);
     });
 }
 
+//tests if slider is active, then closes/opens the slider 
 function generateSlider(type, button){
     let trySlider = document.querySelector(`#slider${type}`);
     if(trySlider){
         const handler = createHandler(trySlider);
         trySlider.removeEventListener('input', handler);
-        readSlider(trySlider, -1);
+        updateSliderPrefs(true, trySlider);
         trySlider.remove();
-        updateSliderPrefs(true, type, 0);
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
@@ -92,26 +93,19 @@ function generateSlider(type, button){
         mySlider.id = `slider${type}`;
         const handler = createHandler(mySlider);
         mySlider.addEventListener('input', handler);
-        updateSliderPrefs(false, type, 0.5);
+        updateSliderPrefs(false, mySlider);
     }
 }
 
 function createHandler(mySlider){   
     return function() {
-        readSlider(mySlider, 0);
+        updateSliderPrefs(false, mySlider);
     }
 }
-
-function readSlider(mySlider, thisvalue){
-    let inner = thisvalue == -1 ? '' : (mySlider.value) + '%';
-    mySlider.nextElementSibling.innerHTML = inner;
-    updateSliderPrefs(false, mySlider.id.substring(6), mySlider.value);
-}
-
-function updateSliderPrefs(closing, type, value){
-    let newValue = closing ? 0 : value;
+function updateSliderPrefs(closing, mySlider){
+    let newValue = closing ? 0 : mySlider.value;
+    mySlider.nextElementSibling.innerHTML = (newValue) + '%';
     newValue = Number(newValue)/100;
-    console.log(type);
     if(type == 'capitals'){
         preferences.Capitals = newValue;
     }
