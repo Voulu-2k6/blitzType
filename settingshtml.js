@@ -109,6 +109,7 @@ function readSlider(mySlider, thisvalue){
 function updateSliderPrefs(closing, type, value){
     let newValue = closing ? 0 : value;
     newValue/100;
+    console.log(type);
     if(type == 'capitals'){
         preferences.Capitals = newValue;
     }
