@@ -47,7 +47,7 @@ function exam(){
     getPreferences(); //pulls 
     clearExam();
     if(preferences.endless){createEndless();}
-    else{createExam();}
+    else{myLines.push[createExam()];}
     uploadExam();
     startExam();
 }
@@ -85,7 +85,7 @@ function createExam(){
         }
         for(let char of addMe.split('')){myRow.push(char);}
     }
-    myLines.push(myRow.splice(0,myRow.length-1));
+    return myRow.splice(0,myRow.length-1);
 }
 
 function uploadExam(){

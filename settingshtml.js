@@ -14,7 +14,6 @@ let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
 });
-console.log(switchMap);
 
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
