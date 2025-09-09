@@ -75,14 +75,14 @@ for(let button of buttons){
 }
 
 function generateSlider(type, button){
-    let trySlider = document.querySelector(`#slider${type.substring(0, type.length)}`);
+    let trySlider = document.querySelector(`#slider${type.substring(0, type.length-1)}`);
     if(trySlider){
         // turn off Slider
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
         let mySlider = button.nextElementSibling;
-        mySlider.id = `slider${type.substring(0, type.length)}`;
+        mySlider.id = `slider${type.substring(0, type.length-1)}`;
     }
 }
 
