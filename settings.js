@@ -9,7 +9,7 @@
 //pull preferences and/or create them
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
-    'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
+    'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
 if(userSettings){showMySettings();} // show which settings are on on page load, TBI
@@ -24,8 +24,9 @@ for(let button of buttons){
                 let curr = button.id.substring(0, button.id.length-4);
                 let sizes = ['small', 'medium', 'large'];
                 let others = sizes.splice(sizes.indexOf(curr), 1);
-                button.setAttribute('style', 'background-color: rgb(255, 102, 0);');
-                for(let other of others){document.querySelector(`#${other}Test`).setAttribute('style', '');}
+
+                swapButtonVisual(button, value)
+                for(let other of others){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
                 switch (curr){
                     case 'small': preferences.Words = 6; break;
                     case 'medium': preferences.Words = 15; break;
