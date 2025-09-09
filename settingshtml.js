@@ -98,7 +98,7 @@ function updateSpecial(myChar, remove){
 //     pushPreferences();
 // }
 
-import {createExam, getNewWord} from "/blitzType/exam.js";
+import {getNewLine} from "/blitzType/functions.js";
 function updatePreview(){
     document.querySelector('#previewBox').innerHTML = createExam();
 }

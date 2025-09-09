@@ -1,8 +1,77 @@
-function exam(){
-    getPreferences(); //pulls 
-    clearExam();
-    if(preferences.endless){createEndless();}
-    else{myLines.push(createExam());}
-    uploadExam();
-    startExam();
+let preferences;
+let words = getWords();
+
+export function getNewLine(){
+    getPreferences();
+    let myRow = [];
+
+    let characters = 0;
+    while(characters < 50){
+        let addMe = getNewWord();
+        characters += addMe.length;
+        if(characters >= 50){myRow = myRow.join('').split(''); return myRow;}
+        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
+        myRow.push(addMe);
+    }
+}
+
+async function getWords(){
+    const response = await fetch('words.txt');
+    const text = response.text();
+    return text;
+}
+
+function getNewWord(){
+    let myWord = '';
+
+    //word or letter?
+    if(Math.random() >= preferences.Numbers){
+        myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*2993))]; //required key?
+        if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?
+    }
+    else{myWord = Number(Math.floor(Math.random()*1000));}
+
+    //specialize
+    if(nonLetters.includes(preferences.key) && Math.random() > 0.7){myWord = specialize(myWord, preferences.key);}//required key?
+    else if(preferences.doSpecials && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
+    return myWord;
+}
+
+function getPreferences(){preferences = JSON.parse(localStorage.getItem('userPreferences'));}
+
+function toTitleCase(word){
+    return (word.substring(0,1).toUpperCase()) + word.substring(1);
+}
+
+function specialize(myWord, myChar){
+    switch(myChar){
+        case "[":
+        case "]": myWord = "[" + myWord + "]"; break;
+        case "<":
+        case ">": myWord = "<" + myWord + ">"; break;
+        case "(":
+        case ")": myWord = "(" + myWord + ")"; break;
+        case "{":
+        case "}": myWord = "{" + myWord + "}"; break;
+        case "\"": myWord = "\"" + myWord + "\""; break;
+        case "'": myWord = "'" + myWord + "'"; break;
+        case "`": myWord = '`' + myWord + "`"; break;
+        case "~":
+        case "@":
+        case "#":
+        case "$": myWord = myChar + myWord; break;
+        default: myWord += myChar;
+    }
+    return myWord;
+}
+
+function getWordWith(myChar){
+    let myWord = '';
+    do{myWord = words[Math.floor((Math.random()*2993))];}
+    while(myWord.indexOf(myChar) < 0)
+    return myWord;
+}
+
+function getASpecial(){
+    return preferences.mySpecials[Math.floor(Math.random()*preferences.mySpecials.length)];
 }
