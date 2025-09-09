@@ -24,7 +24,6 @@ for(let button of buttons){
                 let curr = button.id.substring(0, button.id.length-4);
                 let sizes = ['small', 'medium', 'large'];
                 sizes.splice(sizes.indexOf(curr), 1);
-                console.log(others);
                 swapButtonVisual(button, value);
                 for(let other of sizes){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
                 switch (curr){
