@@ -78,7 +78,7 @@ export function createExam(){
     let characters = 0;
     for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
     for(let i = 0; i < preferences.Words; i++){
-        if(['/', '\\', "|", '-', '=', '+', '*', '^'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
         characters += addMe.length;
         if(characters > 50){
