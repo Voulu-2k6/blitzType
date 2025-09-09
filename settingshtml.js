@@ -93,12 +93,12 @@ function generateSlider(type, button){
 
 function createHandler(mySlider){   
     return function() {
-        readSlider(mySlider, 50);
+        readSlider(mySlider, -2);
     }
 }
 
 function readSlider(mySlider, value){
-    let inner = value == -1 ? '' : mySlider.value;
+    let inner = value < 0 ? (value == -1 ? '' : '50') : mySlider.value;
     mySlider.nextElementSibling.innerHTML = inner;
 }
 
