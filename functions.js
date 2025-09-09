@@ -41,7 +41,7 @@ export function getNewLine(words){
     function getNewWord(){
         let myWord = '';
 
-        //word or letter?
+        //word or number?
         if(Math.random() >= preferences.Numbers){
             myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*2993))]; //required key?
             if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?

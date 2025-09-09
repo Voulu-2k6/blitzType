@@ -77,13 +77,28 @@ for(let button of buttons){
 function generateSlider(type, button){
     let trySlider = document.querySelector(`#slider${type.substring(0, type.length-1)}`);
     if(trySlider){
+        trySlider.removeEventListener('input', handler);
+        readSlider(trySlider)
         // turn off Slider
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
         let mySlider = button.nextElementSibling;
         mySlider.id = `slider${type.substring(0, type.length-1)}`;
+        const handler = createHandler(mySlider);
+        mySlider.addEventListener('input', handler);
     }
+}
+
+function createHandler(mySlider){   
+    return function() {
+        readSlider(mySlider, 0);
+    }
+}
+
+function readSlider(mySlider, value){
+    let inner = value == -1 ? '' : mySlider.value;
+    mySlider.nextElementSibling.innerHTML = inner;
 }
 
 // TARGETED KEY
