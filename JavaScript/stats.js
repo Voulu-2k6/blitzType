@@ -14,7 +14,7 @@
         */
 
 let userStats = JSON.parse(localStorage.getItem('userStats')); // locally stored user stats
-import {keyMap, reverseKeyMap} from '/blitzType/constants.js'; // maps between keys and codes, see constants.js
+import {keyMap, reverseKeyMap} from '/blitzType/JavaScript/constants.js'; // maps between keys and codes, see constants.js
 
 let statsTemplate = { // fresh load stats + saved historical stats
         wordCount: 10,

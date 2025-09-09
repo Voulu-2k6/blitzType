@@ -126,7 +126,8 @@ function updateSliderPrefs(closing, mySlider){
 
 // PREVIEW TEST FEATURE
 
-import {getWords, getNewLine} from "/blitzType/functions.js";
+// edited functions from exam.js 
+import {getWords, getNewLine} from "/blitzType/JavaScript/functions.js";
 async function updatePreview(){
     let hold = await getWords();
     const words = hold.split(/\r?\n/);

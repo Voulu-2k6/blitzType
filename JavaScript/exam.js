@@ -9,7 +9,7 @@
     
 */
 
-import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/constants.js';
+import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/JavaScript/constants.js';
 
 //for creating and running the exam
 let hold = await getWords();
@@ -25,7 +25,7 @@ let examOn = false;
 let preferences = JSON.parse(localStorage.getItem('userPreferences'));
 
 //for recording stats
-import {statsTemplate} from '/blitzType/stats.js';
+import {statsTemplate} from '/blitzType/JavaScript/stats.js';
 let myStats = statsTemplate;
 
 //exam button listener 
@@ -320,7 +320,7 @@ function updateStats(hit, e = null){
     }
 }
 
-import {showStats} from '/blitzType/stats.js';
+import {showStats} from '/blitzType/JavaScript/stats.js';
 // presents and updates stats, handles key adaptation
 function doStats(){
     sessionStorage.setItem('sessionStats', JSON.stringify(myStats));
