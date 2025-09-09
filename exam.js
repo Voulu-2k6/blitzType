@@ -222,7 +222,7 @@ function getNewWord(){
 
     //specialize
     if(nonLetters.includes(preferences.key) && Math.random() > 0.7){myWord = specialize(myWord, preferences.key);}//required key?
-    else if(preferences.doSpecials && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
+    else if(preferences.mySpecials.length > 0 && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
     return myWord;
 }
 

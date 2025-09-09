@@ -13,7 +13,7 @@ import {nonLetters} from '/blitzType/constants.js';
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
-    adapt: false, key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
+    adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
 if(userSettings){showMySettings();} // show which settings are on on page load
 
@@ -104,20 +104,8 @@ function updatePreferences(preference, value){
         case "Numbers": preferences.Numbers = value; break;
         case "key": preferences.key = value; break;
         case "endless mode": preferences["endless"] = value; break;
-        default: if(nonLetters.includes(preference.substring(0,1)))
-        {
-            if(value){
-                preferences.mySpecials.push(preference);
-            }
-            else{
-                preferences.mySpecials.splice(preferences.mySpecials.indexOf(preference), 1);
-            }
-            preferences.doSpecials = preferences.mySpecials.length > 0 ? true : false;
+        default: // our smaller buttons here TO DO
         }
-        else{
-            console.log("failed to update preferences.")
-        }
-    }
     pushPreferences();
 }
 

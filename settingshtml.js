@@ -4,7 +4,7 @@
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
-    adapt: false, key: null, 'endless': false, 'mySpecials' : [], 'doSpecials' : false
+    adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
 
 // STARTUP SECTION
@@ -81,6 +81,7 @@ function generateSlider(type, button){
         trySlider.removeEventListener('input', handler);
         readSlider(trySlider, -1);
         trySlider.remove();
+        updateSliderPrefs(true, type, 0);
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
@@ -88,18 +89,31 @@ function generateSlider(type, button){
         mySlider.id = `slider${type.substring(0, type.length-1)}`;
         const handler = createHandler(mySlider);
         mySlider.addEventListener('input', handler);
+        updateSliderPrefs(false, type, 50);
     }
 }
 
 function createHandler(mySlider){   
     return function() {
-        readSlider(mySlider, -2);
+        readSlider(mySlider, 0);
     }
 }
 
 function readSlider(mySlider, value){
-    let inner = value < 0 ? (value == -1 ? '' : '50') : mySlider.value;
+    let inner = value == -1 ? '' : (mySlider.value);
     mySlider.nextElementSibling.innerHTML = inner;
+    console.log(mySlider.id.substring(6));
+    updateSliderPrefs(false, mySlider.id.substring(6), value)
+}
+
+function updateSliderPrefs(closing, type, value){
+    let newValue = closing ? 0 : value;
+    if(type == 'capitals'){
+        preferences.Capitals = newValue;
+    }
+    else{
+        preferences.Numbers = newValue;
+    }
 }
 
 // TARGETED KEY
