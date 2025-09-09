@@ -1,6 +1,6 @@
 let preferences;
 let words = getWords();
-import {letters} from "/constants.js";
+import {letters} from "/blitzType/constants.js";
 
 export function getNewLine(){
     getPreferences();
