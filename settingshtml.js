@@ -100,10 +100,10 @@ function createHandler(mySlider){
     }
 }
 
-function readSlider(mySlider, value){
-    let inner = value == -1 ? '' : (mySlider.value) + '%';
+function readSlider(mySlider, thisvalue){
+    let inner = thisvalue == -1 ? '' : (mySlider.value) + '%';
     mySlider.nextElementSibling.innerHTML = inner;
-    updateSliderPrefs(false, mySlider.id.substring(6), value)
+    updateSliderPrefs(false, mySlider.id.substring(6), mySlider.value);
 }
 
 function updateSliderPrefs(closing, type, value){
