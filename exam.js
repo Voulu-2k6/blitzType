@@ -71,7 +71,7 @@ function createEndless(){
     for(let i = 0; i < 3; i++){myLines.push(getNewLine());}
 }
 
-function createExam(){
+export function createExam(){
     let myRow = [];
     let characters = 0;
     for(let i = 0; i < preferences.Words; i++){
@@ -85,7 +85,7 @@ function createExam(){
         }
         for(let char of addMe.split('')){myRow.push(char);}
     }
-    return myRow.splice(0,myRow.length-1);
+    return myRow.splice(0,myRow.length);
 }
 
 function uploadExam(){

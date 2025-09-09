@@ -98,7 +98,10 @@ function updateSpecial(myChar, remove){
 //     pushPreferences();
 // }
 
-function updatePreview(){}
+import {createExam} from "/blitzType/exam.js";
+function updatePreview(){
+    document.querySelector('#previewBox').innerHTML = createExam();
+}
 
 function pushNewPref(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));

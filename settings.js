@@ -50,20 +50,6 @@ targetKeyBox.addEventListener('click', () => {
     }
 });
 
-//dropDown button listeners
-const dropDowns = document.querySelectorAll(".dropDownButton");
-for(let d of dropDowns){
-    d.addEventListener('click', () => {
-        let myID = d.getAttribute('id');
-        myID = myID.substring(0, myID.length-6);
-        let myMenu = document.querySelector(`#${myID}Menu`);
-        let myStyle = myMenu.getAttribute('style');
-        let isOpen = !(myStyle == null || myStyle == '');
-        let newStyle = isOpen ? '' : 'display:flex';
-        myMenu.setAttribute('style', newStyle);
-    });
-}
-
 //other button listeners
 const buttons = document.querySelectorAll(".button");
 for(let button of buttons){
