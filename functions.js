@@ -59,6 +59,7 @@ export function getNewLine(words){
     let characters = 0;
     while(characters < 50){
         let addMe = getNewWord();
+        console.log(addMe);
         characters += addMe.length;
         addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
