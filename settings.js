@@ -25,7 +25,7 @@ for(let button of buttons){
                 let sizes = ['small', 'medium', 'large'];
                 let others = sizes.splice(sizes.indexOf(curr), 1);
 
-                swapButtonVisual(button, value)
+                swapButtonVisual(button, value);
                 for(let other of others){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
                 switch (curr){
                     case 'small': preferences.Words = 6; break;
