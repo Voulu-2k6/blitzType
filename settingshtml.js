@@ -23,7 +23,7 @@ if(userSettings){
     }
 
     for(const setting of ['Capitals', 'Numbers']){
-        document.querySelector(`${setting}Holder`).innerHTML = preferences[setting] + '%';
+        document.querySelector(`#${setting}Holder`).innerHTML = preferences[setting] + '%';
     }
 }
 
@@ -121,6 +121,7 @@ function updateSliderPrefs(closing, mySlider){
 
 // TARGETED KEY
 
+// PREVIEW TEST FEATURE
 
 import {getWords, getNewLine} from "/blitzType/functions.js";
 async function updatePreview(){
