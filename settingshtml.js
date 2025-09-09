@@ -89,7 +89,7 @@ function generateSlider(type, button){
         mySlider.id = `slider${type.substring(0, type.length-1)}`;
         const handler = createHandler(mySlider);
         mySlider.addEventListener('input', handler);
-        updateSliderPrefs(false, type, 50);
+        updateSliderPrefs(false, type, 0.5);
     }
 }
 
@@ -102,52 +102,23 @@ function createHandler(mySlider){
 function readSlider(mySlider, value){
     let inner = value == -1 ? '' : (mySlider.value);
     mySlider.nextElementSibling.innerHTML = inner;
-    console.log(mySlider.id.substring(6));
     updateSliderPrefs(false, mySlider.id.substring(6), value)
 }
 
 function updateSliderPrefs(closing, type, value){
     let newValue = closing ? 0 : value;
+    newValue/100;
     if(type == 'capitals'){
         preferences.Capitals = newValue;
     }
     else{
         preferences.Numbers = newValue;
     }
+    pushNewPref();
 }
 
 // TARGETED KEY
 
-// function getSliderValue(button){
-//     let which = button.getAttribute('id').substring(7);
-//     let value = 0.5;
-
-//     button.innerHTML = `<p>${which}</p><div id="finish${which}" class="button">done</div>
-//     <input type="range" id="mySlider${which}" min="0" max="100" value="50" step="1">`;
-
-//     const mySlider = document.querySelector(`#mySlider${which}`);
-//     mySlider.addEventListener('input', () => {
-//         value = mySlider.value/100;
-//     });
-
-//     document.querySelector(`#finish${which}`).addEventListener('click', () => {
-//         if(which == "Capitals"){preferences.Capitals = value;}
-//         else if(which == "Numbers"){preferences.Numbers = value;}
-//         else if(which == "Words"){preferences.Words = 5+Math.floor(value*25);}
-//         else{console.log("error: unknown slider");}
-
-//         if(which == "Words"){button.innerHTML = `<p>${which}: ` + (5+Math.floor(value*25)) + `</>`;}
-//         else{button.innerHTML = `<p>${which}: ` + value + `</>`;}
-//         sliderSwitches[which] = false;
-//         button.firstElementChild.addEventListener('click', () => {
-//             if(!(sliderSwitches[which])){
-//             sliderSwitches[which] = true;
-//             getSliderValue(button);
-//         }
-//     });
-//     });
-//     pushPreferences();
-// }
 
 import {getWords, getNewLine} from "/blitzType/functions.js";
 async function updatePreview(){
