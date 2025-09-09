@@ -42,7 +42,6 @@ for(let button of buttons){
 }
 
 function swapButtonVisual(button, value){
-    console.log("entered with " + button.id);
     let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
     button.setAttribute('style', newBg);
 }
@@ -62,5 +61,12 @@ function pushPreferences(){
 }
 
 function showMySettings(){
-    //TBI
+    if(preferences.Capitals > 0){swapButtonVisual(document.querySelector('#capitalsButton'),true);}
+    if(preferences.Specials > 0 && preferences.mySpecials.length > 0){swapButtonVisual(document.querySelector('#punctuationButton'),true);}
+    switch(preferences.Words){
+        case 6: swapButtonVisual(document.querySelector('#smallTest'),true); break;
+        case 15: swapButtonVisual(document.querySelector('#meduimTest'),true); break;
+        case 24: swapButtonVisual(document.querySelector('#largeTest'),true); break;
+        default: break;
+    }
 }

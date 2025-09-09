@@ -22,6 +22,7 @@ Known bugs/tweaks, by file:
         additional space before enter on endless
         endless key selection is delayed one line.
         make endless one line
+        space is invisible
 
     stats.js
         Spacebar on problemkeys is invisible
@@ -41,7 +42,6 @@ UI fixes:
 
 Iplementing features: 
 
-    Settings: store and show which are selected between loads. 
     Settings: punctuation lacks em dashes and en dashes
     Exam: reset/pause endless
 
