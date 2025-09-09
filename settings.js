@@ -31,7 +31,7 @@ for(let button of buttons){
                 switch (curr){
                     case 'small': preferences.Words = 6; break;
                     case 'medium': preferences.Words = 15; break;
-                    case 'Large': preferences.Words = 24; break;
+                    case 'large': preferences.Words = 24; break;
                     default: break;
                 }
                 pushPreferences();
