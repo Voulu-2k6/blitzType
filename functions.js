@@ -1,5 +1,6 @@
 let preferences;
 let words = getWords();
+import {letters} from "/constants.js";
 
 export function getNewLine(){
     getPreferences();
