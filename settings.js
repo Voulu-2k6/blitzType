@@ -19,11 +19,9 @@ const buttons = document.querySelectorAll(".button");
 for(let button of buttons){
     button.addEventListener('click', () => {
         let value = button.getAttribute('style') == null || button.getAttribute('style') == '';
-        console.log(button.id.substring(button.id.length-4));
         if(button.id.substring(button.id.length-4) == 'Test'){
             if(value){
                 let curr = button.id.substring(0, button.id.length-4);
-                console.log(curr);
                 let sizes = ['small', 'medium', 'large'];
                 let others = sizes.splice(sizes.indexOf(curr), 1);
                 button.setAttribute('style', 'background-color: rgb(255, 102, 0);');
@@ -49,9 +47,9 @@ function swapButtonVisual(button, value){
 }
 
 function updatePreferences(button, value){
-    swapButtonVisual(button);
+    swapButtonVisual(button, value);
     switch(button.id) {
-        case "capitalButton": preferences.Capitals = value ? 0.4 : 0; break;
+        case "capitalsButton": preferences.Capitals = value ? 0.4 : 0; break;
         case "punctuationButton": if(value){preferences.mySpecials = [',', '.', '!', '?']; preferences.Specials = 0.4} else {preferences.mySpecials = []; preferences.Specials = 0;} break;
         case "endlessModeButon": preferences["endless"] = value; break;
         default: console.log('failed to update preferences: found element with id ' + button.id); break;}
