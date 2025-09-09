@@ -119,7 +119,7 @@ function generateSlider(type, button){
 //     pushPreferences();
 // }
 
-import {getWords} from "/blitzType/functions.js";
+import {getWords, getNewLine} from "/blitzType/functions.js";
 let words = getWords();
 function updatePreview(){
     document.querySelector('#previewBox').innerHTML = getNewLine(words);
