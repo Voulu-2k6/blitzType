@@ -58,10 +58,11 @@ export function getNewLine(words){
     while(characters < 50){
         let addMe = getNewWord();
         characters += addMe.length;
-        if(characters >= 50){myRow = myRow.join('').split(''); return myRow;}
         addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
     }
+    myRow = myRow.join('').split(''); 
+    return myRow;
 }
 
 export async function getWords(){
