@@ -5,6 +5,7 @@
         display keys to work on on the keystrokes between tests.
         add key counts to saved stats
         Wipe stats button
+        adjust doStats for new stats
     Tweaks:
         change hits from code to keys
         Spacebar on problemkeys is invisible
@@ -16,13 +17,16 @@
 let userStats = JSON.parse(localStorage.getItem('userStats')); // locally stored user stats
 import {keyMap, reverseKeyMap} from '/blitzType/JavaScript/constants.js'; // maps between keys and codes, see constants.js
 
-let statsTemplate = { // fresh load stats + saved historical stats
+let loadStats = { // fresh load stats + saved historical stats
         wordCount: 10,
         examTime: 0,
         hits: 0,
         trueHits: 0,
         misses: 0,
         trueMisses: 0,
+        bestWpm: userStats ? bestWpm : 0,
+        bestAccuracy: userStats ? bestAccuracy : 0,
+        startDate: userStats ? userStats.startDate : Date.now(),
         totalHits: userStats ? userStats.totalHits : 0,
         totalMisses: userStats ? userStats.totalMisses : 0,
         totalTime: userStats ? userStats.totalTime : 0,
@@ -42,6 +46,46 @@ let statsTemplate = { // fresh load stats + saved historical stats
         ), 
         problemKeys: []
 };
+
+let runStatsTemplate = {
+    // basic stats
+    wordCount: 0,
+    examTime: 0,
+    hits: 0,
+    trueHits: 0,
+    misses: 0,
+    trueMisses: 0,
+
+    // for each key...
+    keyStats: Object.fromEntries(
+        Object.keys(keyMap).map(key => [
+            keyMap[key], 
+            {
+                hits: 0,
+                misses: 0,
+                accuracy: 0,
+                trueHits: 0,
+                trueMisses: 0,
+                trueAccuracy: 0}])), 
+    problemKeys: []
+}
+
+let storedStatsTemplate = {
+    bestWpm: userStats ? bestWpm : 0,
+    bestAccuracy: userStats ? bestAccuracy : 0,
+    startDate: userStats ? userStats.startDate : Date.now(),
+    totalHits: userStats ? userStats.totalHits : 0,
+    totalMisses: userStats ? userStats.totalMisses : 0,
+    totalTime: userStats ? userStats.totalTime : 0,
+    totalWords: userStats ? userStats.totalWords : 0,
+
+    keyStats: Object.fromEntries(
+        Object.keys(keyMap).map(key => [
+            keyMap[key], 
+            {
+                trueHits: 0,
+                trueMisses: 0}]))
+}
 
 // For showing stats after a test is completed. 
 function showStats(){
@@ -114,8 +158,17 @@ function highlightKeys(problemKeys){
 function formatMS(ms){
     let minutes = Math.floor(ms/(60*1000));
     let seconds = (ms%(60*1000))/1000;
-    let output = minutes ? Number(minutes) + " Minutes, " : "";
+    let output = minutes ? Number(minutes) + " Minute(s), " : "";
     return output + Number(seconds.toFixed(3)) + " Seconds";
 }
 
 export {statsTemplate, showStats, highlightKeys, formatMS};
+
+function newStats(){
+    let runStats = JSON.parse(sessionStorage.get('runStats'));
+    //update current run stats
+    //show current run stats
+
+    //update locally stored stats
+    //if new high score, tell the user!
+}

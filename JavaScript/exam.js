@@ -25,8 +25,8 @@ let examOn = false;
 let preferences = JSON.parse(localStorage.getItem('userPreferences'));
 
 //for recording stats
-import {statsTemplate} from '/blitzType/JavaScript/stats.js';
-let myStats = statsTemplate;
+import {loadStats} from '/blitzType/JavaScript/stats.js';
+let myStats = loadStats;
 
 //exam button listener 
 if(document.querySelector("#makeExamButton")){
@@ -276,7 +276,6 @@ function getNewLine(){
         addMe = getNewWord();
         characters += addMe.length;
         if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); return myRow;}
-        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
     }
 }
@@ -300,7 +299,6 @@ function updateStats(hit, e = null){
         myStats.hits++;
         myStats.keyStats[e.code].hits++;
         if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].hits++;}
-        myStats.totalHits++;
         if(!miss){
             myStats.trueHits++;
             myStats.keyStats[e.code].trueHits++;
@@ -313,7 +311,6 @@ function updateStats(hit, e = null){
             if(myChars[myProgress].innerHTML in shiftMap){myStats.keyStats['ShiftLeft'].trueMisses++;}
             if(firstMiss){
                 myStats.misses++;
-                myStats.totalMisses++;
                 myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].misses++;
                 if(myChars[myProgress].innerHTML in shiftMap){myStats.keyStats['ShiftLeft'].misses++;}
             }
@@ -321,12 +318,10 @@ function updateStats(hit, e = null){
 }
 
 import {showStats} from '/blitzType/JavaScript/stats.js';
-// presents and updates stats, handles key adaptation
+// presents and updates stats
 function doStats(){
-    sessionStorage.setItem('sessionStats', JSON.stringify(myStats));
+    sessionStorage.setItem('runStats', JSON.stringify(myStats));
     showStats();
-    myStats = JSON.parse(sessionStorage.getItem('sessionStats'));
-    if(preferences.adapt){adaptKey();}
+    myStats = JSON.parse(sessionStorage.getItem('runStats'));
 }
 
-function adaptKey(){} //TBI
