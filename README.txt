@@ -18,11 +18,9 @@ Known bugs/tweaks, by file:
     exam.js: 
         Timer starts on exam load, not on first character clicked. 
         double letters mess up keystrokes
-        getNewLine and preferences.words aren't aligned
-        additional space before enter on endless
+        extra word on ordinary exam creation
         endless key selection is delayed one line.
         make endless one line
-        space is invisible
 
     stats.js
         Spacebar on problemkeys is invisible
@@ -30,15 +28,13 @@ Known bugs/tweaks, by file:
 
 UI fixes:
 
-    settings.js
-        targeted key selection is not user-friendly
-        nothing to show how far the slider is before setting value
-
     exam.js 
         enter key should read as such
 
     CSS
         Animating line movement in endless
+        improving settings, scores section on index
+        improving settingshtml in general
 
 Iplementing features: 
 

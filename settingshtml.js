@@ -38,7 +38,7 @@ for(let sw of mySwitches){
 // flipping mechanic
 function switchListener(sw, pageLoad){
     let pId = sw.parentElement.id;
-    let myChar = sw.textContent; //improve to catch all
+    let myChar = sw.textContent; 
     let on = 'On' == pId.substring(pId.length -2);
     let rest = pId.substring(0, pId.length -2);
     let clone = sw.cloneNode(true);
@@ -101,11 +101,14 @@ function generateSlider(type, button){
     }
 }
 
+//circumvent JS inability to delete event listeners if we used a function that takes parameters
 function createHandler(mySlider){   
     return function() {
         updateSliderPrefs(false, mySlider);
     }
 }
+
+//update preferences and page visual.
 function updateSliderPrefs(closing, mySlider){
     let newValue = closing ? 0 : mySlider.value;
     mySlider.nextElementSibling.innerHTML = (newValue) + '%';

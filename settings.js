@@ -12,15 +12,15 @@ let preferences = userSettings ? userSettings : {
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
-if(userSettings){showMySettings();} // show which settings are on on page load, TBI
+if(userSettings){showMySettings();} // show which settings are on on page load
 
-//other button listeners To be fixed...
+//conglomerated function handling clicks for all 6 home page buttons (new test is handled seperately)
 const buttons = document.querySelectorAll(".button");
 for(let button of buttons){
     button.addEventListener('click', () => {
         let value = button.getAttribute('style') == null || button.getAttribute('style') == '';
-        if(button.id.substring(button.id.length-4) == 'Test'){
-            if(value){
+        if(button.id.substring(button.id.length-4) == 'Test'){ // if we chose an exam size button
+            if(value){ //if we didn't click the option that was already selected
                 let curr = button.id.substring(0, button.id.length-4);
                 let sizes = ['small', 'medium', 'large'];
                 sizes.splice(sizes.indexOf(curr), 1);
@@ -35,17 +35,19 @@ for(let button of buttons){
                 pushPreferences();
             }
         }
-        else{
+        else{//function handling the other 3 buttons
             updatePreferences(button, value);
         }
     });
 }
 
+//handles visual for on/off
 function swapButtonVisual(button, value){
     let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
     button.setAttribute('style', newBg);
 }
 
+// simple code used to handle the other 3 buttons
 function updatePreferences(button, value){
     swapButtonVisual(button, value);
     switch(button.id) {
@@ -60,6 +62,7 @@ function pushPreferences(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
 }
 
+//on page load, show that some buttons may already be selected.
 function showMySettings(){
     if(preferences.Capitals > 0){swapButtonVisual(document.querySelector('#capitalsButton'),true);}
     if(preferences.Specials > 0 && preferences.mySpecials.length > 0){swapButtonVisual(document.querySelector('#punctuationButton'),true);}
