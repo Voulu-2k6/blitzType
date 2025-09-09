@@ -92,7 +92,6 @@ export function createExam(){
 
 function uploadExam(){
     for(let line in myLines){
-        console.log(myLines[line]);
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
             if(char != myLines[line].length-1){
