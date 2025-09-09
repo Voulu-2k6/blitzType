@@ -79,9 +79,9 @@ export function createExam(){
         addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         characters += addMe.length;
         if(characters > 50){
-            myLines.push(myRow.splice(0,myRow.length-1));
+            myLines.push(myRow.splice(0,myRow.length));
             myRow = [];
-            characters = addMe.length;
+            characters = 0;
         }
         for(let char of addMe.split('')){myRow.push(char);}
     }
