@@ -111,7 +111,7 @@ export {runStatsTemplate, storedStatsTemplate, newStats, highlightKeys, formatMS
 
 function newStats(){
 
-    let runStats = JSON.parse(sessionStorage.get('runStats'));
+    let runStats = JSON.parse(sessionStorage.getItem('runStats'));
     let localStats = localStorage.getItem('localStats') ? JSON.parse(localStorage.getItem('localStats')) : storedStatsTemplate;
 
     //calculate what to show
