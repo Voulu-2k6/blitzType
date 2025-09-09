@@ -2,7 +2,7 @@ let preferences;
 let words = getWords();
 import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/constants.js';
 
-export function getNewLine(){
+function getNewLine(){
     getPreferences();
     let myRow = [];
 
@@ -76,3 +76,5 @@ function getWordWith(myChar){
 function getASpecial(){
     return preferences.mySpecials[Math.floor(Math.random()*preferences.mySpecials.length)];
 }
+
+export {getASpecial, getWordWith, specialize, toTitleCase, getPreferences, getNewWord, getNewLine, getPreferences, words};

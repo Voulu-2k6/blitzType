@@ -98,9 +98,9 @@ function updateSpecial(myChar, remove){
 //     pushPreferences();
 // }
 
-import {getNewLine} from "/blitzType/functions.js";
+import * as utils from "/blitzType/functions.js";
 function updatePreview(){
-    document.querySelector('#previewBox').innerHTML = getNewLine();
+    document.querySelector('#previewBox').innerHTML = utils.getNewLine();
 }
 
 function pushNewPref(){
