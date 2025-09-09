@@ -38,8 +38,8 @@ let runStatsTemplate = {
 }
 
 let storedStatsTemplate = {
-    bestWpm: userStats ? bestWpm : [0],
-    bestAccuracy: userStats ? bestAccuracy : [0],
+    bestWpm: userStats ? userStats.bestWpm : [0],
+    bestAccuracy: userStats ? userStats.bestAccuracy : [0],
     startDate: userStats ? userStats.startDate : Date.now(),
     totalHits: userStats ? userStats.totalHits : 0,
     totalMisses: userStats ? userStats.totalMisses : 0,
