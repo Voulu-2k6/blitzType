@@ -98,7 +98,8 @@ function updateSpecial(myChar, remove){
 //     pushPreferences();
 // }
 
-import * as utils from "/blitzType/functions.js";
+import {getWords} from "/blitzType/functions.js";
+let words = getWords();
 function updatePreview(){
     document.querySelector('#previewBox').innerHTML = utils.getNewLine();
 }
