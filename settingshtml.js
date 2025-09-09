@@ -100,7 +100,7 @@ function updateSpecial(myChar, remove){
 
 import {getNewLine} from "/blitzType/functions.js";
 function updatePreview(){
-    document.querySelector('#previewBox').innerHTML = createExam();
+    document.querySelector('#previewBox').innerHTML = getNewLine();
 }
 
 function pushNewPref(){
