@@ -45,8 +45,14 @@ document.addEventListener('keyup', (e) => {
     keyRelease(e.code);
 });
 
-import exam from '/blitzType/functions.js';
-exam();
+function exam(){
+    getPreferences(); //pulls 
+    clearExam();
+    if(preferences.endless){createEndless();}
+    else{myLines.push(createExam());}
+    uploadExam();
+    startExam();
+}
 
 function clearExam(){
     softClear();
