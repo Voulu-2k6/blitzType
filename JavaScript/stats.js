@@ -14,7 +14,7 @@
         Determine one's own threshold for a problem key
         */
 
-let userStats = JSON.parse(localStorage.getItem('userStats')); // locally stored user stats
+let userStats = JSON.parse(localStorage.getItem('localStats')); // locally stored user stats
 import {keyMap, reverseKeyMap} from '/blitzType/JavaScript/constants.js'; // maps between keys and codes, see constants.js
 
 let runStatsTemplate = {
