@@ -87,7 +87,7 @@ export function createExam(){
         }
         for(let char of addMe.split('')){myRow.push(char);}
     }
-    return myRow.splice(0,myRow.length);
+    return myRow.splice(0,myRow.length-1);
 }
 
 function uploadExam(){
@@ -272,7 +272,7 @@ function getNewLine(){
     while(characters < 50){
         let addMe = getNewWord();
         characters += addMe.length;
-        if(characters >= 50){myRow = myRow.join('').split(''); return myRow;}
+        if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); return myRow;}
         addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
     }
