@@ -66,7 +66,7 @@ function showMySettings(){
     if(preferences.endless){swapButtonVisual(document.querySelector('#endlessModeButton'),true);}
     switch(preferences.Words){
         case 6: swapButtonVisual(document.querySelector('#smallTest'),true); break;
-        case 15: swapButtonVisual(document.querySelector('#meduimTest'),true); break;
+        case 15: swapButtonVisual(document.querySelector('#mediumTest'),true); break;
         case 24: swapButtonVisual(document.querySelector('#largeTest'),true); break;
         default: break;
     }
