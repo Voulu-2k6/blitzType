@@ -20,6 +20,7 @@ if(userSettings){
     for(const spec of userSettings.mySpecials){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
+
 }
 
 // SPECIALS SECTION 
@@ -70,24 +71,25 @@ let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let buttons = document.querySelectorAll('.button');
 for(let button of buttons){
     let type = button.previousElementSibling.innerHTML;
+    type = type.substring(0, type.length-1);
     button.addEventListener('click', (e) => {
         generateSlider(type, button);
     });
 }
 
 function generateSlider(type, button){
-    let trySlider = document.querySelector(`#slider${type.substring(0, type.length-1)}`);
+    let trySlider = document.querySelector(`#slider${type}`);
     if(trySlider){
         const handler = createHandler(trySlider);
         trySlider.removeEventListener('input', handler);
         readSlider(trySlider, -1);
         trySlider.remove();
-        updateSliderPrefs(true, type.substring(0, type.length-1), 0);
+        updateSliderPrefs(true, type, 0);
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
         let mySlider = button.nextElementSibling;
-        mySlider.id = `slider${type.substring(0, type.length-1)}`;
+        mySlider.id = `slider${type}`;
         const handler = createHandler(mySlider);
         mySlider.addEventListener('input', handler);
         updateSliderPrefs(false, type, 0.5);
