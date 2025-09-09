@@ -23,6 +23,7 @@ if(userSettings){
     }
 
     for(const setting of ['Capitals', 'Numbers']){
+        console.log(`#${setting}Holder`);
         document.querySelector(`#${setting}Holder`).innerHTML = preferences[setting] + '%';
     }
 }
