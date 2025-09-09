@@ -82,7 +82,7 @@ function generateSlider(type, button){
         trySlider.removeEventListener('input', handler);
         readSlider(trySlider, -1);
         trySlider.remove();
-        updateSliderPrefs(true, type, 0);
+        updateSliderPrefs(true, type.substring(0, type.length-1), 0);
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
