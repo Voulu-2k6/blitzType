@@ -29,10 +29,12 @@ import {statsTemplate} from '/blitzType/stats.js';
 let myStats = statsTemplate;
 
 //exam button listener 
-document.querySelector("#makeExamButton").addEventListener('click', () => {
-    if(examOn){releaseNext(myExam[myProgress]);} 
-    exam();
-});
+if(document.querySelector("#makeExamButton")){
+    document.querySelector("#makeExamButton").addEventListener('click', () => {
+        if(examOn){releaseNext(myExam[myProgress]);} 
+        exam();
+    });
+}
 
 //keystrokes listeners
 document.addEventListener('keydown', (e) => {
@@ -43,14 +45,8 @@ document.addEventListener('keyup', (e) => {
     keyRelease(e.code);
 });
 
-function exam(){
-    getPreferences(); //pulls 
-    clearExam();
-    if(preferences.endless){createEndless();}
-    else{myLines.push(createExam());}
-    uploadExam();
-    startExam();
-}
+import exam from '/blitzType/functions.js';
+exam();
 
 function clearExam(){
     softClear();
