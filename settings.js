@@ -24,7 +24,7 @@ for(let button of buttons){
                 let curr = button.id.substring(0, button.id.length-4);
                 let sizes = ['small', 'medium', 'large'];
                 let others = sizes.splice(sizes.indexOf(curr), 1);
-
+                console.log(others);
                 swapButtonVisual(button, value);
                 for(let other of others){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
                 switch (curr){
@@ -43,6 +43,7 @@ for(let button of buttons){
 }
 
 function swapButtonVisual(button, value){
+    console.log("entered with " + button.id);
     let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
     button.setAttribute('style', newBg);
 }
