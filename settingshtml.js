@@ -121,7 +121,8 @@ function generateSlider(type, button){
 
 import {getWords, getNewLine} from "/blitzType/functions.js";
 async function updatePreview(){
-    let words = await getWords();
+    let hold = await getWords();
+    const words = hold.split(/\r?\n/);
     document.querySelector('#previewBox').innerHTML = getNewLine(words);
 }
 
