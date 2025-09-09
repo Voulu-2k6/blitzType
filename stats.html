@@ -1,0 +1,50 @@
+<!--For all the stats we can't see on the home page.-->
+<!--Additional ideas: join date? minutes spent practicing? words typed?-->
+<!--Keystrokes visualizer of key accuracy-->
+<!--Mastery gamified feature-->
+<!--All sliders, replace main page with flat 0.3-->
+<!--Numbers, targeted key-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BlitzType</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="main.css">
+            <link rel="stylesheet" href="stats.css"> <!--TBI-->
+    </head>
+    <body>
+        <header>
+            <h1>BlitzType</h1>
+            <a href="index.html">home</a>
+            <a href="stats.html">settings</a>
+        </header>
+        <main>
+            <section id="statsTop">
+                <div id="timeBox">
+                    <p id="joinDate"></p>
+                    <p id="minutes"></p>
+                </div>
+                <div id="speedBox">
+                    <p id="avgWPM"></p>
+                    <p id="bestWPM"></p>
+                </div>
+                <div id="accBox">
+                    <p id="avgAcc"></p>
+                    <p id="bestAcc"></p> <!--If 100, how many times?-->
+                </div>
+            </section>
+            <section id="keyDisplay">
+                <div id="row1"><p id="Backquote">`</p><p id="Digit1">1</p><p id="Digit2">2</p><p id="Digit3">3</p><p id="Digit4">4</p><p id="Digit5">5</p><p id="Digit6">6</p><p id="Digit7">7</p><p id="Digit8">8</p><p id="Digit9">9</p><p id="Digit0">0</p><p id="Minus">-</p><p id="Equal">=</p><p id="Backspace">backspace</p></div>
+                <div id="row2"><p id="Tab">tab</p><p id="KeyQ">q</p><p id="KeyW">w</p><p id="KeyE">e</p><p id="KeyR">r</p><p id="KeyT">t</p><p id="KeyY">y</p><p id="KeyU">u</p><p id="KeyI">i</p><p id="KeyO">o</p><p id="KeyP">p</p><p id="BracketLeft">[</p><p id="BracketRight">]</p><p id="Backslash">\</p></div>
+                <div id="row3"><p id="CapsLock">caps</p><p id="KeyA">a</p><p id="KeyS">s</p><p id="KeyD">d</p><p id="KeyF">f</p><p id="KeyG">g</p><p id="KeyH">h</p><p id="KeyJ">j</p><p id="KeyK">k</p><p id="KeyL">l</p><p id="Semicolon">;</p><p id="Quote">'</p><p id="Enter">enter</p></div>
+                <div id="row4"><p id="ShiftLeft">shift</p><p id="KeyZ">z</p><p id="KeyX">x</p><p id="KeyC">c</p><p id="KeyV">v</p><p id="KeyB">b</p><p id="KeyN">n</p><p id="KeyM">m</p><p id="Comma">,</p><p id="Period">.</p><p id="Slash">/</p><p id="ShiftRight">shift</p></div>     
+                <div id="row5"><p id="ControlLeft">ctrl</p><p id="HoldLeft">fn</p><p id="MetaLeft">win</p><p id="AltLeft">alt</p><p id="Space"></p><p id="AltRight">alt</p><p id="ControlRight">ctrl</p><p id="HoldRight"></p></div>            
+            </section>
+        </main>
+        <footer>
+            <p>Tate Sorensen, 2025</p>
+        </footer>
+
+        <script type="module" src="statshtml.js"></script>
+    </body>
+</html>
