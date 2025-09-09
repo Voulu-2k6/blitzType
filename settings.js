@@ -63,7 +63,7 @@ function pushPreferences(){
 function showMySettings(){
     if(preferences.Capitals > 0){swapButtonVisual(document.querySelector('#capitalsButton'),true);}
     if(preferences.Specials > 0 && preferences.mySpecials.length > 0){swapButtonVisual(document.querySelector('#punctuationButton'),true);}
-    if(preferences.endless){swapButtonVisual(document.querySelector('#punctuationButton'),true);}
+    if(preferences.endless){swapButtonVisual(document.querySelector('#endlessModeButton'),true);}
     switch(preferences.Words){
         case 6: swapButtonVisual(document.querySelector('#smallTest'),true); break;
         case 15: swapButtonVisual(document.querySelector('#meduimTest'),true); break;
