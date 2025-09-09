@@ -43,10 +43,10 @@ export function getNewLine(words){
 
         //word or number?
         if(Math.random() >= preferences.Numbers){
-            myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*2993))]; //required key?
+            myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*words.length))]; //required key?
             if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?
         }
-        else{myWord = Number(Math.floor(Math.random()*1000));}
+        else{myWord = String(Number(Math.floor(Math.random()*1000)));}
 
         //specialize
         if(nonLetters.includes(preferences.key) && Math.random() > 0.7){myWord = specialize(myWord, preferences.key);}//required key?
