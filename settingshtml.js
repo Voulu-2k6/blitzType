@@ -77,9 +77,10 @@ for(let button of buttons){
 function generateSlider(type, button){
     let trySlider = document.querySelector(`#slider${type.substring(0, type.length-1)}`);
     if(trySlider){
+        const handler = createHandler(trySlider);
         trySlider.removeEventListener('input', handler);
-        readSlider(trySlider)
-        // turn off Slider
+        readSlider(trySlider, -1);
+        trySlider.remove();
     }
     else{
         button.insertAdjacentHTML("afterend", slider);
@@ -92,7 +93,7 @@ function generateSlider(type, button){
 
 function createHandler(mySlider){   
     return function() {
-        readSlider(mySlider, 0);
+        readSlider(mySlider, 50);
     }
 }
 
