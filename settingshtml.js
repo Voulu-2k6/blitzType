@@ -56,7 +56,7 @@ function switchListener(sw, pageLoad){
 function updateSpecial(myChar, remove){
     preferences = JSON.parse(localStorage.getItem('userPreferences'));
     if(remove){
-        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar, 1));
+        preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar), 1);
     }
     else{
         preferences.mySpecials.push(myChar);
