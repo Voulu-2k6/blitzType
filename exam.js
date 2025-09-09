@@ -29,10 +29,12 @@ import {statsTemplate} from '/blitzType/stats.js';
 let myStats = statsTemplate;
 
 //exam button listener 
-document.querySelector("#makeExamButton").addEventListener('click', () => {
-    if(examOn){releaseNext(myExam[myProgress]);} 
-    exam();
-});
+if(document.querySelector("#makeExamButton")){
+    document.querySelector("#makeExamButton").addEventListener('click', () => {
+        if(examOn){releaseNext(myExam[myProgress]);} 
+        exam();
+    });
+}
 
 //keystrokes listeners
 document.addEventListener('keydown', (e) => {
@@ -44,10 +46,10 @@ document.addEventListener('keyup', (e) => {
 });
 
 function exam(){
-    getPreferences();
+    getPreferences(); //pulls 
     clearExam();
     if(preferences.endless){createEndless();}
-    else{createExam();}
+    else{myLines.push(createExam());}
     uploadExam();
     startExam();
 }
@@ -71,26 +73,26 @@ function createEndless(){
     for(let i = 0; i < 3; i++){myLines.push(getNewLine());}
 }
 
-function createExam(){
+export function createExam(){
     let myRow = [];
     let characters = 0;
+    for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
     for(let i = 0; i < preferences.Words; i++){
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
-        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         characters += addMe.length;
         if(characters > 50){
-            myLines.push(myRow.splice(0,myRow.length-1));
+            myLines.push(myRow);
             myRow = [];
             characters = addMe.length;
         }
         for(let char of addMe.split('')){myRow.push(char);}
     }
-    myLines.push(myRow.splice(0,myRow.length-1));
+    return myRow;
 }
 
 function uploadExam(){
     for(let line in myLines){
-        console.log(myLines[line]);
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
             if(char != myLines[line].length-1){
@@ -102,8 +104,9 @@ function uploadExam(){
                 myExam.push('\n');
             }
             else{
-                pageChar.innerHTML = '&nbsp;';
-                myExam.push(' ');
+                let endLine = line == myLines.length-1 ? myLines[line][char] : ' ';
+                pageChar.innerHTML = endLine == ' ' ? '&nbsp;' : endLine;
+                myExam.push(endLine);
             }
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }
@@ -203,7 +206,7 @@ function onMiss(){
 }
 
 async function getWords(){
-    const response = await fetch('words.text');
+    const response = await fetch('words.txt');
     const text = response.text();
     return text;
 }
@@ -216,11 +219,11 @@ function getNewWord(){
         myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*2993))]; //required key?
         if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?
     }
-    else{myWord = Number(Math.floor(Math.random()*1000));}
+    else{myWord = String(Number(Math.floor(Math.random()*1000)));}
 
     //specialize
     if(nonLetters.includes(preferences.key) && Math.random() > 0.7){myWord = specialize(myWord, preferences.key);}//required key?
-    else if(preferences.doSpecials && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
+    else if(preferences.mySpecials.length > 0 && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
     return myWord;
 }
 
@@ -265,13 +268,14 @@ function getASpecial(){
 
 function getNewLine(){
     //generate test
-    let myRow = [];
-
-    let characters = 0;
+    let addMe = getNewWord();
+    let myRow = [addMe];
+    let characters = addMe.length;
     while(characters < 50){
-        let addMe = getNewWord();
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
+        addMe = getNewWord();
         characters += addMe.length;
-        if(characters >= 50){myRow = myRow.join('').split(''); return myRow;}
+        if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); return myRow;}
         addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
     }
@@ -317,8 +321,12 @@ function updateStats(hit, e = null){
 }
 
 import {showStats} from '/blitzType/stats.js';
+// presents and updates stats, handles key adaptation
 function doStats(){
     sessionStorage.setItem('sessionStats', JSON.stringify(myStats));
     showStats();
     myStats = JSON.parse(sessionStorage.getItem('sessionStats'));
+    if(preferences.adapt){adaptKey();}
 }
+
+function adaptKey(){} //TBI

@@ -10,53 +10,19 @@
         <body>
             <header>
                 <h1>BlitzType</h1>
-                <a>settings</a>
+                <a href="settings.html">settings</a>
                 <a>high scores</a>
             </header>
-            <main>
+            <main id="homepageMain">
                 <section id="examSettings">
-                    <div id="includeWords" class="slider"><p>Words: 10</p></div>
-                    <div id="includeCapitals" class="slider"><p>Capitals</p></div>
-                    <div id="punctuationBox" class="selectorBox">
-                        <div class="selectorBoxHeader"><p>Punctuation:</p><button class="dropDownButton" id="punctuationDropdownButton">v</button></div>
-                        <div id="punctuationDropdownMenu" class="dropDown">
-                            <div id="periodButton" class="button">.</div>
-                            <div id="commaButton" class="button">,</div>
-                            <div id="questionButton" class="button">?</div>
-                            <div id="exclaimationButton" class="button">!</div>
-                            <div id="semicolonButton" class="button">;</div>
-                            <div id="colonButton" class="button">:</div>
-                            <div id="dashButton" class="button">-</div>
-                            <div id="singleQuoteButton" class="button">'</div>
-                            <div id="quoteButton" class="button">"</div>
-                        </div>
-                    </div>
-                    <div id="includeNumbers" class="slider"><p>Numbers</p></div>
-                    <div id="specialCharactersBox" class="selectorBox">
-                        <div class="selectorBoxHeader"><p>Special characters:</p><button class="dropDownButton" id="specialsDropdownButton">v</button></div>
-                        <div id="specialsDropdownMenu" class="dropDown">
-                            <div id="tildeButton" class="button">~</div>
-                            <div id="backquoteButton" class="button">`</div>
-                            <div id="hashtagButton" class="button">#</div>
-                            <div id="atButton" class="button">@</div>
-                            <div id="dollarButton" class="button">$</div>
-                            <div id="percentButton" class="button">%</div>
-                            <div id="carotButton" class="button">^</div>
-                            <div id="andButton" class="button">&amp;</div>
-                            <div id="starButton" class="button">*</div>
-                            <div id="parenthesesButton" class="button">()</div>
-                            <div id="underscoreButton" class="button">_</div>
-                            <div id="plusButton" class="button">+</div>
-                            <div id="equalsButton" class="button">=</div>
-                            <div id="braceButton" class="button">{}</div>
-                            <div id="bracketButton" class="button">[]</div>
-                            <div id="backslashButton" class="button">\</div>
-                            <div id="slashButton" class="button">/</div>
-                            <div id="verticalbarButton" class="button">|</div>
-                            <div id="anglebracketButton" class="button">&lt;&gt;</div>
-                        </div>
-                    </div>
-                    <div id="keyFocus"><p>Targeted Key: </p><input type="text" id="targetedKeyButton"></div>
+                    <p>test size:</p>
+                    <div id="smallTest" class="button"><p>small</p></div>
+                    <div id="mediumTest" class="button"><p>medium</p></div>
+                    <div id="largeTest" class="button"><p>large</p></div>
+                    <br>
+                    <p>include:</p>
+                    <div id="capitalsButton" class="button"><p>capitals</p></div>
+                    <div id="punctuationButton" class="button"><p>punctuation</p></div>
                 </section>
                 <section id="examBox">
                     <div id="examHolder">
@@ -91,7 +57,7 @@
             <footer>
                 <p>Tate Sorensen, 2025</p>
             </footer>
-            <script type="module" src="blitzType/exam.js"></script>
-            <script type="module" src="blitzType/settings.js"></script>
+            <script type="module" src="exam.js"></script>
+            <script type="module" src="settings.js"></script>
         </body>
     </html>

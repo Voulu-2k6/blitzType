@@ -1,0 +1,51 @@
+/*Split file to reduce clutter*/
+#previewBox {
+    background-color: grey;
+    color: lightgray;
+    font-size: 20px;
+    margin: 40px 12vw 10px 12vw;
+    border-radius: 10px;
+
+    align-items: center;
+}
+#settingsBox, #targetBox{
+    flex-grow: 1;
+    margin: 0px 50px;
+}
+
+#settingsBox, .list {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+#settingsLeft, .switchLists{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+#puncOn, #specialOn {
+    border-bottom: 2px solid orangered;
+}
+ .switchHolder{
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.buttonSliderContainer {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.buttonSliderContainer > * {
+    margin: 0px 8px;
+}

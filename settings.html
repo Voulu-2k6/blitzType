@@ -1,0 +1,91 @@
+<!--All sliders, replace main page with flat 0.3-->
+<!--Numbers, targeted key-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BlitzType</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="main.css">
+            <link rel="stylesheet" href="settings.css">
+    </head>
+    <body>
+        <header>
+            <h1>BlitzType</h1>
+            <a href="index.html">Home</a>
+            <a>high scores</a>
+        </header>
+        <main>
+            <section id="previewBox">Here will be an example test that those settings might generate.</section>
+            <article id="settingsBox">
+                <section id="settingsLeft">
+                    <!--sliders and click boxes-->
+                    <div class="buttonSliderContainer"> <!--container, flex row-->
+                        <p>capitals:</p>
+                        <div class="button"></div> <!--Button-->
+                        <div id="CapitalsHolder">0%</div> <!--invisible slider, visible once we check button-->
+                    </div>
+                    <div class="buttonSliderContainer">
+                        <p>digits:</p>
+                        <div class="button"></div>
+                        <div id="NumbersHolder">0%</div>
+                    </div>
+                </section>
+                <section id="settingsMiddle">
+                    <!--punctuation and symbols-->
+                    <div class="switchHolder">
+                        <p>punctuation:</p>
+                        <div class="switchLists">
+                            <div class="list" id="puncOn">...</div>
+                            <div class="list" id="puncOff">
+                                <div id="periodSwitch" class="switch">.</div>
+                                <div id="commaSwitch" class="switch">,</div>
+                                <div id="questionSwitch" class="switch">?</div>
+                                <div id="exclaimationSwitch" class="switch">!</div>
+                                <div id="semicolonSwitch" class="switch">;</div>
+                                <div id="colonSwitch" class="switch">:</div>
+                                <div id="dashSwitch" class="switch">-</div>
+                                <div id="singleQuoteSwitch" class="switch">'</div>
+                                <div id="quoteSwitch" class="switch">"</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="switchHolder">
+                        <p>special characters:</p>
+                        <div class="switchLists">
+                            <div class="list" id="specialOn">...</div>
+                            <div class="list" id="specialOff">
+                                <div id="tildeSwitch" class="switch">~</div>
+                                <div id="backquoteSwitch" class="switch">`</div>
+                                <div id="hashtagSwitch" class="switch">#</div>
+                                <div id="atSwitch" class="switch">@</div>
+                                <div id="dollarSwitch" class="switch">$</div>
+                                <div id="percentSwitch" class="switch">%</div>
+                                <div id="carotSwitch" class="switch">^</div>
+                                <div id="andSwitch" class="switch">&amp;</div>
+                                <div id="starSwitch" class="switch">*</div>
+                                <div id="parenthesesSwitch" class="switch">()</div>
+                                <div id="underscoreSwitch" class="switch">_</div>
+                                <div id="plusSwitch" class="switch">+</div>
+                                <div id="equalsSwitch" class="switch">=</div>
+                                <div id="braceSwitch" class="switch">{}</div>
+                                <div id="bracketSwitch" class="switch">[]</div>
+                                <div id="backslashSwitch" class="switch">\</div>
+                                <div id="slashSwitch" class="switch">/</div>
+                                <div id="verticalbarSwitch" class="switch">|</div>
+                                <div id="anglebracketSwitch" class="switch">&lt;&gt;</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+            <section id="targetBox">
+                <p>Our targeted keys might go here</p>
+            </section>
+        </main>
+        <footer>
+            <p>Tate Sorensen, 2025</p>
+        </footer>
+
+        <script type="module" src="settingshtml.js"></script>
+    </body>
+</html>
