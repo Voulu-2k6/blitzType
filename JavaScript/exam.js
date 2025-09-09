@@ -171,7 +171,7 @@ function hitCheck(e){
             onHit(e);
             if(myProgress === myLength){
                 endTimer();
-                doStats();
+                doStats(preferences.endless);
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
@@ -300,9 +300,14 @@ function updateStats(hit, e){
     }
 }
 
+function getNumWords(){
+    return (myLines[0].split(/[\/\\|\-=+\*^ ]/)).length;
+}
+
 import {newStats} from '/blitzType/JavaScript/stats.js';
 // presents and updates stats
-function doStats(){
+function doStats(endless){
+    myStats.wordCount = endless ? getNumWords() : preferences.Words;
     sessionStorage.setItem('runStats', JSON.stringify(myStats));
     newStats();
     myStats = runStatsTemplate;
