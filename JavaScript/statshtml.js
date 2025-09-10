@@ -52,12 +52,14 @@ function getMinutes(ms){
 let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
 console.log(leftKeyDisplay);
 for(let key of leftKeyDisplay){
-    let mult = getRelativeAccuracy(key.innerHTML);
-    key.setAttribute('style', `background-color: rgb(${255*mult}, ${255*mult}, 0)`);
+    let mult = getRelativeAccuracy(key.id);
+    if(mult != -1){key.setAttribute('style', `background-color: rgb(${255*mult}, ${255*mult}, 0)`);}
 }
 
-function getRelativeAccuracy(key){
-    let newAcc = pageStats.keyStats[keyMap[key]].accuracy - 0.6;
+function getRelativeAccuracy(code){
+    let acc = pageStats.keyStats[code].accuracy
+    if(acc == 0){return -1;}
+    let newAcc = acc - 0.6;
     console.log(newAcc);
     if(newAcc < 0){newAcc = 0;}
     else{newAcc *= 2.5}
