@@ -161,7 +161,7 @@ function hitCheck(e){
             if(myProgress === myLength){
                 endTimer();
                 doStats(preferences.endless);
-                getAdvancements();
+                getAdvancements(JSON.parse(localStorage.getItem('localStats')).keyStats);
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
