@@ -63,7 +63,8 @@ for(let key of leftKeyDisplay){
 function getRelativeAccuracy(code){
     console.log(keyMap[reverseKeyMap[code]]);
     let acc = pageStats.keyStats[keyMap[reverseKeyMap[code]]].accuracy;
-    if(acc == 0){return -1;}
+    console.log(acc);
+    if(acc == 0){console.log('returning -1'); return -1;}
 
     return Math.max((acc - 0.6)*2.5, 0);
 }
