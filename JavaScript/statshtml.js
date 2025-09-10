@@ -49,7 +49,7 @@ function getMinutes(ms){
     return Math.ceil(ms/60000);
 }
 
-let leftKeyDisplay = querySelectorAll('#keyDisplay1 .none');
+let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
 console.log(leftKeyDisplay);
 for(let key of leftKeyDisplay){
     let mult = getRelativeAccuracy(key.innerHTML);
