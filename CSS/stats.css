@@ -9,3 +9,9 @@
 #statsTop p{
     margin: 16px;
 }
+
+#keystrokes {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
