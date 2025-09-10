@@ -10,7 +10,7 @@ let preferences = userSettings ? JSON.parse(userSettings) : {
 // STARTUP SECTION
 // getting ids mapped to the character for the below if statement.
 let mySwitches = document.querySelectorAll('.list div');
-let myButtons = document.querySelector('.button');
+let myButtons = document.querySelectorAll('.button');
 let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
