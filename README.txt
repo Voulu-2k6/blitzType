@@ -10,8 +10,7 @@ Features:
     -Working typing test that records stats like wpm, accuracy, and keys that 
     may pose a problem.
     -Endless mode: generates a new line of test each time the final 'enter' key is hit
-    -Settings to choose which punctuation/digit characters to use, as well as their
-    frequency.
+    -Settings to choose which punctuation/special characters to use
 
 Known bugs/tweaks, by file: 
 
@@ -20,37 +19,25 @@ Known bugs/tweaks, by file:
         double letters mess up keystrokes
         extra word on ordinary exam creation
         endless key selection is delayed one line.
-        make endless one line
 
     stats.js
         Spacebar on problemkeys is invisible
         Spacebar doesn't highlight on problem, nor does Enter
 
-UI fixes:
-
-    exam.js 
-        enter key should read as such
-
-    CSS
-        Animating line movement in endless
-        improving settings, scores section on index
-        improving settingshtml in general
-
 Iplementing features: 
 
     Settings: punctuation lacks em dashes and en dashes
-    Exam: reset/pause endless
+    Settings: can't choose specials frequency
 
 TO DO:
     Finalize settings page. 
-        Add sliders for punctuation and specials freq.
+        Add sliders for specials freq.
         implement adjusting selected key
-        polish UI
     Finalize exam page.
-        TBL
-    Create stats page.
-
-    condense functions?
+        Implement animations for levelling up, line clearing, new high scores.
+    Finalize stats page.
+        show heat map of accuracies
+        add threshholds for ranking up in keys
 
 
 

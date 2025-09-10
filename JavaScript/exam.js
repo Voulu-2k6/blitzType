@@ -1,12 +1,7 @@
 /*Exam
-    Need: 
-        Implement backspace function ***
     Tweaks:
         Timer starts on exam load, not on first character clicked. 
         double letters mess up keystrokes
-        getNewLine and preferences.words aren't aligned
-        additional space before enter on endless
-    
 */
 
 import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/JavaScript/constants.js';
@@ -67,8 +62,8 @@ function softClear(){
     myStats.misses = 0;
 }
 
-function createEndless(){
-    for(let i = 0; i < 3; i++){myLines.push(getNewLine());}
+function createEndless(){ //set I to num lines you want to queue, max 5 min 1;
+    for(let i = 0; i < 1; i++){myLines.push(getNewLine());}
 }
 
 export function createExam(){
@@ -116,7 +111,8 @@ function startExam(){
     myChars = document.querySelectorAll("#examText p");
     showNext(myExam[0]);
     examOn = true;
-    startTimer();
+    document.removeEventListener('keyDown', startTimer);
+    document.addEventListener('keydown', startTimer);
 }
 
 function keyPress(key){
@@ -278,6 +274,7 @@ function startTimer() { //virtual stopwatch integration possible
   timerInterval = setInterval(() => {
     myStats.examTime = Date.now() - startTimestamp;
   }, 50); // update every however many ms
+  document.removeEventListener('keyDown', startTimer);
 }
 
 function endTimer() { 
