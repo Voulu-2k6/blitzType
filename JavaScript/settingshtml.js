@@ -1,8 +1,8 @@
 //on load of settings.html
 
 //get known preferences
-let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
-let preferences = userSettings ? userSettings : { 
+let userSettings = localStorage.getItem('userPreferences');
+let preferences = userSettings ? JSON.parse(userSettings) : { 
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
