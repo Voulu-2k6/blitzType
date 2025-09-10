@@ -72,9 +72,9 @@ export function getAdvancements(keys){
         console.log(key + ' ' + key.id + ' ' + keyMap[reverseKeyMap[key.id]]);
         let keyStat = localStats.keyStats[keyMap[reverseKeyMap[key.id]]];
         console.log(keyStat);
-        let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.totalHits >= 1200);
-        let goldStandard = (keyStat.accuracy > 0.95 && keyStat.totalHits >= 500);
-        let silverStandard = (keyStat.accuracy > 0.92 && keyStat.totalHits >= 250);
+        let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.hits >= 1200);
+        let goldStandard = (keyStat.accuracy > 0.95 && keyStat.hits >= 500);
+        let silverStandard = (keyStat.accuracy > 0.92 && keyStat.hits >= 250);
         if(diamondStandard){
             key.setAttribute('class','diamond');
         }
