@@ -17,21 +17,28 @@ statsTBI.push(pageStats.bestWpm);
 statsTBI.push(getAccuracy(pageStats.totalHits, pageStats.totalMisses));
 statsTBI.push(pageStats.bestAccuracy);
 
-for(let stat in statsTBI){
-    if(stat < 2){
-        statsBoxes[stat].innerHTML += statsTBI[stat];
+for(let statBox of statsBoxes){
+    if(statBox.id == 'joinDate'){
+        statBox.innerHTML += formatStartDay(pageStats.startDate);
     }
-    else if(stat == 3){
-        statsBoxes[stat].innerHTML += statsTBI[stat] + ' words per minute';
+    else if(statBox.id == 'minutes'){
+        statBox.innerHTML += getMinutes(pageStats.totalTime);
     }
-    else if(stat == 4){
-        statsBoxes[stat].innerHTML += statsTBI[stat][0] + `words per minute (${statsTBI[stat][1]} words)`;
+    else if(statBox.id == 'avgWPM'){
+        statBox.innerHTML += getWPM(pageStats.totalWords, pageStats.totalTime) + ' words per minute';
     }
-    else if(stat == 5){
-        statsBoxes[stat].innerHTML += statsTBI[stat] + '%';
+    else if(statBox.id == 'bestWPM'){
+        statBox.innerHTML += pageStats.bestWpm[0] + `words per minute (${pageStats.bestWpm[1]} words)`;
+    }
+    else if(statBox.id == 'avgAcc'){
+        statBox.innerHTML += getAccuracy(pageStats.totalHits, pageStats.totalMisses) + '%';
+    }
+    else if(statBox.id == 'bestAcc'){
+        statBox.innerHTML += pageStats.bestAccuracy[0] + '%';
+        if(pageStats.bestAccuracy.length > 1){statBox.innerHTML += ` (${pageStats.bestAccuracy} times)`;}
     }
     else{
-        statsBoxes[stat].innerHTML += statsTBI[stat][0] + `% (${statsTBI[stat][1]} times)`;
+        console.log('no statBox found for id = ' + statBox.id);
     }
 }
 function formatStartDay(ms){

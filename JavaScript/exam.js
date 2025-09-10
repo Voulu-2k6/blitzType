@@ -270,12 +270,12 @@ function getNewLine(){
 let timerInterval = null; 
 let startTimestamp = 0;   
 function startTimer() { //virtual stopwatch integration possible 
-  startTimestamp = Date.now();
-  timerInterval = setInterval(() => {
+    document.removeEventListener('keyDown', startTimer);
+    startTimestamp = Date.now();
+    timerInterval = setInterval(() => {
     myStats.examTime = Date.now() - startTimestamp;
     console.log(myStats.examTime);
-  }, 50); // update every however many ms
-  document.removeEventListener('keyDown', startTimer);
+    }, 50); // update every however many ms
 }
 
 function endTimer() { 
