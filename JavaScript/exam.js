@@ -204,7 +204,9 @@ function getNewWord(){
     let myWord = '';
 
     //preferences.key is singular
-
+    if(preferences.key && preferences.key.length == 1){
+        console.log('made it here...');
+    }   
     //preferences.key is multiple
     if(preferences.key && preferences.key.length > 1){
         console.log('made it this far...');
@@ -326,6 +328,7 @@ function doKey(){
     if(scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
     let keyStats = scopeStats.keyStats;
     let theseKeys = Object.keys(keyStats);
+    console.log('beforeError: ' + theseKeys);
 
     let keepShift = preferences.Capitals > 0 ? true : false;
     let keepDigits = preferences.Numbers > 0 ? true : false;
@@ -335,12 +338,15 @@ function doKey(){
 
     if(!keepDigits){
         for(let num of numbers){
+            console.log('removing ' + num + "...");
             theseKeys.splice(theseKeys.indexOf(keyMap[num]), 1);
+            console.log('post removal: ' + theseKeys);
         }
     }
 
     for(let special of nonLetters){
-        if(!keepSpecials.includes(special)){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1);}
+        console.log('found ' + special + " at " + theseKeys.indexOf(keyMap[special]));
+        if(!keepSpecials.includes(special)){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1); console.log('after removing ' + special + ': ' + theseKeys);}
     }
 
     console.log(theseKeys);
