@@ -87,14 +87,12 @@ function uploadExam(){
     for(let line in myLines){
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
-            pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
+            switch (myLines[line][char]){
+                case (' '): pageChar.innerHTML = '&nbsp;'; break;
+                case ('\n'): pageChar.innerHTML = '\\n'; break;
+                default: pageChar.innerHTML = myLines[line][char];
+            }
             myExam.push(myLines[line][char]);
-            examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
-        }
-        if(preferences.endless){
-            let pageChar = document.createElement('p');
-            pageChar.innerHTML = '\\n';
-            myExam.push('\n');
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }
     }
@@ -255,7 +253,7 @@ function getNewLine(){
         if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
         addMe = getNewWord();
         characters += addMe.length;
-        if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); return myRow;}
+        if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); myRow.push('\n'); return myRow;}
         myRow.push(addMe);
     }
 }
