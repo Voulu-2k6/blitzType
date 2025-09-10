@@ -1,7 +1,7 @@
 //gathers stats and puts them on this static page.
 //fix wordcounts for endless mode
 //revamp showing the keys that need work
-//update problemkeys algo
+//update problemkeys alg
 
 import { storedStatsTemplate, getAccuracy, getWPM } from "./stats.js";
 
