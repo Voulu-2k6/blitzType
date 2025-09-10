@@ -199,19 +199,19 @@ header a,footer p{
     border: 1px solid white;
 }
 .fade {
-    opacity: 0.2;
+    opacity: 0.6;
 }
 .silver {
     background-color: silver;
-    border-color: rgb(121, 121, 121);
+    border: 1px solid rgb(121, 121, 121);
 }
 .gold {
     background-color: gold;
-    border-color: yellow;
+    border: 1px solid yellow;
 }
 .diamond {
     background-color: aqua;
-    border-color: blue;
+    border: 1px solid blue;
 }
 .slider {
     background-color: black;

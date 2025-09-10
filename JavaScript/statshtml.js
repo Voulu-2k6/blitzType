@@ -4,6 +4,7 @@
 //update problemkeys alg
 
 import { storedStatsTemplate, getAccuracy, getWPM } from "./stats.js";
+import { keyMap } from "./constants.js";
 
 let pageStats = storedStatsTemplate;
 
@@ -46,4 +47,9 @@ function formatStartDay(ms){
 }
 function getMinutes(ms){
     return Math.ceil(ms/60000);
+}
+
+let leftKeyDisplay = querySelectorAll('#keyDisplay1 .none');
+for(let key of leftKeyDisplay){
+    key.setAttribute('style', 'background-color: rgb(255, 69, 0)');
 }
