@@ -4,7 +4,7 @@
 //update problemkeys alg
 
 import { storedStatsTemplate, getAccuracy, getWPM } from "./stats.js";
-import { keyMap } from "./constants.js";
+import { keyMap, reverseKeyMap } from "./constants.js";
 
 let pageStats = storedStatsTemplate;
 
@@ -61,7 +61,7 @@ for(let key of leftKeyDisplay){
 }
 
 function getRelativeAccuracy(code){
-    let acc = pageStats.keyStats[code].accuracy
+    let acc = pageStats.keyStats[keyMap[reverseKeyMap[code]].accuracy
     if(acc == 0){return -1;}
     let newAcc = acc - 0.6;
     console.log(newAcc);
