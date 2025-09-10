@@ -111,7 +111,7 @@ section {
     align-items: center;
     flex-wrap: wrap;
 }
-#keyDisplay {
+.keyDisplay {
     margin-bottom: 100px;
 
     width: 100%;
@@ -121,7 +121,7 @@ section {
     justify-content: center;
     align-items: center;
 }
-#keyDisplay div {
+.keyDisplay div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -158,16 +158,14 @@ header a,footer p{
 
     margin: 5px 20px;
 }
-#keyDisplay p {
+.keyDisplay p {
     margin: 2px;
     padding: 4px;
-    border: 1px solid white;
     border-radius: 3px;
 
     width: 22px;
     height: 22px;
-    background-color: rgb(95, 95, 95);
-    font-size: 1vw;
+    font-size: 14px;
 
     display: flex;
     flex-direction: row;
@@ -196,6 +194,25 @@ header a,footer p{
 }
 
 /*classes*/
+.none, .fade {
+    background-color: rgb(95, 95, 95);
+    border: 1px solid white;
+}
+.fade {
+    opacity: 0.6;
+}
+.silver {
+    background-color: silver;
+    border: 1px solid rgb(121, 121, 121);
+}
+.gold {
+    background-color: gold;
+    border: 1px solid yellow;
+}
+.diamond {
+    background-color: aqua;
+    border: 1px solid blue;
+}
 .slider {
     background-color: black;
     border-radius: 4px;
@@ -236,38 +253,32 @@ header a,footer p{
     justify-content: center;
     align-items: center;
 }
-#keyDisplay .problemKey {
-    font-size: 0.8em; 
-    border: 1px solid white; 
-    background-color:rgb(0,0,0); 
-    box-shadow: 0 0 6px 4px white;
-}
 
 /*virtual keyboard*/
-#keyDisplay #Backspace {
+.keyDisplay #Backspace {
     width: 55px;
 }
-#keyDisplay #Backquote {
+.keyDisplay #Backquote {
     width: 14px;
 }
-#keyDisplay #Tab {
+.keyDisplay #Tab {
     width: 39px;
 }
-#keyDisplay #Backslash {
+.keyDisplay #Backslash {
     width: 31px;
 }
-#keyDisplay #CapsLock {
+.keyDisplay #CapsLock {
     width: 50px;
 }
-#keyDisplay #Enter {
+.keyDisplay #Enter {
     width: 56px;
 }
-#keyDisplay #ShiftLeft, #keyDisplay #ShiftRight {
+.keyDisplay #ShiftLeft, .keyDisplay #ShiftRight {
     width: 71px;
 }
-#keyDisplay #Space {
+.keyDisplay #Space {
     width: 186px;
 }  
-#keyDisplay #HoldRight {
+.keyDisplay #HoldRight {
     width: 100px;
 }

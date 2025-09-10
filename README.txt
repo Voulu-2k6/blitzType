@@ -10,45 +10,38 @@ Features:
     -Working typing test that records stats like wpm, accuracy, and keys that 
     may pose a problem.
     -Endless mode: generates a new line of test each time the final 'enter' key is hit
-    -Settings to choose which punctuation/digit characters to use, as well as their
-    frequency.
+    -Settings to choose which punctuation/special characters to use
 
 Known bugs/tweaks, by file: 
 
     exam.js: 
-        Timer starts on exam load, not on first character clicked. 
         double letters mess up keystrokes
-        extra word on ordinary exam creation
-        endless key selection is delayed one line.
-        make endless one line
 
-    stats.js
-        Spacebar on problemkeys is invisible
+    stats.js -- problem keys
         Spacebar doesn't highlight on problem, nor does Enter
 
-UI fixes:
-
-    exam.js 
-        enter key should read as such
-
-    CSS
-        Animating line movement in endless
-        improving settings, scores section on index
-        improving settingshtml in general
-
 Iplementing features: 
+    Settings.html: punctuation lacks em dashes and en dashes
+    Settings.html: Add sliders for specials freq.
+    Settings.html: implement adjusting selected key
+    Stats.html: implement heat map of key accuracies.
+    Stats.html: implement map of key masteries.
+    index.html: implement animations for line movement
+    index.html: implement animations for new high scores
+    index.html: implement animations for levelling up a key
+    index.html: warning that small settings override big 
+    index.html: warning describing problemkeys
+    index.html: left vs. right hand focus
 
-    Settings: punctuation lacks em dashes and en dashes
-    Exam: reset/pause endless
+Key lightups:
+    Where to press next: bg black
+    Where you're pressing now: bg white?
+    What class of mastery you have for that key: change element class, css background accordingly
 
-TO DO:
-    Finalize settings page. 
-        Add sliders for punctuation and specials freq.
-        implement adjusting selected key
-        polish UI
-    Finalize exam page.
-        TBL
-    Create stats page.
+newStats:
+    will need to implement here miss subtraction as a way to combat acc fatigue.
+
+
 
 
 

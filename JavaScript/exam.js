@@ -1,15 +1,10 @@
 /*Exam
-    Need: 
-        Implement backspace function ***
     Tweaks:
-        Timer starts on exam load, not on first character clicked. 
         double letters mess up keystrokes
-        getNewLine and preferences.words aren't aligned
-        additional space before enter on endless
-    
 */
 
-import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/constants.js';
+import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters} from '/blitzType/JavaScript/constants.js';
+import { getAdvancements } from './statshtml.js';
 
 //for creating and running the exam
 let hold = await getWords();
@@ -19,14 +14,14 @@ let myExam = [];
 let myLines = [];
 let myChars = [];
 let myProgress = 0;
-let miss = false;
-let firstMiss = true;
 let examOn = false;
 let preferences = JSON.parse(localStorage.getItem('userPreferences'));
+let myKeystrokes = document.querySelectorAll(".keyDisplay p:not(.fade)");
+getAdvancements(myKeystrokes);
 
 //for recording stats
-import {statsTemplate} from '/blitzType/stats.js';
-let myStats = statsTemplate;
+import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
+let myStats = runStatsTemplate;
 
 //exam button listener 
 if(document.querySelector("#makeExamButton")){
@@ -69,15 +64,15 @@ function softClear(){
     myStats.misses = 0;
 }
 
-function createEndless(){
-    for(let i = 0; i < 3; i++){myLines.push(getNewLine());}
+function createEndless(){ //set I to num lines you want to queue, max 5 min 1;
+    for(let i = 0; i < 1; i++){myLines.push(getNewLine());}
 }
 
 export function createExam(){
     let myRow = [];
     let characters = 0;
     for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
-    for(let i = 0; i < preferences.Words; i++){
+    for(let i = 1; i < preferences.Words; i++){
         if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
         characters += addMe.length;
@@ -95,19 +90,12 @@ function uploadExam(){
     for(let line in myLines){
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
-            if(char != myLines[line].length-1){
-                pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
-                myExam.push(myLines[line][char]);
+            switch (myLines[line][char]){
+                case (' '): pageChar.innerHTML = '&nbsp;'; break;
+                case ('\n'): pageChar.innerHTML = '\\n'; break;
+                default: pageChar.innerHTML = myLines[line][char];
             }
-            else if(preferences.endless){
-                pageChar.innerHTML = '\\n';
-                myExam.push('\n');
-            }
-            else{
-                let endLine = line == myLines.length-1 ? myLines[line][char] : ' ';
-                pageChar.innerHTML = endLine == ' ' ? '&nbsp;' : endLine;
-                myExam.push(endLine);
-            }
+            myExam.push(myLines[line][char]);
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }
     }
@@ -118,7 +106,8 @@ function startExam(){
     myChars = document.querySelectorAll("#examText p");
     showNext(myExam[0]);
     examOn = true;
-    startTimer();
+    document.removeEventListener('keydown', startTimer);
+    document.addEventListener('keydown', startTimer);
 }
 
 function keyPress(key){
@@ -126,7 +115,7 @@ function keyPress(key){
     if(myBox.getAttribute('class') === '' || myBox.getAttribute('class') === null){
         myBox.setAttribute('style','border: 1px solid orangered; background-color:rgb(0,0,0); box-shadow: 0 0 3px orangered');
     }
-    if(key === 'meta' || key === 'tab'){setTimeout(() => {keyRelease(key);}, 1000);}
+    if(key === 'meta' || key === 'tab'){setTimeout(() => {keyRelease(key);}, 1000);}//supposed to fix keystrokes sticking on these keys 
 }
 
 function keyRelease(key){
@@ -160,13 +149,10 @@ function advanceEndless(){
     myChars = document.querySelectorAll("#examText p");
     showNext(myExam[0]);
 
-    //stats
-    // preferences.key = problemKeys.length > 0 ? reverseKeyMap[problemKeys[Math.floor(Math.random()*problemKeys.length)]] : targetKey;
     startTimer();
     myStats.examTime = 0;
     myStats.hits = 0;
     myStats.misses = 0;
-    // myStats.wordCount = preferences.Words;
 }
 
 function hitCheck(e){
@@ -176,7 +162,8 @@ function hitCheck(e){
             onHit(e);
             if(myProgress === myLength){
                 endTimer();
-                doStats();
+                doStats(preferences.endless);
+                getAdvancements(myKeystrokes);
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
@@ -185,7 +172,7 @@ function hitCheck(e){
             }
         }
         else{
-            onMiss();
+            onMiss(e);
         }
     }
 }
@@ -194,15 +181,11 @@ function onHit(e){
     myChars[myProgress].setAttribute('style', 'background-color: rgb(255, 102, 0);');
     myProgress++;
     updateStats(true, e);
-    miss = false;
-    firstMiss = true;
 }
 
-function onMiss(){
+function onMiss(e){
     myChars[myProgress].setAttribute('style', 'background-color: aqua;');
-    updateStats(false);
-    firstMiss = false;
-    miss = true;
+    updateStats(false, e);
 }
 
 async function getWords(){
@@ -267,7 +250,6 @@ function getASpecial(){
 }
 
 function getNewLine(){
-    //generate test
     let addMe = getNewWord();
     let myRow = [addMe];
     let characters = addMe.length;
@@ -275,8 +257,7 @@ function getNewLine(){
         if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
         addMe = getNewWord();
         characters += addMe.length;
-        if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); return myRow;}
-        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
+        if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); myRow.push('\n'); return myRow;}
         myRow.push(addMe);
     }
 }
@@ -284,10 +265,11 @@ function getNewLine(){
 let timerInterval = null; 
 let startTimestamp = 0;   
 function startTimer() { //virtual stopwatch integration possible 
-  startTimestamp = Date.now();
-  timerInterval = setInterval(() => {
+    document.removeEventListener('keydown', startTimer);
+    startTimestamp = Date.now();
+    timerInterval = setInterval(() => {
     myStats.examTime = Date.now() - startTimestamp;
-  }, 50); // update every however many ms
+    }, 50); // update every however many ms
 }
 
 function endTimer() { 
@@ -295,38 +277,32 @@ function endTimer() {
   myStats.examTime = Date.now() - startTimestamp;
 }
 
-function updateStats(hit, e = null){
+function updateStats(hit, e){
     if(hit){
         myStats.hits++;
         myStats.keyStats[e.code].hits++;
         if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].hits++;}
-        myStats.totalHits++;
-        if(!miss){
-            myStats.trueHits++;
-            myStats.keyStats[e.code].trueHits++;
-            if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].trueHits++;}
-        }
     }
     else{
-        myStats.trueMisses++;
-            myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].trueMisses++;
-            if(myChars[myProgress].innerHTML in shiftMap){myStats.keyStats['ShiftLeft'].trueMisses++;}
-            if(firstMiss){
-                myStats.misses++;
-                myStats.totalMisses++;
-                myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].misses++;
-                if(myChars[myProgress].innerHTML in shiftMap){myStats.keyStats['ShiftLeft'].misses++;}
-            }
+        myStats.misses++;
+        myStats.keyStats[keyMap[myChars[myProgress].innerHTML]].misses++;
+        if(myChars[myProgress].innerHTML in shiftMap){
+            if(reverseKeyMap[shiftMap[myChars[myProgress].innerHTML]] != e.key)
+                myStats.keyStats['ShiftLeft'].misses++;}
     }
 }
 
-import {showStats} from '/blitzType/stats.js';
-// presents and updates stats, handles key adaptation
-function doStats(){
-    sessionStorage.setItem('sessionStats', JSON.stringify(myStats));
-    showStats();
-    myStats = JSON.parse(sessionStorage.getItem('sessionStats'));
-    if(preferences.adapt){adaptKey();}
+function getNumWords(){
+    console.log(myLines[0]);
+    return (myLines[0].join('').split(/[\/\\|\-=+\*^ ]/)).length;
 }
 
-function adaptKey(){} //TBI
+import {newStats} from '/blitzType/JavaScript/stats.js';
+// presents and updates stats
+function doStats(endless){
+    myStats.wordCount = endless ? getNumWords() : preferences.Words;
+    sessionStorage.setItem('runStats', JSON.stringify(myStats));
+    newStats();
+    myStats = runStatsTemplate;
+}
+

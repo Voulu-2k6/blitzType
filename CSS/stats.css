@@ -1,0 +1,17 @@
+#statsTop > div{
+    border-bottom: 1px solid orangered;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#statsTop p{
+    margin: 16px;
+}
+
+#keystrokes {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
