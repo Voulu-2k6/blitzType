@@ -21,3 +21,4 @@ export const specialKeyCodes = ['Tab', 'CapsLock', 'Backspace', 'ShiftLeft', 'Sh
 export const letters = 'abcdefghijklmnopqrstuvwyxz'.split('');
 export const nonLetters = "~`@#$%^&*()_+={}[]\\|<>.,!?;:-'\"\n".split('');
 export const numbers ="0123456789".split('');
+export const shiftTopRow = '!@#$%^&*()'.split('');

@@ -77,7 +77,7 @@ function updateSpecial(myChar, remove){
 
 //handles buttons that open the sliders
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
-for(let button of myButtons){
+for(let button of mySliderButtons){
     let type = button.previousElementSibling.innerHTML;
     type = type.substring(0, type.length-2);
     button.addEventListener('click', (e) => {

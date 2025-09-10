@@ -3,7 +3,7 @@
         double letters mess up keystrokes
 */
 
-import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers} from '/blitzType/JavaScript/constants.js';
+import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers, shiftTopRow} from '/blitzType/JavaScript/constants.js';
 import { getAdvancements } from './statshtml.js';
 
 //for creating and running the exam
