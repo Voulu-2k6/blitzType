@@ -50,6 +50,7 @@ function getMinutes(ms){
 }
 
 let leftKeyDisplay = querySelectorAll('#keyDisplay1 .none');
+console.log(leftKeyDisplay);
 for(let key of leftKeyDisplay){
     let mult = getRelativeAccuracy(key.innerHTML);
     key.setAttribute('style', 'background-color: rgb(255, 69, 0)');
