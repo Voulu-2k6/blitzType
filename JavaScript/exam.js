@@ -204,7 +204,7 @@ function getNewWord(){
     console.log('still works after ' + preferences.key + '?');
     let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
     console.log('My char: ' + myChar + ', index ' + Math.floor(Math.random()*preferences.key.length) + ' gave ' + preferences.key[Math.floor(Math.random()*preferences.key.length)]);
-    myWord = getWordWith(myChar);
+    myWord = getWordWith(reverseKeyMap[myChar]);
 
     if(Math.random() >= preferences.Numbers && !numbers.includes(myChar)){ //word or number?
         myWord = words[Math.floor((Math.random()*2993))]; 
@@ -248,6 +248,7 @@ function specialize(myWord, myChar){
 
 function getWordWith(myChar){
     if(myChar == null){return words[Math.floor((Math.random()*2993))];}
+    //handle shift exceptions later
     let myWord = '';
     do{myWord = words[Math.floor((Math.random()*2993))];}
     while(myWord.indexOf(myChar) < 0)
