@@ -4,7 +4,7 @@
 let userSettings = localStorage.getItem('userPreferences');
 let preferences = userSettings ? JSON.parse(userSettings) : { 
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
-    adapt: false, key: null, 'endless': false, 'mySpecials' : []
+    adapt: true, key: null, 'endless': false, 'mySpecials' : []
 }
 
 // STARTUP SECTION
