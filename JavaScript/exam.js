@@ -346,7 +346,7 @@ function doKey(){
 
     for(let special of nonLetters){
         console.log('found ' + special + " at " + theseKeys.indexOf(keyMap[special]));
-        if(!keepSpecials.includes(special)){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1); console.log('after removing ' + special + ': ' + theseKeys);}
+        if(!keepSpecials.includes(special) && theseKeys.indexOf(keyMap[special]) != -1){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1); console.log('after removing ' + special + ': ' + theseKeys);}
     }
 
     console.log(theseKeys);
