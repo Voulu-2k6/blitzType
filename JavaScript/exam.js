@@ -88,11 +88,11 @@ function uploadExam(){
     for(let line in myLines){
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
-            if(!preferences.endless){
+            if(!preferences.endless || char != myLines[line].length-1){
                 pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
                 myExam.push(myLines[line][char]);
             }
-            else if(char == myLines[line].length-1){
+            else{
                 pageChar.innerHTML = '\\n';
                 myExam.push('\n');
             }
