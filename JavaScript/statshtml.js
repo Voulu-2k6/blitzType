@@ -66,7 +66,7 @@ function getRelativeAccuracy(code){
 export function getAdvancements(keys){
     //implement key frequency in words.txt for constants.js
     //implement miss reduction in exam.js
-    for(let key of keys){
+    for(let key of Object.keys(keys)){
         let keyStat = pageStats.keyStats[keyMap[reverseKeyMap[code]]];
         let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.totalHits >= 1200);
         let goldStandard = (keyStat.accuracy > 0.95 && keyStat.totalHits >= 500);
