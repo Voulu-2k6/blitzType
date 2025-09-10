@@ -92,7 +92,7 @@ function uploadExam(){
                 pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
                 myExam.push(myLines[line][char]);
             }
-            else{
+            else if(char == myLines[line].length-1){
                 pageChar.innerHTML = '\\n';
                 myExam.push('\n');
             }
