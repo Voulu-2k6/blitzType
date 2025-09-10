@@ -24,14 +24,14 @@ Iplementing features:
     Settings.html: punctuation lacks em dashes and en dashes
     Settings.html: Add sliders for specials freq.
     Settings.html: implement adjusting selected key
-    Stats.html: implement heat map of key accuracies.
-    Stats.html: implement map of key masteries.
+    Stats.html: implement hovering over keymap for stats/stats needed for level up
     index.html: implement animations for line movement
     index.html: implement animations for new high scores
     index.html: implement animations for levelling up a key
     index.html: warning that small settings override big 
     index.html: warning describing problemkeys
     index.html: left vs. right hand focus
+    index.html: protection against multiple misses for one key. 
 
 Key lightups:
     Where to press next: bg black

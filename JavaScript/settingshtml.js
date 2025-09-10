@@ -3,7 +3,7 @@
 //get known preferences
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let preferences = userSettings ? userSettings : { 
-    'Capitals' : 0, 'Numbers' : 0, 'Punctuation' : 0, 'Specials' : 0, 'Words' : 10,
+    'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
 
@@ -24,6 +24,11 @@ if(userSettings){
 
     for(const setting of ['Capitals', 'Numbers']){
         document.querySelector(`#${setting}Holder`).innerHTML = (Number(preferences[setting])*100) + '%';
+        if(preferences[setting] > 0){
+            let button = setting == 'Capitals' ? myButtons[0] : myButtons[1];
+            let type = setting == 'Capitals' ? 'capital' : 'digit';
+            generateSlider(type, button);
+        }
     }
 }
 
@@ -73,8 +78,7 @@ function updateSpecial(myChar, remove){
 
 //handles buttons that open the sliders
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
-let buttons = document.querySelectorAll('.button');
-for(let button of buttons){
+for(let button of myButtons){
     let type = button.previousElementSibling.innerHTML;
     type = type.substring(0, type.length-2);
     button.addEventListener('click', (e) => {

@@ -20,3 +20,4 @@ export const shiftMap = { '~': 'Backquote', '!': 'Digit1', '@': 'Digit2', '#': '
 export const specialKeyCodes = ['Tab', 'CapsLock', 'Backspace', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'AltRight', 'MetaLeft', 'MetaRight'];
 export const letters = 'abcdefghijklmnopqrstuvwyxz'.split('');
 export const nonLetters = "~`@#$%^&*()_+={}[]\\|<>.,!?;:-'\"\n".split('');
+export const numbers ="0123456789".split('');

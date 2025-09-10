@@ -3,7 +3,7 @@
         double letters mess up keystrokes
 */
 
-import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters} from '/blitzType/JavaScript/constants.js';
+import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers} from '/blitzType/JavaScript/constants.js';
 import { getAdvancements } from './statshtml.js';
 
 //for creating and running the exam
@@ -42,6 +42,7 @@ document.addEventListener('keyup', (e) => {
 
 function exam(){
     getPreferences(); //pulls 
+    if(preferences.adapt){doKey();}
     clearExam();
     if(preferences.endless){createEndless();}
     else{myLines.push(createExam());}
@@ -161,11 +162,7 @@ function hitCheck(e){
         if(myExam[myProgress] === e.key || (myExam[myProgress] == "\n" && e.key == 'Enter')){
             onHit(e);
             if(myProgress === myLength){
-                endTimer();
-                doStats(preferences.endless);
-                getAdvancements(myKeystrokes);
-                if(preferences.endless){advanceEndless();}
-                else{examOn = false;}
+                endExam();
             }
             else{
                 showNext(myExam[myProgress]);
@@ -175,6 +172,15 @@ function hitCheck(e){
             onMiss(e);
         }
     }
+}
+
+function endExam(){
+    endTimer();
+    doStats(preferences.endless);
+    getAdvancements(myKeystrokes);
+    if(preferences.adapt){doKey();}
+    if(preferences.endless){advanceEndless();}
+    else{examOn = false;}
 }
 
 function onHit(e){
@@ -197,20 +203,29 @@ async function getWords(){
 function getNewWord(){
     let myWord = '';
 
-    //word or letter?
-    if(Math.random() >= preferences.Numbers){
-        myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*2993))]; //required key?
-        if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?
-    }
-    else{myWord = String(Number(Math.floor(Math.random()*1000)));}
+    //preferences.key is singular
 
-    //specialize
-    if(nonLetters.includes(preferences.key) && Math.random() > 0.7){myWord = specialize(myWord, preferences.key);}//required key?
-    else if(preferences.mySpecials.length > 0 && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
+    //preferences.key is multiple
+    if(preferences.key && preferences.key.length > 1){
+        console.log('made it this far...');
+    }
+    //preferences.key is null
+    else{
+        console.log('still works.');
+        if(Math.random() >= preferences.Numbers){ //word or number?
+            myWord = words[Math.floor((Math.random()*2993))]; 
+            if(Math.random() < preferences.Capitals){myWord = toTitleCase(myWord);} //uppercase?
+        }
+        else{myWord = String(Number(Math.floor(Math.random()*1000)));}
+        if(preferences.mySpecials.length > 0 && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));} //specialize
+    }
+
     return myWord;
 }
 
-function getPreferences(){preferences = JSON.parse(localStorage.getItem('userPreferences'));}
+function getPreferences(){
+    preferences = JSON.parse(localStorage.getItem('userPreferences'));
+}
 
 function toTitleCase(word){
     return (word.substring(0,1).toUpperCase()) + word.substring(1);
@@ -304,5 +319,46 @@ function doStats(endless){
     sessionStorage.setItem('runStats', JSON.stringify(myStats));
     newStats();
     myStats = runStatsTemplate;
+}
+
+function doKey(){
+    let scopeStats = JSON.parse(localStorage.getItem('localStats'));
+    if(scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
+    let keyStats = scopeStats.keyStats;
+    let theseKeys = Object.keys(keyStats);
+
+    let keepShift = preferences.Capitals > 0 ? true : false;
+    let keepDigits = preferences.Numbers > 0 ? true : false;
+    let keepSpecials = preferences.Specials > 0 ? preferences.mySpecials : [];
+
+    if(!keepShift){theseKeys.splice(theseKeys.indexOf('ShiftLeft'), 1);}
+
+    if(!keepDigits){
+        for(let num of numbers){
+            theseKeys.splice(theseKeys.indexOf(keyMap[num]), 1);
+        }
+    }
+
+    for(let special of nonLetters){
+        if(!keepSpecials.includes(special)){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1);}
+    }
+
+    console.log(theseKeys);
+
+    let worstKeys = [];
+    for(let i = 0; i < 3; i++){ //adjust i for more depth to the adaptation
+        let worstStats = keyStats['KeyE'];
+        let worstKey = KeyE;
+        for(let thisKey in theseKeys){
+            let curr = keyMap[reverseKeyMap[thisKey]];
+            if(curr.accuracy != null && curr.accuracy != 0 && curr.accuracy < worstStats.accuracy){
+                worstStats = curr;
+                worstKey = thisKey;
+            }
+        }
+        theseKeys.splice(theseKeys.indexOf(worstKey), 1);
+        worstKeys.push(worstKey);
+    }
+    preferences.key = worstKeys;
 }
 
