@@ -204,7 +204,12 @@ function getNewWord(){
     console.log('still works after ' + preferences.key + '?');
     let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
     console.log('My char: ' + myChar + ', index ' + Math.floor(Math.random()*preferences.key.length) + ' gave ' + preferences.key[Math.floor(Math.random()*preferences.key.length)]);
-    let myWord = getWordWith(reverseKeyMap[myChar]);
+
+    let myWord = '';
+    if(letters.includes(reverseKeyMap[myChar])){myWord = getWordWith(reverseKeyMap[myChar]);}
+    else if(numbers.includes(reverseKeyMap[myChar])){myWord = getNumberWith(reverseKeyMap[myChar]);}
+    else if(nonLetters.includes(reverseKeyMap[myChar])){myWord = getWordWith(null);}
+    else{console.log('no place found for ' + myChar); myWord = getWordWith(null);}
 
     if(Math.random() >= preferences.Numbers && !numbers.includes(myChar)){ //word or number?
         if(Math.random() < preferences.Capitals){myWord = toTitleCase(myWord);} //uppercase?
@@ -253,6 +258,10 @@ function getWordWith(myChar){
     do{myWord = words[Math.floor((Math.random()*2993))];}
     while(myWord.indexOf(myChar) < 0)
     return myWord;
+}
+
+function getNumberWith(myDigit){
+    return 0;
 }
 
 function getASpecial(){
