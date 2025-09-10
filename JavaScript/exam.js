@@ -248,7 +248,6 @@ function getASpecial(){
 }
 
 function getNewLine(){
-    //generate test
     let addMe = getNewWord();
     let myRow = [addMe];
     let characters = addMe.length;
@@ -293,7 +292,7 @@ function updateStats(hit, e){
 
 function getNumWords(){
     console.log(myLines[0]);
-    return (myLines[0].split(/[\/\\|\-=+\*^ ]/)).length;
+    return (myLines[0].join('').split(/[\/\\|\-=+\*^ ]/)).length;
 }
 
 import {newStats} from '/blitzType/JavaScript/stats.js';
