@@ -2,6 +2,7 @@
 
 //get known preferences
 let userSettings = localStorage.getItem('userPreferences');
+console.log('I am here');
 if(userSettings){console.log('Found user settings, setting preferences to ' + userSettings);}
 let preferences = userSettings ? JSON.parse(userSettings) : { 
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
