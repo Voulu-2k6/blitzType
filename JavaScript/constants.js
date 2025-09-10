@@ -12,7 +12,7 @@ export const reverseKeyMap = {"Backquote": "`", "Backslash": "\\", "BracketLeft"
     "KeyC": "c", "KeyD": "d", "KeyE": "e", "KeyF": "f", "KeyG": "g", "KeyH": "h", "KeyI": "i", "KeyJ": "j", 
     "KeyK": "k", "KeyL": "l", "KeyM": "m", "KeyN": "n", "KeyO": "o", "KeyP": "p", "KeyQ": "q", "KeyR": "r", 
     "KeyS": "s", "KeyT": "t", "KeyU": "u", "KeyV": "v", "KeyW": "w", "KeyX": "x", "KeyY": "y", "KeyZ": "z", 
-    "Minus": "-", "Period": ".", "Quote": "'", "Semicolon": ";", "Slash": "/", "Space": "Space", "ShiftLeft": "Shift", 'Enter': 'Enter', '\n': 'Enter'}
+    "Minus": "-", "Period": ".", "Quote": "'", "Semicolon": ";", "Slash": "/", "Space": "Space", "ShiftLeft": "Shift", "ShiftRight": "Shift", 'Enter': 'Enter', '\n': 'Enter'}
 export const shiftMap = { '~': 'Backquote', '!': 'Digit1', '@': 'Digit2', '#': 'Digit3', '$': 'Digit4', '%': 'Digit5', '^': 'Digit6', '&': 'Digit7', '*': 'Digit8', '(': 'Digit9', ')': 'Digit0', 
     '_': 'Minus', '+': 'Equal', '{': 'BracketLeft', '}': 'BracketRight', '|': 'Backslash', ':': 'Semicolon', '"': 'Quote', '<': 'Comma', '>': 'Period', '?': 'Slash', 'A': 'KeyA', 'B': 'KeyB', 
     'C': 'KeyC', 'D': 'KeyD', 'E': 'KeyE', 'F': 'KeyF', 'G': 'KeyG', 'H': 'KeyH', 'I': 'KeyI', 'J': 'KeyJ', 'K': 'KeyK', 'L': 'KeyL', 'M': 'KeyM', 'N': 'KeyN', 'O': 'KeyO', 'P': 'KeyP', 'Q': 'KeyQ', 
