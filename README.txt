@@ -20,24 +20,19 @@ Known bugs/tweaks, by file:
         extra word on ordinary exam creation
         endless key selection is delayed one line.
 
-    stats.js
+    stats.js -- problem keys
         Spacebar on problemkeys is invisible
         Spacebar doesn't highlight on problem, nor does Enter
 
 Iplementing features: 
-
-    Settings: punctuation lacks em dashes and en dashes
-    Settings: can't choose specials frequency
-
-TO DO:
-    Finalize settings page. 
-        Add sliders for specials freq.
-        implement adjusting selected key
-    Finalize exam page.
-        Implement animations for levelling up, line clearing, new high scores.
-    Finalize stats page.
-        show heat map of accuracies
-        add threshholds for ranking up in keys
+    Settings.html: punctuation lacks em dashes and en dashes
+    Settings.html: Add sliders for specials freq.
+    Settings.html: implement adjusting selected key
+    Stats.html: implement heat map of key accuracies.
+    Stats.html: implement map of key masteries.
+    index.html: implement animations for line movement
+    index.html: implement animations for new high scores
+    index.html: implement animations for levelling up a key
 
 
 

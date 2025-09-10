@@ -92,11 +92,11 @@ function getProblems(sessionStats){
 
 function updateDisplay(sessionStats){
     let needWork = document.querySelector("#needWork");
-    needWork.innerHTML = "Keys that need work:"; 
+    needWork.innerHTML = "keys that need work:"; 
     for(let key of sessionStats.problemKeys){needWork.innerHTML += " " + reverseKeyMap[key];} 
     highlightKeys(sessionStats.problemKeys);
-    document.querySelector("#statsAccuracy").innerHTML = "Accuracy: " + getAccuracy(sessionStats.hits, sessionStats.misses);
-    document.querySelector("#statsWPM").innerHTML = "Words per minute: " + getWPM(sessionStats.wordCount, sessionStats.examTime);
+    document.querySelector("#statsAccuracy").innerHTML = "accuracy: " + getAccuracy(sessionStats.hits, sessionStats.misses);
+    document.querySelector("#statsWPM").innerHTML = "words per minute: " + getWPM(sessionStats.wordCount, sessionStats.examTime);
 }
 
 export function getAccuracy(hits, misses){
@@ -128,7 +128,7 @@ function newStats(){
     for(let key of Object.keys(runStats.keyStats)){
         localStats.keyStats[key].hits += runStats.keyStats[key].hits;
         localStats.keyStats[key].misses += runStats.keyStats[key].misses;
-        localStats.keyStats[key].accuracy = localStats.keyStats[key].hits/(localStats.totalHits += runStats.hits + localStats.keyStats[key].misses);
+        localStats.keyStats[key].accuracy = localStats.keyStats[key].hits/(localStats[key].hits + localStats.keyStats[key].misses);
     }
 
     //compare bests

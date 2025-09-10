@@ -274,7 +274,6 @@ function startTimer() { //virtual stopwatch integration possible
     startTimestamp = Date.now();
     timerInterval = setInterval(() => {
     myStats.examTime = Date.now() - startTimestamp;
-    console.log(myStats.examTime);
     }, 50); // update every however many ms
 }
 

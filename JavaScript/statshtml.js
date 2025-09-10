@@ -28,7 +28,7 @@ for(let statBox of statsBoxes){
         statBox.innerHTML += getWPM(pageStats.totalWords, pageStats.totalTime) + ' words per minute';
     }
     else if(statBox.id == 'bestWPM'){
-        statBox.innerHTML += pageStats.bestWpm[0] + `words per minute (${pageStats.bestWpm[1]} words)`;
+        statBox.innerHTML += pageStats.bestWpm[0] + ` words per minute (${pageStats.bestWpm[1]} words)`;
     }
     else if(statBox.id == 'avgAcc'){
         statBox.innerHTML += getAccuracy(pageStats.totalHits, pageStats.totalMisses) + '%';
