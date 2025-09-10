@@ -3,7 +3,7 @@
 //revamp showing the keys that need work
 //update problemkeys algo
 
-import { storedStatsTemplate, getAccuracy, getWPM } from "./stats";
+import { storedStatsTemplate, getAccuracy, getWPM } from "./stats.js";
 
 let pageStats = storedStatsTemplate;
 
