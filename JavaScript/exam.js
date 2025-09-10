@@ -328,7 +328,7 @@ function doKey(){
     if(scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
     let keyStats = scopeStats.keyStats;
     let theseKeys = Object.keys(keyStats);
-    console.log('beforeError: ' + theseKeys);
+    theseKeys.splice(theseKeys.indexOf('Enter'), 1);
 
     let keepShift = preferences.Capitals > 0 ? true : false;
     let keepDigits = preferences.Numbers > 0 ? true : false;
@@ -338,25 +338,22 @@ function doKey(){
 
     if(!keepDigits){
         for(let num of numbers){
-            console.log('removing ' + num + "...");
             theseKeys.splice(theseKeys.indexOf(keyMap[num]), 1);
-            console.log('post removal: ' + theseKeys);
         }
     }
 
     for(let special of nonLetters){
-        console.log('found ' + special + " at " + theseKeys.indexOf(keyMap[special]));
-        if(!keepSpecials.includes(special) && theseKeys.indexOf(keyMap[special]) != -1){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1); console.log('after removing ' + special + ': ' + theseKeys);}
+        if(!keepSpecials.includes(special) && theseKeys.indexOf(keyMap[special]) != -1){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1);}
     }
-
-    console.log(theseKeys);
 
     let worstKeys = [];
     for(let i = 0; i < 3; i++){ //adjust i for more depth to the adaptation
         let worstStats = keyStats['KeyE'];
-        let worstKey = KeyE;
+        let worstKey = 'KeyE';
+        console.log('we\'ve set worstKey to ' + KeyE + ' and it\'s stats are ' + worstStats);
         for(let thisKey in theseKeys){
-            let curr = keyMap[reverseKeyMap[thisKey]];
+            let curr = keyStats[keyMap[reverseKeyMap[thisKey]]];
+            console.log(thisKey + ' maps to ' + curr);
             if(curr.accuracy != null && curr.accuracy != 0 && curr.accuracy < worstStats.accuracy){
                 worstStats = curr;
                 worstKey = thisKey;
