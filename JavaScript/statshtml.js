@@ -56,7 +56,7 @@ for(let key of leftKeyDisplay){
     if(mult != -1){
         let r = mult*255;
         let g = mult*69;
-        key.setAttribute('style', `background-color: rgb(${r}, ${g}, 0)`);\
+        key.setAttribute('style', `background-color: rgb(${r}, ${g}, 0)`);
     }
 }
 
