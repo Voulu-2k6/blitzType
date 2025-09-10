@@ -204,13 +204,13 @@ function getNewWord(){
     console.log('still works after ' + preferences.key + '?');
     let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
     console.log('My char: ' + myChar + ', index ' + Math.floor(Math.random()*preferences.key.length) + ' gave ' + preferences.key[Math.floor(Math.random()*preferences.key.length)]);
-    myWord = getWordWith(reverseKeyMap[myChar]);
+    let myWord = getWordWith(reverseKeyMap[myChar]);
 
     if(Math.random() >= preferences.Numbers && !numbers.includes(myChar)){ //word or number?
-        myWord = words[Math.floor((Math.random()*2993))]; 
         if(Math.random() < preferences.Capitals){myWord = toTitleCase(myWord);} //uppercase?
     }
-    else{myWord = String(Number(Math.floor(Math.random()*1000)));}
+    else if(!numbers.includes(myChar)){myWord = String(Number(Math.floor(Math.random()*1000)));}
+
     if(preferences.mySpecials.length > 0 && Math.random() > 0.7 && !nonLetters.includes(myChar)){myWord = specialize(myWord, getASpecial().substring(0,1));} //specialize
 
     return myWord;
@@ -248,7 +248,7 @@ function specialize(myWord, myChar){
 
 function getWordWith(myChar){
     if(myChar == null){return words[Math.floor((Math.random()*2993))];}
-    //handle shift exceptions later
+    //handle shift and digit exceptions later
     let myWord = '';
     do{myWord = words[Math.floor((Math.random()*2993))];}
     while(myWord.indexOf(myChar) < 0)
