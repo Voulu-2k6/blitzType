@@ -88,14 +88,14 @@ function uploadExam(){
     for(let line in myLines){
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
-            if(!preferences.endless || char != myLines[line].length-1){
-                pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
-                myExam.push(myLines[line][char]);
-            }
-            else{
-                pageChar.innerHTML = '\\n';
-                myExam.push('\n');
-            }
+            pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
+            myExam.push(myLines[line][char]);
+            examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
+        }
+        if(preferences.endless){
+            let pageChar = document.createElement('p');
+            pageChar.innerHTML = '\\n';
+            myExam.push('\n');
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }
     }
