@@ -87,7 +87,7 @@ function updateDisplay(sessionStats){
     let needWork = document.querySelector("#needWork");
     needWork.innerHTML = "keys that need work:"; 
     for(let key of sessionStats.problemKeys){needWork.innerHTML += " " + reverseKeyMap[key];} 
-    highlightKeys(sessionStats.problemKeys);
+    //highlightKeys(sessionStats.problemKeys);
     document.querySelector("#statsAccuracy").innerHTML = "accuracy: " + getAccuracy(sessionStats.hits, sessionStats.misses);
     document.querySelector("#statsWPM").innerHTML = "words per minute: " + getWPM(sessionStats.wordCount, sessionStats.examTime);
 }
@@ -108,7 +108,7 @@ function newStats(){
     let localStats = localStorage.getItem('localStats') ? JSON.parse(localStorage.getItem('localStats')) : storedStatsTemplate;
 
     //calculate what to show
-    getProblems(runStats);
+    //getProblems(runStats);
 
     //show current run stats
     updateDisplay(runStats);

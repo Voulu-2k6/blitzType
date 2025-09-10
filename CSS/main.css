@@ -161,13 +161,11 @@ header a,footer p{
 #keyDisplay p {
     margin: 2px;
     padding: 4px;
-    border: 1px solid white;
     border-radius: 3px;
 
     width: 22px;
     height: 22px;
-    background-color: rgb(95, 95, 95);
-    font-size: 1vw;
+    font-size: 14px;
 
     display: flex;
     flex-direction: row;
@@ -196,6 +194,13 @@ header a,footer p{
 }
 
 /*classes*/
+.none, .fade {
+    background-color: rgb(95, 95, 95);
+    border: 1px solid white;
+}
+.fade {
+    opacity: 0.2;
+}
 .silver {
     background-color: silver;
     border-color: rgb(121, 121, 121);
