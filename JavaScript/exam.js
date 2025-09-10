@@ -88,18 +88,13 @@ function uploadExam(){
     for(let line in myLines){
         for(let char in myLines[line]){
             let pageChar = document.createElement('p');
-            if(char != myLines[line].length-1){
+            if(!preferences.endless){
                 pageChar.innerHTML = myLines[line][char] === ' ' ? '&nbsp;' : myLines[line][char];
                 myExam.push(myLines[line][char]);
             }
-            else if(preferences.endless){
+            else{
                 pageChar.innerHTML = '\\n';
                 myExam.push('\n');
-            }
-            else{
-                let endLine = line == myLines.length-1 ? myLines[line][char] : ' ';
-                pageChar.innerHTML = endLine == ' ' ? '&nbsp;' : endLine;
-                myExam.push(endLine);
             }
             examBoxDiv[line].insertAdjacentElement('beforeend', pageChar);
         }

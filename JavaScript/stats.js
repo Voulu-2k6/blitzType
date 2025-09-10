@@ -1,17 +1,10 @@
 /*Stats
     Need: 
-        need backspace function for true accuracy integration
-        display key stats when hovering on keystrokes
-        display keys to work on on the keystrokes between tests.
-        add key counts to saved stats
         Wipe stats button
-        adjust doStats for new stats
     Tweaks:
-        change hits from code to keys
         Spacebar on problemkeys is invisible
         Spacebar doesn't highlight on problem, nor does Enter
     In settings:
-        Determine one's own threshold for a problem key
         */
 
 let userStats = JSON.parse(localStorage.getItem('localStats')); // locally stored user stats
@@ -85,7 +78,7 @@ function getProblems(sessionStats){
     for(let key in sessionStats.keyStats){
         if(sessionStats.keyStats[key].hits != 0 || sessionStats.keyStats[key].misses != 0){
             sessionStats.keyStats[key].accuracy = sessionStats.keyStats[key].hits / (sessionStats.keyStats[key].hits+sessionStats.keyStats[key].misses);
-            if(sessionStats.keyStats[key].accuracy < 0.92 && (sessionStats.keyStats[key].hits + sessionStats.keyStats[key].misses) > 15){sessionStats.problemKeys.push(key);}
+            if(sessionStats.keyStats[key].accuracy < 0.85 && (sessionStats.keyStats[key].hits + sessionStats.keyStats[key].misses) > 20){sessionStats.problemKeys.push(key);}
         }
     }
 }

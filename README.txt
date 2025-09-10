@@ -33,6 +33,8 @@ Iplementing features:
     index.html: implement animations for line movement
     index.html: implement animations for new high scores
     index.html: implement animations for levelling up a key
+    index.html: warning that small settings override big 
+    index.html: describing problemkeys
 
 
 
