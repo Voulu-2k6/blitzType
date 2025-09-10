@@ -350,7 +350,7 @@ function doKey(){
     for(let i = 0; i < 3; i++){ //adjust i for more depth to the adaptation
         let worstStats = keyStats['KeyE'];
         let worstKey = 'KeyE';
-        console.log('we\'ve set worstKey to ' + KeyE + ' and it\'s stats are ' + worstStats);
+        console.log(`we\'ve set worstKey to ${KeyE} and it\'s stats are ${worstStats}`);
         for(let thisKey in theseKeys){
             let curr = keyStats[keyMap[reverseKeyMap[thisKey]]];
             console.log(thisKey + ' maps to ' + curr);
