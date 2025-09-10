@@ -10,13 +10,6 @@ let pageStats = storedStatsTemplate;
 
 // first 6:
 let statsBoxes = document.querySelectorAll("#statsTop p");
-let statsTBI = [];
-statsTBI.push(formatStartDay(pageStats.startDate));
-statsTBI.push(getMinutes(pageStats.totalTime));
-statsTBI.push(getWPM(pageStats.totalWords, pageStats.totalTime));
-statsTBI.push(pageStats.bestWpm);
-statsTBI.push(getAccuracy(pageStats.totalHits, pageStats.totalMisses));
-statsTBI.push(pageStats.bestAccuracy);
 
 for(let statBox of statsBoxes){
     if(statBox.id == 'joinDate'){
@@ -44,7 +37,6 @@ for(let statBox of statsBoxes){
 }
 
 let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
-console.log(leftKeyDisplay);
 for(let key of leftKeyDisplay){
     let mult = getRelativeAccuracy(key.id);
     if(mult != -1){
@@ -71,11 +63,14 @@ function getRelativeAccuracy(code){
     return Math.max((acc - 0.6)*2.5, 0);
 }
 
-function getAdvancements(keys){
+export function getAdvancements(keys){
+    //implement key frequency in words.txt for constants.js
+    //implement miss reduction in exam.js
     for(let key of keys){
-        let diamondStandard = false;
-        let goldStandard = false;
-        let silverStandard = true;
+        let keyStat = pageStats.keyStats[keyMap[reverseKeyMap[code]]];
+        let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.totalHits >= 1200);
+        let goldStandard = (keyStat.accuracy > 0.95 && keyStat.totalHits >= 500);
+        let silverStandard = (keyStat.accuracy > 0.92 && keyStat.totalHits >= 250);
         if(diamondStandard){
             key.setAttribute('class','diamond');
         }

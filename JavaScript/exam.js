@@ -4,6 +4,7 @@
 */
 
 import {keyMap, shiftMap, specialKeyCodes, letters, nonLetters} from '/blitzType/JavaScript/constants.js';
+import { getAdvancements } from './statshtml.js';
 
 //for creating and running the exam
 let hold = await getWords();
@@ -160,6 +161,7 @@ function hitCheck(e){
             if(myProgress === myLength){
                 endTimer();
                 doStats(preferences.endless);
+                getAdvancements();
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
