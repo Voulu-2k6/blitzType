@@ -1,6 +1,5 @@
 /*Exam
     Tweaks:
-        Timer starts on exam load, not on first character clicked. 
         double letters mess up keystrokes
 */
 
@@ -115,7 +114,7 @@ function keyPress(key){
     if(myBox.getAttribute('class') === '' || myBox.getAttribute('class') === null){
         myBox.setAttribute('style','border: 1px solid orangered; background-color:rgb(0,0,0); box-shadow: 0 0 3px orangered');
     }
-    if(key === 'meta' || key === 'tab'){setTimeout(() => {keyRelease(key);}, 1000);}
+    if(key === 'meta' || key === 'tab'){setTimeout(() => {keyRelease(key);}, 1000);}//supposed to fix keystrokes sticking on these keys 
 }
 
 function keyRelease(key){
@@ -293,6 +292,7 @@ function updateStats(hit, e){
 }
 
 function getNumWords(){
+    console.log(myLines[0]);
     return (myLines[0].split(/[\/\\|\-=+\*^ ]/)).length;
 }
 
