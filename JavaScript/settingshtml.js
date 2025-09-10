@@ -66,7 +66,6 @@ function switchListener(sw, pageLoad){
 
 //called only if flipping on a non-pageload instance
 function updateSpecial(myChar, remove){
-    preferences = JSON.parse(localStorage.getItem('userPreferences'));
     if(remove){
         preferences.mySpecials.splice(preferences.mySpecials.indexOf(myChar), 1);
     }
