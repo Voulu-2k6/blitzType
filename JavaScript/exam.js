@@ -70,7 +70,7 @@ export function createExam(){
     let myRow = [];
     let characters = 0;
     for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
-    for(let i = 0; i < preferences.Words; i++){
+    for(let i = 1; i < preferences.Words; i++){
         if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
         characters += addMe.length;
