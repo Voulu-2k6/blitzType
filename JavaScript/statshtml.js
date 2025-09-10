@@ -42,12 +42,6 @@ for(let statBox of statsBoxes){
         console.log('no statBox found for id = ' + statBox.id);
     }
 }
-function formatStartDay(ms){
-    return new Date(ms);
-}
-function getMinutes(ms){
-    return Math.ceil(ms/60000);
-}
 
 let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
 console.log(leftKeyDisplay);
@@ -60,9 +54,37 @@ for(let key of leftKeyDisplay){
     }
 }
 
+let rightKeyDisplay = document.querySelectorAll('#keyDisplay2 .none');
+getAdvancements(rightKeyDisplay);
+
+function formatStartDay(ms){
+    return new Date(ms);
+}
+function getMinutes(ms){
+    return Math.ceil(ms/60000);
+}
+
 function getRelativeAccuracy(code){
     let acc = pageStats.keyStats[keyMap[reverseKeyMap[code]]].accuracy;
     if(!acc){return -1;}
 
     return Math.max((acc - 0.6)*2.5, 0);
+}
+
+function getAdvancements(keys){
+    for(let key of keys){
+        let diamondStandard = false;
+        let goldStandard = false;
+        let silverStandard = true;
+        if(diamondStandard){
+            key.setAttribute('class','diamond');
+        }
+        else if(goldStandard)
+        {
+            key.setAttribute('class','gold');
+        }
+        else if(silverStandard){
+            key.setAttribute('class','silver');
+        }
+    }
 }

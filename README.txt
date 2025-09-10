@@ -38,6 +38,9 @@ Key lightups:
     Where you're pressing now: bg white?
     What class of mastery you have for that key: change element class, css background accordingly
 
+newStats:
+    will need to implement here miss subtraction as a way to combat acc fatigue.
+
 
 
 
