@@ -111,7 +111,7 @@ function startExam(){
     myChars = document.querySelectorAll("#examText p");
     showNext(myExam[0]);
     examOn = true;
-    document.removeEventListener('keyDown', startTimer);
+    document.removeEventListener('keydown', startTimer);
     document.addEventListener('keydown', startTimer);
 }
 
@@ -270,7 +270,7 @@ function getNewLine(){
 let timerInterval = null; 
 let startTimestamp = 0;   
 function startTimer() { //virtual stopwatch integration possible 
-    document.removeEventListener('keyDown', startTimer);
+    document.removeEventListener('keydown', startTimer);
     startTimestamp = Date.now();
     timerInterval = setInterval(() => {
     myStats.examTime = Date.now() - startTimestamp;
