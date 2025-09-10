@@ -10,7 +10,7 @@ let preferences = userSettings ? JSON.parse(userSettings) : {
 // STARTUP SECTION
 // getting ids mapped to the character for the below if statement.
 let mySwitches = document.querySelectorAll('.list div');
-let myButtons = document.querySelectorAll('.button');
+let mySliderButtons = document.querySelectorAll('.sliderButton');
 let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
@@ -25,7 +25,7 @@ if(userSettings){
     for(const setting of ['Capitals', 'Numbers']){
         document.querySelector(`#${setting}Holder`).innerHTML = (Number(preferences[setting])*100) + '%';
         if(preferences[setting] > 0){
-            let button = setting == 'Capitals' ? myButtons[0] : myButtons[1];
+            let button = setting == 'Capitals' ? mySliderButtons[0] : mySliderButtons[1];
             let type = setting == 'Capitals' ? 'capital' : 'digit';
             generateSlider(type, button);
         }
