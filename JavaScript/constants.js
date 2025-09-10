@@ -5,7 +5,7 @@ export const keyMap = {'\`': 'Backquote', '~': 'Backquote', '1': 'Digit1', '!': 
     'b': 'KeyB', 'B': 'KeyB','c': 'KeyC', 'C': 'KeyC','d': 'KeyD', 'D': 'KeyD','e': 'KeyE', 'E': 'KeyE','f': 'KeyF', 'F': 'KeyF','g': 'KeyG', 'G': 'KeyG','h': 'KeyH', 'H': 'KeyH',
     'i': 'KeyI', 'I': 'KeyI','j': 'KeyJ', 'J': 'KeyJ','k': 'KeyK', 'K': 'KeyK','l': 'KeyL', 'L': 'KeyL','m': 'KeyM', 'M': 'KeyM','n': 'KeyN', 'N': 'KeyN','o': 'KeyO', 'O': 'KeyO',
     'p': 'KeyP', 'P': 'KeyP','q': 'KeyQ', 'Q': 'KeyQ','r': 'KeyR', 'R': 'KeyR','s': 'KeyS', 'S': 'KeyS','t': 'KeyT', 'T': 'KeyT','u': 'KeyU', 'U': 'KeyU','v': 'KeyV', 'V': 'KeyV',
-    'w': 'KeyW', 'W': 'KeyW','x': 'KeyX', 'X': 'KeyX','y': 'KeyY', 'Y': 'KeyY','z': 'KeyZ', 'Z': 'KeyZ',' ': 'Space', '&nbsp;': 'Space', 'Shift': 'ShiftLeft', 'shift':'ShiftLeft', '\\n': 'Enter', '&NewLine;': 'Enter'};
+    'w': 'KeyW', 'W': 'KeyW','x': 'KeyX', 'X': 'KeyX','y': 'KeyY', 'Y': 'KeyY','z': 'KeyZ', 'Z': 'KeyZ',' ': 'Space', '&nbsp;': 'Space', 'Shift': 'ShiftLeft', 'shift':'ShiftLeft', 'Enter': 'Enter', '\\n': 'Enter', '&NewLine;': 'Enter'};
 export const reverseKeyMap = {"Backquote": "`", "Backslash": "\\", "BracketLeft": "[", "BracketRight": "]", "Comma": ",", 
     "Digit0": "0", "Digit1": "1", "Digit2": "2", "Digit3": "3", "Digit4": "4", "Digit5": "5", 
     "Digit6": "6", "Digit7": "7", "Digit8": "8", "Digit9": "9", "Equal": "=", "KeyA": "a", "KeyB": "b", 
