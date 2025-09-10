@@ -111,7 +111,7 @@ section {
     align-items: center;
     flex-wrap: wrap;
 }
-#keyDisplay {
+#keyDisplay, #keyDisplay1 {
     margin-bottom: 100px;
 
     width: 100%;
