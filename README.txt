@@ -15,13 +15,9 @@ Features:
 Known bugs/tweaks, by file: 
 
     exam.js: 
-        Timer starts on exam load, not on first character clicked. 
         double letters mess up keystrokes
-        extra word on ordinary exam creation
-        endless key selection is delayed one line.
 
     stats.js -- problem keys
-        Spacebar on problemkeys is invisible
         Spacebar doesn't highlight on problem, nor does Enter
 
 Iplementing features: 
@@ -34,7 +30,15 @@ Iplementing features:
     index.html: implement animations for new high scores
     index.html: implement animations for levelling up a key
     index.html: warning that small settings override big 
-    index.html: describing problemkeys
+    index.html: warning describing problemkeys
+    index.html: left vs. right hand focus
+
+Key lightups:
+    Where to press next: bg black
+    Where you're pressing now: bg white?
+    What class of mastery you have for that key: change element class, css background accordingly
+
+
 
 
 

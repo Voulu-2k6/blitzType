@@ -196,6 +196,18 @@ header a,footer p{
 }
 
 /*classes*/
+.silver {
+    background-color: silver;
+    border-color: rgb(121, 121, 121);
+}
+.gold {
+    background-color: gold;
+    border-color: yellow;
+}
+.diamond {
+    background-color: aqua;
+    border-color: blue;
+}
 .slider {
     background-color: black;
     border-radius: 4px;
