@@ -16,6 +16,8 @@ let myChars = [];
 let myProgress = 0;
 let examOn = false;
 let preferences = JSON.parse(localStorage.getItem('userPreferences'));
+let myKeystrokes = document.querySelectorAll(".keyDisplay p:not(.fade)");
+getAdvancements(myKeystrokes);
 
 //for recording stats
 import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
@@ -161,7 +163,7 @@ function hitCheck(e){
             if(myProgress === myLength){
                 endTimer();
                 doStats(preferences.endless);
-                getAdvancements(document.querySelectorAll(".keyDisplay p:not(.fade)"));
+                getAdvancements(myKeystrokes);
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
