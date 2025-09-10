@@ -53,7 +53,11 @@ let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
 console.log(leftKeyDisplay);
 for(let key of leftKeyDisplay){
     let mult = getRelativeAccuracy(key.id);
-    if(mult != -1){key.setAttribute('style', `background-color: rgb(${255*mult}, ${255*mult}, 0)`);}
+    if(mult != -1){
+        let r = mult*255;
+        let g = mult*69;
+        key.setAttribute('style', `background-color: rgb(${r}, ${g}, 0)`);\
+    }
 }
 
 function getRelativeAccuracy(code){
