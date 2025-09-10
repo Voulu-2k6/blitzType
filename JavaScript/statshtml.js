@@ -67,9 +67,10 @@ export function getAdvancements(keys){
     //implement key frequency in words.txt for constants.js
     //implement miss reduction in exam.js
     let localStats = JSON.parse(localStorage.getItem('localStats'));
+    console.log(keys);
     for(let key of keys){
-        console.log(key);
-        let keyStat = localStats.keyStats[reverseKeyMap[key.id]];
+        console.log(key + ' ' + key.id + ' ' + keyMap[reverseKeyMap[key.id]]);
+        let keyStat = localStats.keyStats[keyMap[reverseKeyMap[key.id]]];
         console.log(keyStat);
         let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.totalHits >= 1200);
         let goldStandard = (keyStat.accuracy > 0.95 && keyStat.totalHits >= 500);
