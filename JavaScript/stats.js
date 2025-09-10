@@ -46,7 +46,7 @@ let storedStatsTemplate = {
     totalTime: userStats ? userStats.totalTime : 0,
     totalWords: userStats ? userStats.totalWords : 0,
 
-    keyStats: Object.fromEntries(
+    keyStats: userStats ? userStats.keyStats : Object.fromEntries(
         Object.keys(keyMap).map(key => [
             keyMap[key], 
             {
@@ -99,11 +99,11 @@ function updateDisplay(sessionStats){
     document.querySelector("#statsWPM").innerHTML = "Words per minute: " + getWPM(sessionStats.wordCount, sessionStats.examTime);
 }
 
-function getAccuracy(hits, misses){
+export function getAccuracy(hits, misses){
     return Number(((hits/(hits+misses))*100).toFixed(2));
 }
 
-function getWPM(words, ms){
+export function getWPM(words, ms){
     return Number((words/(ms/(1000*60))).toFixed(2));
 }
 
@@ -139,7 +139,10 @@ function newStats(){
         else{localStats.bestAccuracy[1]++;}
     }
     else if(getAccuracy(runStats.hits, runStats.misses) > localStats.bestAccuracy[0]){localStats.bestAccuracy[0] = getAccuracy(runStats.hits, runStats.misses);}
-    localStats.bestWpm = Math.max([getWPM(runStats.wordCount, runStats.examTime), localStats.bestWpm]);
+    if(localStats.bestWpm[0] < getWPM(runStats.wordCount, runStats.examTime)){
+        localStats.bestWpm[0] = getWPM(runStats.wordCount, runStats.examTime);
+        localStats.bestWpm[1] = runStats.wordCount;
+    }  
 
     localStorage.setItem('localStats', JSON.stringify(localStats));
 }
