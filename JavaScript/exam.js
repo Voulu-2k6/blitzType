@@ -161,7 +161,7 @@ function hitCheck(e){
             if(myProgress === myLength){
                 endTimer();
                 doStats(preferences.endless);
-                getAdvancements(JSON.parse(localStorage.getItem('localStats')).keyStats);
+                getAdvancements(document.querySelectorAll(".keyDisplay p"));
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
