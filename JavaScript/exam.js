@@ -161,7 +161,7 @@ function hitCheck(e){
             if(myProgress === myLength){
                 endTimer();
                 doStats(preferences.endless);
-                getAdvancements(document.querySelectorAll(".keyDisplay p"));
+                getAdvancements(document.querySelectorAll(".keyDisplay p:not(.fade)"));
                 if(preferences.endless){advanceEndless();}
                 else{examOn = false;}
             }
