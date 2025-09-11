@@ -3,7 +3,7 @@
         double letters mess up keystrokes
 */
 
-import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers, shiftTopRow} from '/blitzType/JavaScript/constants.js';
+import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers, lowerNonLetters} from '/blitzType/JavaScript/constants.js';
 import { getAdvancements } from './statshtml.js';
 import { settingsTemplate } from './settings.js';
 
@@ -325,28 +325,23 @@ function doStats(endless){
     myStats = runStatsTemplate;
 }
 
-function doKey(){
+function doKey(){ //for general adaptation, gives punctuations (, . ? ; ' !) and letters
     let scopeStats = JSON.parse(localStorage.getItem('localStats'));
     if(scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
     let keyStats = scopeStats.keyStats;
     let theseKeys = Object.keys(keyStats);
+
     theseKeys.splice(theseKeys.indexOf('Enter'), 1);
+    theseKeys.splice(theseKeys.indexOf('Space'), 1);
+    theseKeys.splice(theseKeys.indexOf('ShiftLeft'), 1);
 
-    let keepShift = preferences.Capitals > 0 ? true : false;
-    let keepDigits = preferences.Numbers > 0 ? true : false;
-    let keepSpecials = preferences.Specials > 0 ? preferences.mySpecials : [];
+    let keepSpecials = preferences.Specials > 0 ? '1;\',./'.split('') : [];
 
-    if(!keepShift){theseKeys.splice(theseKeys.indexOf('ShiftLeft'), 1);}
-
-    if(!keepDigits){
-        for(let num of numbers){
-            theseKeys.splice(theseKeys.indexOf(keyMap[num]), 1);
-        }
+    for(let removeMe of lowerNonLetters){
+        if(!keepSpecials.includes(removeMe) && theseKeys.indexOf(keyMap[removeMe]) != -1){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1);}
     }
 
-    for(let special of nonLetters){
-        if(!keepSpecials.includes(special) && theseKeys.indexOf(keyMap[special]) != -1){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1);}
-    }
+    console.log(theseKeys);
 
     let worstKeys = [];
     for(let i = 0; i < 3; i++){ //adjust i for more depth to the adaptation
@@ -365,6 +360,8 @@ function doKey(){
         worstKeys.push(worstKey);
     }
     preferences.key = worstKeys;
+
+    console.log(worstKeys);
 }
 
 //combination of doKey, getWordWith, getNewWord to implement all possibilities for targeted thing. 
