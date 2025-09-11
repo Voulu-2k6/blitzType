@@ -15,7 +15,7 @@ let myLines = [];
 let myChars = [];
 let myProgress = 0;
 let examOn = false;
-let preferences = JSON.parse(localStorage.getItem('userPreferences'));
+let preferences = JSON.parse(localStorage.getItem('userPreferences')) ? ;
 
 //for recording stats
 import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';

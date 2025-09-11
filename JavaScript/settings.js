@@ -7,11 +7,13 @@
         */
         
 //pull preferences and/or create them
-let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
-let preferences = userSettings ? userSettings : { 
+export const settingsTemplate = { 
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
+
+let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
+let preferences = userSettings ? userSettings : settingsTemplate;
 if(userSettings){showMySettings();} // show which settings are on on page load
 
 //conglomerated function handling clicks for all 6 home page buttons (new test is handled seperately)
