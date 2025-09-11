@@ -19,6 +19,7 @@ mySwitches.forEach((sw) => {
 });
 
 // if we had settings, here is where we will set up the page correctly.
+let updateMe;
 if(userSettings){
     for(const spec of userSettings.mySpecials){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
@@ -31,11 +32,12 @@ if(userSettings){
             let type = setting == 'Capitals' ? 'capital' : 'digit';
             let value = setting == preferences[setting];
             generateSlider(type, button);
-            let updateMe = document.querySelector(`#slider${type}`);
+            updateMe = document.querySelector(`#slider${type}`);
             updateMe.value = value;
         }
     }
 }
+updateMe.value = 69;
 
 //show relative accuracies for better indication of what to target on stats page
 let keyStrokes = document.querySelectorAll(".keyDisplay .none");
