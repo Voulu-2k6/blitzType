@@ -203,9 +203,7 @@ async function getWords(){
 }
 
 function getNewWord(){
-    console.log('still works after ' + preferences.key + '?');
     let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
-    console.log('My char: ' + myChar + ', index ' + Math.floor(Math.random()*preferences.key.length) + ' gave ' + preferences.key[Math.floor(Math.random()*preferences.key.length)]);
 
     let myWord = '';
     if(letters.includes(reverseKeyMap[myChar])){myWord = getWordWith(reverseKeyMap[myChar]);}
