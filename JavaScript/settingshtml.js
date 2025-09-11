@@ -2,6 +2,7 @@
 
 //get known preferences
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
+let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
@@ -76,7 +77,6 @@ function updateSpecial(myChar, remove){
 // SLIDER SECTION
 
 //handles buttons that open the sliders
-let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 for(let button of mySliderButtons){
     let type = button.previousElementSibling.innerHTML;
     type = type.substring(0, type.length-2);
