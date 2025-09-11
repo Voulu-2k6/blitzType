@@ -4,6 +4,7 @@ main{
     flex-direction: column;
 }
 #previewBox {
+    flex-grow: 1;
     background-color: grey;
     color: lightgray;
     font-size: 20px;
@@ -13,7 +14,7 @@ main{
     align-items: center;
 }
 #settingsBox, #targetBox{
-    flex-grow: 1;
+    height: 200px;
     margin: 0px 50px;
 }
     
