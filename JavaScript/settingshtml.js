@@ -31,7 +31,7 @@ if(userSettings){
             let type = setting == 'Capitals' ? 'capital' : 'digit';
             let value = setting == preferences[setting];
             generateSlider(type, button);
-            let updateMe = document.querySelector(`#slider${setting}`);
+            let updateMe = document.querySelector(`#slider${type}`);
             updateMe.value = value;
         }
     }
