@@ -21,6 +21,12 @@
     justify-content: flex-start;
     align-items: center;
 }
+#targetBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 #settingsLeft, .switchLists{
     display: flex;
     flex-direction: column;
