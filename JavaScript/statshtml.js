@@ -37,14 +37,7 @@ for(let statBox of statsBoxes){
 }
 
 let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
-for(let key of leftKeyDisplay){
-    let mult = getRelativeAccuracy(key.id);
-    if(mult != -1){
-        let r = mult*255;
-        let g = mult*69;
-        key.setAttribute('style', `background-color: rgb(${r}, ${g}, 0)`);
-    }
-}
+showKeyAcc(leftKeyDisplay);
 
 let rightKeyDisplay = document.querySelectorAll('#keyDisplay2 .none');
 getAdvancements(rightKeyDisplay);
@@ -61,6 +54,17 @@ function getRelativeAccuracy(code){
     if(!acc){return -1;}
 
     return Math.max((acc - 0.6)*2.5, 0);
+}
+
+export function showKeyAcc(keyDisplay){
+    for(let key of keyDisplay){
+        let mult = getRelativeAccuracy(key.id);
+        if(mult != -1){
+            let r = mult*255;
+            let g = mult*69;
+            key.setAttribute('style', `background-color: rgb(${r}, ${g}, 0)`);
+        }
+    }
 }
 
 export function getAdvancements(keys){

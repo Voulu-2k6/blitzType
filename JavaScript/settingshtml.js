@@ -1,6 +1,7 @@
 //on load of settings.html
 
 //get known preferences
+import { showKeyAcc } from "./statshtml.js";
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let preferences = userSettings ? userSettings : { 
@@ -32,6 +33,12 @@ if(userSettings){
         }
     }
 }
+
+//show relative accuracies for better indication of what to target on stats page
+let keyStrokes = document.querySelectorAll(".keyDisplay .none");
+showKeyAcc(keyStrokes);
+
+//add buttons
 
 // SPECIALS SECTION 
 // allow interaction of special switches
