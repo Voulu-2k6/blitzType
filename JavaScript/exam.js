@@ -369,4 +369,4 @@ function doKey(){
 
 //combination of doKey, getWordWith, getNewWord to implement all possibilities for targeted thing. 
 
-//still no implementation for 
+//still no implementation for regular key select
