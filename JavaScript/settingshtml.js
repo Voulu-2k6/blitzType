@@ -32,7 +32,7 @@ if(userSettings){
             let value = preferences[setting];
             generateSlider(type, button);
             let updateMe = document.querySelector(`#slider${type}`);
-            updateMe.value = value*100; console.log(updateMe.value, + " " + value);
+            updateMe.value = value*100;
             updateSliderPrefs(false, updateMe);
         }
     }

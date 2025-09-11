@@ -14,6 +14,9 @@ Features:
 
 Known bugs/tweaks, by file: 
 
+    settingshtml.js'
+        & breaks everything if selected when page reload
+
     exam.js: 
         double letters mess up keystrokes
 
