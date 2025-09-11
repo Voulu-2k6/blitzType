@@ -12,6 +12,11 @@
     flex-grow: 1;
     margin: 0px 50px;
 }
+    
+#targetKeyLabel{
+    align-self: center;
+    justify-self: center;
+}
 
 #settingsBox, .list {
     flex-grow: 1;
@@ -24,7 +29,7 @@
 #targetBox {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 #settingsLeft, .switchLists{
