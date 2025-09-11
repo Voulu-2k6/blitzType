@@ -138,7 +138,10 @@ function updateSliderPrefs(closing, mySlider){
     pushNewPref();
 }
 
-// TARGETED KEY
+// TARGET SECTION
+
+let myButtons = document.querySelectorAll(".button");
+for(let myButton of myButtons){console.log(myButton.innerHTML);}
 
 // PREVIEW TEST FEATURE
 
