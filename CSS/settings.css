@@ -1,4 +1,8 @@
 /*Split file to reduce clutter*/
+main{
+    display: flex;
+    flex-direction: column;
+}
 #previewBox {
     background-color: grey;
     color: lightgray;
