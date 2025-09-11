@@ -16,12 +16,13 @@ let myChars = [];
 let myProgress = 0;
 let examOn = false;
 let preferences = JSON.parse(localStorage.getItem('userPreferences'));
-let myKeystrokes = document.querySelectorAll(".keyDisplay p:not(.fade)");
-getAdvancements(myKeystrokes);
 
 //for recording stats
 import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
 let myStats = runStatsTemplate;
+
+let myKeystrokes = document.querySelectorAll(".keyDisplay p:not(.fade)");
+if(localStorage.getItem('localStats')){getAdvancements(myKeystrokes);}
 
 //exam button listener 
 if(document.querySelector("#makeExamButton")){
