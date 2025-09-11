@@ -33,7 +33,7 @@ if(userSettings){
             generateSlider(type, button);
             let updateMe = document.querySelector(`#slider${type}`);
             updateMe.value = value;
-            updateSliderPrefs(updateMe, false);
+            updateSliderPrefs(false, updateMe);
         }
     }
 }
