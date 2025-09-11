@@ -29,7 +29,10 @@ if(userSettings){
         if(preferences[setting] > 0){
             let button = setting == 'Capitals' ? mySliderButtons[0] : mySliderButtons[1];
             let type = setting == 'Capitals' ? 'capital' : 'digit';
+            let value = setting == preferences[setting];
             generateSlider(type, button);
+            let updateMe = document.querySelector(`#slider${setting}`);
+            updateMe.value = value;
         }
     }
 }
