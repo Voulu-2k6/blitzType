@@ -5,6 +5,7 @@
 
 import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers, shiftTopRow} from '/blitzType/JavaScript/constants.js';
 import { getAdvancements } from './statshtml.js';
+import { settingsTemplate } from './settings.js';
 
 //for creating and running the exam
 let hold = await getWords();
@@ -15,7 +16,7 @@ let myLines = [];
 let myChars = [];
 let myProgress = 0;
 let examOn = false;
-let preferences = JSON.parse(localStorage.getItem('userPreferences')) ? ;
+let preferences = localStorage.getItem('userPreferences') ? JSON.parse(localStorage.getItem('userPreferences')) : settingsTemplate;
 
 //for recording stats
 import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
