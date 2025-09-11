@@ -17,6 +17,8 @@ let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
 });
+switchMap.set("&lt;&gt;", "anglebracketSwitch");
+switchMap.set("&amp;", "andSwitch");
 
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
