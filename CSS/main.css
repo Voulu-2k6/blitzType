@@ -231,7 +231,7 @@ header a,footer p{
 .slider .button {
     margin-left: 15px;
 }
-.button, button, .switch {
+.button, button, .switch, .sliderButton {
     margin: 3px;
     border: 1px solid orangered;
     border-radius: 3px;

@@ -367,3 +367,6 @@ function doKey(){
     preferences.key = worstKeys;
 }
 
+//combination of doKey, getWordWith, getNewWord to implement all possibilities for targeted thing. 
+
+//still no implementation for 
