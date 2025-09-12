@@ -166,6 +166,7 @@ function updateTargetPreference(button){
 function swapButtonVisual(button, value){
     let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
     button.setAttribute('style', newBg);
+    console.log(button.id + " had a value of " + (value ? 'true' : 'false'));
 }
 
 // PREVIEW TEST FEATURE

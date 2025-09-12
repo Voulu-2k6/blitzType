@@ -260,7 +260,7 @@ function getWordWith(myChar){
     return myWord;
 }
 
-function getNumberWith(myDigit){
+function getNumberWith(myDigit){ //TBI
     return 0;
 }
 

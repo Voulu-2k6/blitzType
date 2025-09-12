@@ -21,8 +21,8 @@ Known bugs/tweaks, by file:
 
 Iplementing features: 
     Settings.html: punctuation lacks em dashes and en dashes
-    Settings.html: Add sliders for specials freq.
     Settings.html: implement adjusting selected key
+    Settings.html: implement cycling example line
     Stats.html: implement hovering over keymap for stats/stats needed for level up
     index.html: implement animations for line movement
     index.html: implement animations for new high scores
