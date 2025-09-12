@@ -223,6 +223,9 @@ function getNewWord(){
         if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers()){
             myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
         }
+        else if(!preferences.mySpecials.includes(reverseShiftMap[myChar]) && preferences.Numbers == 0){
+            myWord = getWordWith(null);
+        }
         else{
             myWord = getNumberWith(reverseKeyMap[myChar]);
         }
