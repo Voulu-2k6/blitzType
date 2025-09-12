@@ -21,6 +21,8 @@ switchMap.set("<>", "anglebracketSwitch");
 switchMap.set("&", "andSwitch");
 
 // if we had settings, here is where we will set up the page correctly.
+let keyStrokes = document.querySelectorAll(".keyDisplay .none");
+
 if(userSettings){
     for(const spec of userSettings.mySpecials){
         console.log(spec);
@@ -45,7 +47,6 @@ if(userSettings){
 }
 
 //show relative accuracies for better indication of what to target on stats page
-let keyStrokes = document.querySelectorAll(".keyDisplay .none");
 showKeyAcc(keyStrokes);
 
 //add buttons
