@@ -25,7 +25,6 @@ let keyStrokes = document.querySelectorAll(".keyDisplay .none");
 
 if(userSettings){
     for(const spec of userSettings.mySpecials){
-        console.log(spec);
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
@@ -182,7 +181,7 @@ for(let key of keyStrokes){
 function setTargetKey(key){
     let oldKey = document.querySelector(".target");
     if(oldKey){oldKey.setAttribute('class', 'none');}
-    let newKey = document.querySelector(`#${key.id}`);
+    let newKey = document.querySelector(`#${key}`);
     console.log(newKey);
     newKey.setAttribute('class', 'target');
     preferences.key = [key];
