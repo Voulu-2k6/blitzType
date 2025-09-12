@@ -184,6 +184,7 @@ function setTargetKey(key){
     let newKey = document.querySelector(`#${key}`);
     console.log(newKey);
     newKey.setAttribute('class', 'target');
+    newKey.setAttribute('style', '');
     preferences.key = [key];
     showKeyAcc(keyStrokes);
 }
