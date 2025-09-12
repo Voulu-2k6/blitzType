@@ -16,6 +16,9 @@ Known bugs/tweaks, by file:
     exam.js: 
         double letters mess up keystrokes
 
+    settingshtml.js
+        targets do not show on load
+
 Iplementing features: 
     Settings.html: punctuation lacks em dashes and en dashes
     Settings.html: implement cycling example line

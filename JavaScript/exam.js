@@ -206,7 +206,7 @@ function getNewWord(){
     let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
 
     let myWord = '';
-    let doSpecialize = preferences.mySpecials ? true : false;
+    let doSpecialize = preferences.mySpecials.length > 0 ? true : false;
 
     //assume getWordWith only works with letters.
     //If myChar was a letter, get a normal word with it.
