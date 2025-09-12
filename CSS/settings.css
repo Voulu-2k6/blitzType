@@ -4,6 +4,8 @@ main{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    padding: 20px;
 }
 #previewBox {
     flex-grow: 1;
@@ -16,8 +18,7 @@ main{
     align-items: center;
 }
 #settingsBox, #targetBox{
-    height: 200px;
-    margin: 0px 50px;
+    margin: 30px 0px;
 }
     
 #targetKeyLabel{
