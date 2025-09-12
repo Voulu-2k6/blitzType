@@ -187,7 +187,7 @@ function setTargetKey(key){
     newKey.setAttribute('style', '');
     preferences.key = key === 'space' ? null : [key];
     pushNewPref();
-    showKeyAcc(keyStrokes);
+    showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
 }
 
 // PREVIEW TEST FEATURE
