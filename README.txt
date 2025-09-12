@@ -21,6 +21,8 @@ Known bugs/tweaks, by file:
 
     settingshtml.js
         targets do not show on load
+        some settings break test on first loadin, ex. adapt
+        exam breaks if no permitted key in selected key
 
     statshtml.js
         need to format our date object

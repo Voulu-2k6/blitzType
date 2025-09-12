@@ -197,7 +197,8 @@ function onMiss(e){
 }
 
 async function getWords(){
-    const response = await fetch('../words/words.txt');
+    let link = preferences.target == 'left' || preferences.target == 'right' ? `${preferences.target}HandWords.txt` : 'words.txt';
+    const response = await fetch(`../words/${link}`);
     const text = response.text();
     return text;
 }
@@ -355,7 +356,7 @@ function doStats(endless){
     myStats = runStatsTemplate;
 }
 
-function doTarget(type){
+function doTarget(){
     doKey();
 }
 

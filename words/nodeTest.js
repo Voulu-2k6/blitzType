@@ -6,7 +6,7 @@ const rHandLetters = 'yuiopjklnm'.split('');
 let hold = await getWords();
 
 async function getWords(){
-    const readStream = fs.createReadStream(`C:/xampp/htdocs/blitzType/words.txt`, 'utf8');
+    const readStream = fs.createReadStream(`C:/xampp/htdocs/blitzType/words/words.txt`, 'utf8');
 
     let lines = [];
     readStream.on('data', (chunk) => {
@@ -17,7 +17,7 @@ async function getWords(){
         console.log('Finished reading.');
         console.log(lines);
         console.log('real?');
-        parse(lines);
+        getCap(lines);
     });
 
     readStream.on('error', (err) => {
@@ -71,4 +71,21 @@ function parse(words){
         }
         
     }
+}
+
+function getCap(words){
+    console.log('enter');
+
+    fs.appendFile(`C:/xampp/htdocs/blitzType/words/words.txt`, `\n\n\n`, 'utf8', (err) => {
+        if (err) console.error('Write error:', err);
+    });
+
+    for(let word of words){
+        if(!(word.split('')[0].toUpperCase() == word.split('')[0])){
+            fs.appendFile(`C:/xampp/htdocs/blitzType/words/words.txt`, `${word}\n`, 'utf8', (err) => {
+                if (err) console.error('Write error:', err);
+            });
+        }
+    }
+
 }
