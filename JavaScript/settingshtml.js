@@ -5,7 +5,7 @@ import { showKeyAcc } from "./statshtml.js";
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let preferences = userSettings ? userSettings : { 
-    'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
+    'Capitals' : 0, 'Numbers' : 0, 'Words' : 10,
     target: false, key: null, 'endless': false, 'mySpecials' : []
 }
 

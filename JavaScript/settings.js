@@ -8,7 +8,7 @@
         
 //pull preferences and/or create them
 export const settingsTemplate = { 
-    'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
+    'Capitals' : 0, 'Numbers' : 0, 'Words' : 10,
     adapt: false, key: null, 'endless': false, 'mySpecials' : []
 }
 

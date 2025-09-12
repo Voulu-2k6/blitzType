@@ -3,7 +3,7 @@
         double letters mess up keystrokes
 */
 
-import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, nonLetters, numbers, lowerNonLetters} from '/blitzType/JavaScript/constants.js';
+import {keyMap, shiftMap, reverseKeyMap, specialKeyCodes, letters, lowerNonLetters, numbers, reverseShiftMap} from '/blitzType/JavaScript/constants.js';
 import { getAdvancements } from './statshtml.js';
 import { settingsTemplate } from './settings.js';
 
@@ -206,19 +206,39 @@ function getNewWord(){
     let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
 
     let myWord = '';
-    if(letters.includes(reverseKeyMap[myChar])){myWord = getWordWith(reverseKeyMap[myChar]);}
-    else if(numbers.includes(reverseKeyMap[myChar])){myWord = getNumberWith(reverseKeyMap[myChar]);}
-    else if(nonLetters.includes(reverseKeyMap[myChar])){myWord = getWordWith(null);}
-    else{console.log('no place found for ' + myChar); myWord = getWordWith(null);}
+    let specialize = preferences.mySpecials ? true : false;
 
-    if(Math.random() >= preferences.Numbers && !numbers.includes(myChar)){ //word or number?
-        if(Math.random() < preferences.Capitals){myWord = toTitleCase(myWord);} //uppercase?
+    //assume getWordWith only works with letters.
+    //If myChar was a letter, get a normal word with it.
+    if(myChar == null){
+        myWord = getWordWith(null);
     }
-    else if(!numbers.includes(myChar)){myWord = String(Number(Math.floor(Math.random()*1000)));}
+    else if(letters.includes(reverseKeyMap[myChar])){
+        myWord = getWordWith(reverseKeyMap[myChar]);
+    }
+    //now myChar can be any number code, any special code.
+    //if we have a number code, either numbers or that special are on or both. so, 
+    else if(numbers.includes(reverseKeyMap[myChar])){
+        if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers()){
+            myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
+        }
+        else{
+            myWord = getNumberWith(reverseKeyMap[myChar]);
+        }
+        specialize = false;
+    }
+    //now myChar can be any special code.
+    else{
+        let choices = [];
+        for(let tryMe of [reverseKeyMap[myChar], reverseShiftMap[myChar]]){
+            if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+        }
+        myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
+        specialize = false;
+        console.log(choices + '. if this is empty, some logisitical error occurred.');
+    }
 
-    if(preferences.mySpecials.length > 0 && Math.random() > 0.7 && !nonLetters.includes(myChar)){myWord = specialize(myWord, getASpecial().substring(0,1));} //specialize
-
-    return myWord;
+    return specialize ? specialize(myWord, getASpecial) : myWord;
 }
 
 function getPreferences(){
@@ -252,16 +272,25 @@ function specialize(myWord, myChar){
 }
 
 function getWordWith(myChar){
-    if(myChar == null){return words[Math.floor((Math.random()*2993))];}
-    //handle shift and digit exceptions later
-    let myWord = '';
-    do{myWord = words[Math.floor((Math.random()*2993))];}
-    while(myWord.indexOf(myChar) < 0)
-    return myWord;
+    let word;
+    if(myChar == null){
+        word = words[Math.floor((Math.random()*words.length))];
+    }
+    else{
+        do{word = words[Math.floor((Math.random()*words.length))];}
+        while(word.indexOf(myChar) < 0)
+    }
+    return (Math.random() < preferences.Capitals) ? toTitleCase(word) : word;
 }
 
-function getNumberWith(myDigit){ //TBI
-    return 0;
+function getNumberWith(myDigit){ 
+    let myNum = Number(myDigit);
+    for(let i = 0; i < 2; i++) //adjust i for longer number strings
+    {
+        myNum *= 10;
+        myNum += Math.floor(Math.random()*10)
+    }
+    return String(myNum);
 }
 
 function getASpecial(){
@@ -329,7 +358,7 @@ function doTarget(type){
     doKey();
 }
 
-function doKey(){ //for general adaptation, gives punctuations (, . ? ; ' !) and letters
+function doKey(){ //for general adaptation, gives any possible key for selection
     let scopeStats = JSON.parse(localStorage.getItem('localStats'));
     if(scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
     let keyStats = scopeStats.keyStats;
@@ -339,10 +368,13 @@ function doKey(){ //for general adaptation, gives punctuations (, . ? ; ' !) and
     theseKeys.splice(theseKeys.indexOf('Space'), 1);
     theseKeys.splice(theseKeys.indexOf('ShiftLeft'), 1);
 
-    let keepSpecials = preferences.Specials > 0 ? '1;\',./'.split('') : [];
+    let keepSpecials = [];
+    for(let key in preferences.mySpecials){
+        if(!keepSpecials.includes(keyMap[key])){keepSpecials.push(key)};
+    }
 
     for(let removeMe of lowerNonLetters){
-        if(!keepSpecials.includes(removeMe) && theseKeys.indexOf(keyMap[removeMe]) != -1){theseKeys.splice(theseKeys.indexOf(keyMap[special]), 1);}
+        if(!keepSpecials.includes(keyMap[removeMe])){theseKeys.splice(theseKeys.indexOf(keyMap[removeMe]), 1);}
     }
 
     console.log(theseKeys);
@@ -369,5 +401,7 @@ function doKey(){ //for general adaptation, gives punctuations (, . ? ; ' !) and
 }
 
 //combination of doKey, getWordWith, getNewWord to implement all possibilities for targeted thing. 
+//doKeys: adapt specific. all codes possible are returned.
+//getWordWith: passed a code. check to see if shifted/unshifted versions are allowed, choose accordingly.
+//words: left right hand targets, new files for words we parse.
 
-//still no implementation for regular key select

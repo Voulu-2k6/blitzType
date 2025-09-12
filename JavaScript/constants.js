@@ -17,6 +17,13 @@ export const shiftMap = { '~': 'Backquote', '!': 'Digit1', '@': 'Digit2', '#': '
     '_': 'Minus', '+': 'Equal', '{': 'BracketLeft', '}': 'BracketRight', '|': 'Backslash', ':': 'Semicolon', '"': 'Quote', '<': 'Comma', '>': 'Period', '?': 'Slash', 'A': 'KeyA', 'B': 'KeyB', 
     'C': 'KeyC', 'D': 'KeyD', 'E': 'KeyE', 'F': 'KeyF', 'G': 'KeyG', 'H': 'KeyH', 'I': 'KeyI', 'J': 'KeyJ', 'K': 'KeyK', 'L': 'KeyL', 'M': 'KeyM', 'N': 'KeyN', 'O': 'KeyO', 'P': 'KeyP', 'Q': 'KeyQ', 
     'R': 'KeyR', 'S': 'KeyS', 'T': 'KeyT', 'U': 'KeyU', 'V': 'KeyV', 'W': 'KeyW', 'X': 'KeyX', 'Y': 'KeyY', 'Z': 'KeyZ'};
+export const reverseShiftMap = { "Backquote": "~", "Digit1": "!", "Digit2": "@", "Digit3": "#", "Digit4": "$", "Digit5": "%", "Digit6": "^",
+    "Digit7": "&", "Digit8": "*", "Digit9": "(", "Digit0": ")", "Minus": "_", "Equal": "+", "BracketLeft": "{",
+    "BracketRight": "}", "Backslash": "|", "Semicolon": ":", "Quote": "\"", "Comma": "<", "Period": ">", "Slash": "?",
+    "KeyA": "A", "KeyB": "B", "KeyC": "C", "KeyD": "D", "KeyE": "E", "KeyF": "F", "KeyG": "G",
+    "KeyH": "H", "KeyI": "I", "KeyJ": "J", "KeyK": "K", "KeyL": "L", "KeyM": "M", "KeyN": "N",
+    "KeyO": "O", "KeyP": "P", "KeyQ": "Q", "KeyR": "R", "KeyS": "S", "KeyT": "T", "KeyU": "U",
+    "KeyV": "V", "KeyW": "W", "KeyX": "X", "KeyY": "Y", "KeyZ": "Z"};
 export const specialKeyCodes = ['Tab', 'CapsLock', 'Backspace', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'AltRight', 'MetaLeft', 'MetaRight'];
 export const letters = 'abcdefghijklmnopqrstuvwyxz'.split('');
 export const nonLetters = "~`@#$%^&*()_+={}[]\\|<>.,!?;:-'\"\n".split('');
