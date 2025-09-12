@@ -175,7 +175,7 @@ function swapButtonVisual(button, value){
 
 // KEYSTROKES TARGET FEATURE
 console.log(keyStrokes);
-for(let key in keyStrokes){
+for(let key of keyStrokes){
     key.addEventListener('click', (e) => {setTargetKey(key);});
 }
 
