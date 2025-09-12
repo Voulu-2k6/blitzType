@@ -181,14 +181,19 @@ for(let key of keyStrokes){
 function setTargetKey(key){
     let oldKey = document.querySelector(".target");
     if(oldKey){oldKey.setAttribute('class', 'none');}
-    let newKey = document.querySelector(`#${key}`);
-    key = key === 'shiftRight' ? 'shiftLeft' : key;
+    if(key != 'Space'){
+        let newKey = document.querySelector(`#${key}`);
+        key = key === 'shiftRight' ? 'shiftLeft' : key;
 
-    console.log(newKey);
-    newKey.setAttribute('class', 'target');
-    newKey.setAttribute('style', '');
-    if(key === 'Space'){preferences.key = null;}
-    else{preferences.key = []; preferences.key.push(key);}
+        console.log(newKey);
+        newKey.setAttribute('class', 'target');
+        newKey.setAttribute('style', '');
+        preferences.key = []; 
+        preferences.key.push(key);
+    }
+    else{
+        preferences.key = null;
+    }
     pushNewPref();
     showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
 }
