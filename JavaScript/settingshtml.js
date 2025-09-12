@@ -4,10 +4,14 @@
 import { showKeyAcc } from "./statshtml.js";
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
-let preferences = userSettings ? userSettings : { 
+let preferences = getPrefereces(userSettings);
+
+function getPreferences(userSettings){
+    return userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Words' : 10,
-    target: false, key: null, 'endless': false, 'mySpecials' : []
+    target: false, key: null, 'endless': false, 'mySpecials' : []};
 }
+
 
 // STARTUP SECTION
 // getting ids mapped to the character for the below if statement.
@@ -203,15 +207,16 @@ function setTargetKey(key){
 
 // edited functions from exam.js 
 import {getWords, getNewLine} from "/blitzType/JavaScript/functions.js";
-async function updatePreview(){
-    let hold = await getWords(preferences);
+async function updatePreview(scopePreferences){
+    let hold = await getWords(scopePreferences);
     const words = hold.split(/\r?\n/);
     document.querySelector('#previewBox').innerHTML = getNewLine(words);
 }
 
 //cycle preview
 let timerInterval = setInterval(() => {
-        updatePreview();
+        let scopePreferences = getPreferences(JSON.parse(localStorage.getItem('userPreferences')));
+        updatePreview(scopePreferences);
 }, 10000);
 // preference updater
 
