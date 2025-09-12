@@ -13,7 +13,7 @@ export function getNewLine(words){
             case "[":
             case "]": myWord = "[" + myWord + "]"; break;
             case "<":
-            case ">": myWord = "<" + myWord + ">"; break;
+            case ">": myWord = "&lt;" + myWord + "&rt;"; break;
             case "(":
             case ")": myWord = "(" + myWord + ")"; break;
             case "{":

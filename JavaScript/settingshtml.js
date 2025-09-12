@@ -2,7 +2,6 @@
 
 //get known preferences
 import { showKeyAcc } from "./statshtml.js";
-import { swapButtonVisual } from "./settings.js";
 let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let preferences = userSettings ? userSettings : { 
@@ -164,6 +163,11 @@ function updateTargetPreference(button){
     pushNewPref();
 }
 
+function swapButtonVisual(button, value){
+    let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
+    button.setAttribute('style', newBg);
+}
+
 // PREVIEW TEST FEATURE
 
 // edited functions from exam.js 
@@ -177,3 +181,4 @@ async function updatePreview(){
 function pushNewPref(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
 }
+
