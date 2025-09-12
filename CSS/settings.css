@@ -71,3 +71,6 @@ main{
 .target {
     background-color: blueviolet;
 }
+.keyDisplay {
+    margin-bottom: 0;
+}
