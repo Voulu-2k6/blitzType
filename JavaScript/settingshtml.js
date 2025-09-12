@@ -182,6 +182,8 @@ function setTargetKey(key){
     let oldKey = document.querySelector(".target");
     if(oldKey){oldKey.setAttribute('class', 'none');}
     let newKey = document.querySelector(`#${key}`);
+    key = key === 'shiftRight' ? 'shiftLeft' : key;
+
     console.log(newKey);
     newKey.setAttribute('class', 'target');
     newKey.setAttribute('style', '');
