@@ -176,13 +176,13 @@ function swapButtonVisual(button, value){
 // KEYSTROKES TARGET FEATURE
 console.log(keyStrokes);
 for(let key of keyStrokes){
-    key.addEventListener('click', (e) => {setTargetKey(key);});
+    key.addEventListener('click', (e) => {setTargetKey(key.id);});
 }
 
 function setTargetKey(key){
     let oldKey = document.querySelector(".target");
     if(oldKey){oldKey.setAttribute('class', 'none');}
-    let newKey = document.querySelector(`#${key}`);
+    let newKey = document.querySelector(`#${key.id}`);
     console.log(newKey);
     newKey.setAttribute('class', 'target');
     preferences.key = [key];
