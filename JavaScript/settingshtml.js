@@ -41,7 +41,7 @@ if(userSettings){
         }
     }
 
-    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key : 'Space';
+    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
     setTargetKey(targetedKey);
 }
 
