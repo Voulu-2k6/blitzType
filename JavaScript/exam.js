@@ -44,7 +44,7 @@ document.addEventListener('keyup', (e) => {
 
 function exam(){
     getPreferences(); //pulls 
-    if(preferences.adapt){doKey();}
+    if(preferences.target){doTarget();}
     clearExam();
     if(preferences.endless){createEndless();}
     else{myLines.push(createExam());}
@@ -180,7 +180,7 @@ function endExam(){
     endTimer();
     doStats(preferences.endless);
     getAdvancements(myKeystrokes);
-    if(preferences.adapt){doKey();}
+    if(preferences.target){doTarget();}
     if(preferences.endless){advanceEndless();}
     else{examOn = false;}
 }
@@ -323,6 +323,10 @@ function doStats(endless){
     sessionStorage.setItem('runStats', JSON.stringify(myStats));
     newStats();
     myStats = runStatsTemplate;
+}
+
+function doTarget(type){
+    doKey();
 }
 
 function doKey(){ //for general adaptation, gives punctuations (, . ? ; ' !) and letters

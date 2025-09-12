@@ -6,7 +6,7 @@ let userSettings = JSON.parse(localStorage.getItem('userPreferences'));
 let slider = `<input type="range" min="0" max="100" value="50" step="1">`;
 let preferences = userSettings ? userSettings : { 
     'Capitals' : 0, 'Numbers' : 0, 'Specials' : 0, 'Words' : 10,
-    adapt: false, key: null, 'endless': false, 'mySpecials' : []
+    target: false, key: null, 'endless': false, 'mySpecials' : []
 }
 
 // STARTUP SECTION
@@ -141,7 +141,26 @@ function updateSliderPrefs(closing, mySlider){
 // TARGET SECTION
 
 let myButtons = document.querySelectorAll(".button");
-for(let myButton of myButtons){console.log(myButton.innerHTML);}
+for(let button of myButtons){
+    button.addEventListener('click', updateTargetPreference(button));
+    console.log(button.innerHTML);
+}
+
+function updateTargetPreference(button){
+    let value = button.getAttribute('style') == null || button.getAttribute('style') == '';
+    if(value){
+        let curr = button.id;
+        let types = ['left', 'right', 'adapt'];
+        sizes.splice(sizes.indexOf(curr), 1);
+        for(let other of types){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
+        preferences.target = curr;
+    }
+    else{
+        preferences.target = null;
+    }
+    swapButtonVisual(button, value);
+    pushNewPref();
+}
 
 // PREVIEW TEST FEATURE
 
