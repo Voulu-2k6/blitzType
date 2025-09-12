@@ -8,6 +8,7 @@ import { getAdvancements } from './statshtml.js';
 import { settingsTemplate } from './settings.js';
 
 //for creating and running the exam
+let preferences = localStorage.getItem('userPreferences') ? JSON.parse(localStorage.getItem('userPreferences')) : settingsTemplate;
 let hold = await getWords();
 const words = hold.split(/\r?\n/);
 const examBoxDiv = document.querySelectorAll("#examText div");
@@ -16,7 +17,6 @@ let myLines = [];
 let myChars = [];
 let myProgress = 0;
 let examOn = false;
-let preferences = localStorage.getItem('userPreferences') ? JSON.parse(localStorage.getItem('userPreferences')) : settingsTemplate;
 
 //for recording stats
 import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
