@@ -238,7 +238,7 @@ function getNewWord(){
         console.log(choices + '. if this is empty, some logisitical error occurred.');
     }
 
-    myWord = doSpecialize ? specialize(myWord, getASpecial) : myWord;
+    myWord = doSpecialize ? specialize(myWord, getASpecial()) : myWord;
     return myWord;
 }
 
