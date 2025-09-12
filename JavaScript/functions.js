@@ -70,5 +70,6 @@ export function getNewLine(words){
 export async function getWords(){
     const response = await fetch('blitzType/words/words.txt');
     const text = response.text();
+    console.log(text);
     return text;
 }
