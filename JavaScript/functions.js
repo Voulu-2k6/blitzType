@@ -68,7 +68,7 @@ export function getNewLine(words){
 }
 
 export async function getWords(scopePreferences){
-    let link = scopePreferences.target == 'left' || preferences.target == 'right' ? `${preferences.target}HandWords.txt` : 'words.txt';
+    let link = scopePreferences.target == 'left' || scopePreferences.target == 'right' ? `${scopePreferences.target}HandWords.txt` : 'words.txt';
     const response = await fetch(`/blitzType/words/${link}`);
     const text = response.text();
     return text;
