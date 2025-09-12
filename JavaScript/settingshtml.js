@@ -17,12 +17,15 @@ let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
 });
+console.log(switchMap);
 switchMap.set("&lt;&gt;", "anglebracketSwitch");
 switchMap.set("&amp;", "andSwitch");
+console.log(switchMap);
 
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
     for(const spec of userSettings.mySpecials){
+        console.log(spec);
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
