@@ -212,7 +212,7 @@ async function updatePreview(){
 //cycle preview
 let timerInterval = setInterval(() => {
         updatePreview();
-}, 50);
+}, 10000);
 // preference updater
 
 function pushNewPref(){
