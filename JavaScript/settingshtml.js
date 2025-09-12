@@ -46,7 +46,7 @@ if(userSettings){
 }
 
 //show relative accuracies for better indication of what to target on stats page
-showKeyAcc(keyStrokes);
+showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
 
 //add buttons
 
