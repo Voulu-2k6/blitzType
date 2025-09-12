@@ -18,8 +18,8 @@ mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
 });
 console.log(switchMap);
-switchMap.set("&lt;&gt;", "anglebracketSwitch");
-switchMap.set("&amp;", "andSwitch");
+switchMap.set("<>", "anglebracketSwitch");
+switchMap.set("&", "andSwitch");
 console.log(switchMap);
 
 // if we had settings, here is where we will set up the page correctly.
