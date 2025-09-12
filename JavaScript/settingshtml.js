@@ -187,7 +187,7 @@ function setTargetKey(key){
     console.log(newKey);
     newKey.setAttribute('class', 'target');
     newKey.setAttribute('style', '');
-    if(key === 'space'){preferences.key = null;}
+    if(key === 'Space'){preferences.key = null;}
     else{preferences.key = []; preferences.key.push(key);}
     pushNewPref();
     showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
