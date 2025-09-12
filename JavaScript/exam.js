@@ -35,6 +35,7 @@ if(document.querySelector("#makeExamButton")){
 
 //keystrokes listeners
 document.addEventListener('keydown', (e) => {
+    console.log('keydown detected');
     keyPress(e.code);
     if(examOn && !(specialKeyCodes.includes(e.code))){hitCheck(e);}
 });
@@ -114,6 +115,7 @@ function startExam(){
 }
 
 function keyPress(key){
+    console.log('enter Keypress');
     let myBox = document.querySelector(`#${key}`);
     if(myBox.getAttribute('class') === '' || myBox.getAttribute('class') === null){
         myBox.setAttribute('style','border: 1px solid orangered; background-color:rgb(0,0,0); box-shadow: 0 0 3px orangered');
