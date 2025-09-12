@@ -31,7 +31,7 @@ export function getNewLine(words){
 
     function getWordWith(myChar){
         let myWord = '';
-        do{myWord = words[Math.floor((Math.random()*2993))];}
+        do{myWord = words[Math.floor((Math.random()*words.length))];}
         while(myWord.indexOf(myChar) < 0)
         return myWord;}
 
@@ -68,7 +68,7 @@ export function getNewLine(words){
 }
 
 export async function getWords(){
-    const response = await fetch('../words/words.txt');
+    const response = await fetch('blitzType/words/words.txt');
     const text = response.text();
     return text;
 }
