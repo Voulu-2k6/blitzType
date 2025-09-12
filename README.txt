@@ -13,15 +13,11 @@ Features:
 
 Known bugs/tweaks, by file: 
 
-    settingshtml.js'
-        & breaks everything if selected when page reload
-
     exam.js: 
         double letters mess up keystrokes
 
 Iplementing features: 
     Settings.html: punctuation lacks em dashes and en dashes
-    Settings.html: implement adjusting selected key
     Settings.html: implement cycling example line
     Settings.html: implement a key for the display at bottom
     Stats.html: implement hovering over keymap for stats/stats needed for level up
@@ -31,6 +27,7 @@ Iplementing features:
     index.html: warning that small settings override big 
     index.html: warning describing problemkeys
     index.html: left vs. right hand focus
+    index.html: target key
     index.html: protection against multiple misses for one key. 
     index.html: miss subtraction as a way to combat acc fatigue.
 
