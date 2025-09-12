@@ -147,7 +147,6 @@ function updateSliderPrefs(closing, mySlider){
 let myButtons = document.querySelectorAll(".button");
 for(let button of myButtons){
     button.addEventListener('click', (e) => {updateTargetPreference(button);});
-    console.log(button.innerHTML);
 }
 
 function updateTargetPreference(button){
@@ -170,11 +169,9 @@ function updateTargetPreference(button){
 function swapButtonVisual(button, value){
     let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
     button.setAttribute('style', newBg);
-    console.log(button.id + " had a value of " + (value ? 'true' : 'false'));
 }
 
 // KEYSTROKES TARGET FEATURE
-console.log(keyStrokes);
 for(let key of keyStrokes){
     key.addEventListener('click', (e) => {setTargetKey(key.id);});
 }
@@ -186,7 +183,6 @@ function setTargetKey(key){
         let newKey = document.querySelector(`#${key}`);
         key = key === 'shiftRight' ? 'shiftLeft' : key;
 
-        console.log(newKey);
         newKey.setAttribute('class', 'target');
         newKey.setAttribute('style', '');
         preferences.key = []; 
@@ -213,7 +209,12 @@ async function updatePreview(){
     document.querySelector('#previewBox').innerHTML = getNewLine(words);
 }
 
+//cycle preview
+let timerInterval = setInterval(() => {
+        updatePreview();
+}, 50);
+// preference updater
+
 function pushNewPref(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
 }
-
