@@ -185,7 +185,8 @@ function setTargetKey(key){
     console.log(newKey);
     newKey.setAttribute('class', 'target');
     newKey.setAttribute('style', '');
-    preferences.key = key === 'space' ? null : [key];
+    if(key === 'space'){preferences.key = null;}
+    else{preferences.key = []; preferences.key.push(key);}
     pushNewPref();
     showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
 }
