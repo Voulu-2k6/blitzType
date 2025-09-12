@@ -198,7 +198,7 @@ function onMiss(e){
 
 async function getWords(){
     let link = preferences.target == 'left' || preferences.target == 'right' ? `${preferences.target}HandWords.txt` : 'words.txt';
-    const response = await fetch(`../words/${link}`);
+    const response = await fetch(`/blitzType/words/${link}`);
     const text = response.text();
     return text;
 }
