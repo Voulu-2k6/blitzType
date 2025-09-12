@@ -239,7 +239,6 @@ function getNewWord(){
     }
 
     let rand = Math.random() > 0.7;
-    console.log(rand + " was reached.");
     myWord = (doSpecialize && rand) ? specialize(myWord, getASpecial()) : myWord;
     return myWord;
 }
@@ -344,7 +343,6 @@ function updateStats(hit, e){
 }
 
 function getNumWords(){
-    console.log(myLines[0]);
     return (myLines[0].join('').split(/[\/\\|\-=+\*^ ]/)).length;
 }
 
@@ -380,16 +378,12 @@ function doKey(){ //for general adaptation, gives any possible key for selection
         if(!keepSpecials.includes(keyMap[removeMe])){theseKeys.splice(theseKeys.indexOf(keyMap[removeMe]), 1);}
     }
 
-    console.log(theseKeys);
-
     let worstKeys = [];
     for(let i = 0; i < 3; i++){ //adjust i for more depth to the adaptation
         let worstStats = keyStats['KeyE'];
         let worstKey = 'KeyE';
-        console.log(`we\'ve set worstKey to ${KeyE} and it\'s stats are ${worstStats}`);
         for(let thisKey of theseKeys){
             let curr = keyStats[keyMap[reverseKeyMap[thisKey]]];
-            console.log(thisKey + ' maps to ' + curr);
             if(curr.accuracy != null && curr.accuracy != 0 && curr.accuracy < worstStats.accuracy){
                 worstStats = curr;
                 worstKey = thisKey;
@@ -399,12 +393,7 @@ function doKey(){ //for general adaptation, gives any possible key for selection
         worstKeys.push(worstKey);
     }
     preferences.key = worstKeys;
-
-    console.log(worstKeys);
 }
 
-//combination of doKey, getWordWith, getNewWord to implement all possibilities for targeted thing. 
-//doKeys: adapt specific. all codes possible are returned.
-//getWordWith: passed a code. check to see if shifted/unshifted versions are allowed, choose accordingly.
 //words: left right hand targets, new files for words we parse.
 
