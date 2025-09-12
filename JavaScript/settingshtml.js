@@ -143,7 +143,7 @@ function updateSliderPrefs(closing, mySlider){
 
 let myButtons = document.querySelectorAll(".button");
 for(let button of myButtons){
-    button.addEventListener('click', updateTargetPreference(button));
+    button.addEventListener('click', (e) => {updateTargetPreference(button); console.log('error!');});
     console.log(button.innerHTML);
 }
 
