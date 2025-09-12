@@ -169,6 +169,9 @@ function swapButtonVisual(button, value){
     console.log(button.id + " had a value of " + (value ? 'true' : 'false'));
 }
 
+// KEYSTROKES TARGET FEATURE
+console.log(keyStrokes);
+
 // PREVIEW TEST FEATURE
 
 // edited functions from exam.js 
