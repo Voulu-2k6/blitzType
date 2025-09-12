@@ -238,7 +238,9 @@ function getNewWord(){
         console.log(choices + '. if this is empty, some logisitical error occurred.');
     }
 
-    myWord = (doSpecialize && Math.random() > 0.7) ? specialize(myWord, getASpecial()) : myWord;
+    let rand = Math.random() > 0.7;
+    console.log(rand + " was reached.");
+    myWord = (doSpecialize && rand) ? specialize(myWord, getASpecial()) : myWord;
     return myWord;
 }
 
