@@ -208,7 +208,7 @@ function setTargetKey(key){
 // edited functions from exam.js 
 import {getWords, getNewLine} from "/blitzType/JavaScript/functions.js";
 async function updatePreview(){
-    let hold = await getWords();
+    let hold = await getWords(preferences);
     const words = hold.split(/\r?\n/);
     document.querySelector('#previewBox').innerHTML = getNewLine(words);
 }
