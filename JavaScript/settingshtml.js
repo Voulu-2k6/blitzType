@@ -18,10 +18,8 @@ let switchMap = new Map();
 mySwitches.forEach((sw) => {
     switchMap.set(sw.innerHTML, sw.id);
 });
-console.log(switchMap);
 switchMap.set("<>", "anglebracketSwitch");
 switchMap.set("&", "andSwitch");
-console.log(switchMap);
 
 // if we had settings, here is where we will set up the page correctly.
 if(userSettings){
@@ -156,7 +154,7 @@ function updateTargetPreference(button){
         let curr = button.id;
         let types = ['left', 'right', 'adapt'];
         types.splice(types.indexOf(curr), 1);
-        for(let other of types){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
+        for(let other of types){swapButtonVisual(document.querySelector(`#${other}`), false);}
         preferences.target = curr;
     }
     else{
