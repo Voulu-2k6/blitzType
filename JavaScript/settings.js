@@ -44,7 +44,7 @@ for(let button of buttons){
 }
 
 //handles visual for on/off
-function swapButtonVisual(button, value){
+export function swapButtonVisual(button, value){
     let newBg = value ? 'background-color: rgb(255, 102, 0);' : '';
     button.setAttribute('style', newBg);
 }
