@@ -115,11 +115,8 @@ function startExam(){
 }
 
 function keyPress(key){
-    console.log('enter Keypress: ' + key);
     let myBox = document.querySelector(`#${key}`);
-    console.log(myBox);
-    myBox.setAttribute('style', 'background-color: red');
-    if(myBox.getAttribute('class') === '' || myBox.getAttribute('class') === null){
+    if(myBox.getAttribute('style') === '' || myBox.getAttribute('style') === null){
         myBox.setAttribute('style','border: 1px solid orangered; background-color:rgb(0,0,0); box-shadow: 0 0 3px orangered');
     }
     if(key === 'meta' || key === 'tab'){setTimeout(() => {keyRelease(key);}, 1000);}//supposed to fix keystrokes sticking on these keys 
