@@ -146,13 +146,14 @@ function updateSliderPrefs(closing, mySlider){
 
 let myButtons = document.querySelectorAll(".button");
 for(let button of myButtons){
-    button.addEventListener('click', (e) => {updateTargetPreference(button); console.log('error!');});
+    button.addEventListener('click', (e) => {updateTargetPreference(button);});
     console.log(button.innerHTML);
 }
 
 function updateTargetPreference(button){
     let value = button.getAttribute('style') == null || button.getAttribute('style') == '';
     if(value){
+        setTargetKey('Space');
         let curr = button.id;
         let types = ['left', 'right', 'adapt'];
         types.splice(types.indexOf(curr), 1);
@@ -190,6 +191,10 @@ function setTargetKey(key){
         newKey.setAttribute('style', '');
         preferences.key = []; 
         preferences.key.push(key);
+        if(preferences.target){
+            document.querySelector(`#${preferences.target}`).setAttribute('style', '');
+            preferences.target = null;
+        }
     }
     else{
         preferences.key = null;
