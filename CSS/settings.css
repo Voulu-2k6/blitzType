@@ -69,3 +69,6 @@ main{
 .buttonSliderContainer > * {
     margin: 0px 8px;
 }
+.target {
+    background-color: blueviolet;
+}

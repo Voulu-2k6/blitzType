@@ -39,6 +39,9 @@ if(userSettings){
             updateSliderPrefs(false, updateMe);
         }
     }
+
+    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key : 'Space';
+    setTargetKey(targetedKey);
 }
 
 //show relative accuracies for better indication of what to target on stats page
@@ -171,6 +174,19 @@ function swapButtonVisual(button, value){
 
 // KEYSTROKES TARGET FEATURE
 console.log(keyStrokes);
+for(let key in keyStrokes){
+    key.addEventListener('click', (e) => {setTargetKey(key);});
+}
+
+function setTargetKey(key){
+    let oldKey = document.querySelector(".target");
+    if(oldKey){oldKey.setAttribute('class', 'none');}
+    let newKey = document.querySelector(`#${key}`);
+    console.log(newKey);
+    newKey.setAttribute('class', 'target');
+    preferences.key = [key];
+    showKeyAcc(keyStrokes);
+}
 
 // PREVIEW TEST FEATURE
 
