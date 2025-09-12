@@ -154,7 +154,7 @@ function updateTargetPreference(button){
     if(value){
         let curr = button.id;
         let types = ['left', 'right', 'adapt'];
-        sizes.splice(sizes.indexOf(curr), 1);
+        types.splice(sizes.indexOf(curr), 1);
         for(let other of types){swapButtonVisual(document.querySelector(`#${other}Test`), false);}
         preferences.target = curr;
     }
