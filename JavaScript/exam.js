@@ -365,7 +365,7 @@ function doTarget(){
 
 function doKey(){ //for general adaptation, gives any possible key for selection
     let scopeStats = JSON.parse(localStorage.getItem('localStats'));
-    if(scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
+    if(!scopeStats || scopeStats.totalHits < 100){preferences.key = null; return;} //error protection
     let keyStats = scopeStats.keyStats;
     let theseKeys = Object.keys(keyStats);
 
