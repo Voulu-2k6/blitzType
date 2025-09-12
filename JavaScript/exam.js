@@ -124,7 +124,7 @@ function keyPress(key){
 
 function keyRelease(key){
     let myBox = document.querySelector(`#${key}`);
-    if(myBox.getAttribute('class') === '' || myBox.getAttribute('class') === null){
+    if(myBox.getAttribute('style') != '' || myBox.getAttribute('style') != null){
         myBox.setAttribute('style','');
     }
 }
