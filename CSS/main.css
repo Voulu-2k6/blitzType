@@ -74,7 +74,7 @@ section {
 #examSettings {
     width: 15vw;
 
-    border-right: 1px solid orangered;
+    border-left: 1px solid orangered;
 }
 #examBox {
     flex-grow: 1;
@@ -85,7 +85,10 @@ section {
 #statsBox {
     width: 20vw;
 
-    border-left: 1px solid orangered;
+    border-right: 1px solid orangered;
+}
+#statsBox p {
+    margin: 10px 0;
 }
 #examHolder {
     flex-grow: 1;

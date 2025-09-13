@@ -18,11 +18,10 @@ Known bugs/tweaks, by file:
 
     exam.js: 
         double letters mess up keystrokes
+        endless timer starts when line loads, not on first press
 
     settingshtml.js
         targets do not show on load
-        some settings break test on first loadin, ex. adapt
-        exam breaks if no permitted key in selected key
 
     statshtml.js
         need to format our date object
@@ -31,20 +30,27 @@ Iplementing features:
     Settings.html: implement cycling example line
     Settings.html: implement a key for the display at bottom
     Settings.html: clicking shift puts capitals at 100, enter a popup suggesting endless
+    Settings.html: implement warning for selecting key with no permitted keys
+
     Stats.html: implement hovering over keymap for stats/stats needed for level up
+
     index.html: implement animations for line movement
     index.html: implement animations for new high scores
     index.html: implement animations for levelling up a key
     index.html: implement animations for which adjustment keys are being run
     index.html: warning that small settings override big 
-    index.html: warning describing problemkeys
-    index.html: left vs. right hand focus
-    index.html: protection against multiple misses for one key. 
-    index.html: miss subtraction as a way to combat acc fatigue.
 
-Key lightups:
-    Where to press next: bg black
-    Where you're pressing now: bg white?
+    exam.js:
+        protection against multiple misses for one key. 
+        miss subtraction as a way to combat acc fatigue.
+        wpm by doing cpm/(average word length + one for space)
+        cpm for each character, use for mastery
+        adapt mastery threshold by taking how often each character shows up in our words
+
+
+UI changes: 
+
+
 
 
 
