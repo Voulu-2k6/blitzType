@@ -113,7 +113,6 @@ function startExam(){
     examOn = true;
     document.removeEventListener('keydown', startTimer);
     document.addEventListener('keydown', startTimer);
-    charTimeHolder = Date.now();
 }
 
 function keyPress(key){
@@ -326,6 +325,7 @@ let startTimestamp = 0;
 function startTimer() { //virtual stopwatch integration possible 
     document.removeEventListener('keydown', startTimer);
     startTimestamp = Date.now();
+    charTimeHolder = Date.now();
     timerInterval = setInterval(() => {
     myStats.examTime = Date.now() - startTimestamp;
     }, 50); // update every however many ms
