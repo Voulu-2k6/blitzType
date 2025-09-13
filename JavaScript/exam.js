@@ -46,10 +46,10 @@ document.addEventListener('keyup', (e) => {
 
 function scrapExam(){ 
     releaseNext(myExam[myProgress]);
-    for(let code in Object.keys(myStats.keyStats)){
+    console.log(myStats.keyStats);
+    for(let code of Object.keys(myStats.keyStats)){
         myStats.keyStats[code].time = 0;
     }
-    console.log(myStats.keyStats);
 }
 
 function exam(){
