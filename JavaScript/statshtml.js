@@ -42,6 +42,9 @@ showKeyAcc(leftKeyDisplay);
 let rightKeyDisplay = document.querySelectorAll('#keyDisplay2 .none');
 getAdvancements(rightKeyDisplay);
 
+let bottomKeyDisplay = document.querySelectorAll('#keyDisplay3 .none');
+showKeyWPM(bottomKeyDisplay);
+
 function formatStartDay(ms){
     return new Date(ms);
 }
@@ -52,8 +55,13 @@ function getMinutes(ms){
 function getRelativeAccuracy(code){
     let acc = pageStats.keyStats[keyMap[reverseKeyMap[code]]].accuracy;
     if(!acc){return -1;}
-
     return Math.max((acc - 0.6)*2.5, 0);
+}
+
+function getWPM(code){
+    let wpm = pageStats.keyStats[keyMap[reverseKeyMap[code]]].wpm;
+    if(!wpm){return -1;}
+    return wpm;
 }
 
 export function showKeyAcc(keyDisplay){
@@ -88,6 +96,18 @@ export function getAdvancements(keys){
         }
         else{
             key.setAttribute('class','none');
+        }
+    }
+}
+
+function showKeyWPM(keyDisplay){
+    for(let key of keyDisplay){
+        let WPM = Math.max(getWPM(key.id), 150);
+        let mult = WPM/150;
+        if(WPM != -1){
+            let g = mult*255;
+            let b = mult*255;
+            key.setAttribute('style', `background-color: rgb(0, ${g}, ${b})`);
         }
     }
 }
