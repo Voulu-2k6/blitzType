@@ -17,7 +17,7 @@ async function getWords(){
         console.log('Finished reading.');
         console.log(lines);
         console.log('real?');
-        getCap(lines);
+        getAvgLength(lines);
     });
 
     readStream.on('error', (err) => {
@@ -26,6 +26,7 @@ async function getWords(){
     });
 }
 
+//used to get words for targeting left, right hands
 function parse(words){
     for(let word of words){
         if(word.split('')[0].toUpperCase() == word.split('')[0]){
@@ -73,6 +74,7 @@ function parse(words){
     }
 }
 
+//used for removing capitalized words in the file
 function getCap(words){
     console.log('enter');
 
@@ -87,5 +89,14 @@ function getCap(words){
             });
         }
     }
+}
 
+//used for finding the average length
+function getAvgLength(words){
+    let chars = 0;
+    for(let word of words){
+        chars += word.split('').length;
+    }
+    let length = chars / words.length;
+    console.log(length);
 }
