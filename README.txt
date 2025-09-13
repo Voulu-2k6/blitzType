@@ -25,6 +25,7 @@ Known bugs/tweaks, by file:
 
     statshtml.js
         need to format our date object
+        need to fix css display
 
 Iplementing features: 
     Settings.html: implement cycling example line
@@ -43,7 +44,6 @@ Iplementing features:
     exam.js:
         protection against multiple misses for one key. 
         miss subtraction as a way to combat acc fatigue.
-        wpm by doing cpm/(average word length + one for space)
         cpm for each character, use for mastery
         adapt mastery threshold by taking how often each character shows up in our words
 
