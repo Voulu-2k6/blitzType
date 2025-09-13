@@ -161,6 +161,7 @@ function advanceEndless(){
 
 function hitCheck(e){
     let myLength = preferences.endless ? myLines[0].length : myExam.length;
+    myStats.charCount = myLength;
     if(myProgress < myLength){ 
         if(myExam[myProgress] === e.key || (myExam[myProgress] == "\n" && e.key == 'Enter')){
             onHit(e);

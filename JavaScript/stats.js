@@ -8,11 +8,12 @@
         */
 
 let userStats = JSON.parse(localStorage.getItem('localStats')); // locally stored user stats
-import {keyMap} from '/blitzType/JavaScript/constants.js'; // maps between keys and codes, see constants.js
+import {keyMap, avgWordLength} from '/blitzType/JavaScript/constants.js'; // maps between keys and codes, see constants.js
 
 let runStatsTemplate = {
     // basic stats
     wordCount: 0,
+    charCount: 0,
     examTime: 0,
     hits: 0,
     misses: 0,
@@ -56,15 +57,15 @@ function formatMS(ms){
 
 function updateDisplay(sessionStats){
     document.querySelector("#statsAccuracy").innerHTML = "accuracy: " + getAccuracy(sessionStats.hits, sessionStats.misses);
-    document.querySelector("#statsWPM").innerHTML = "words per minute: " + getWPM(sessionStats.wordCount, sessionStats.examTime);
+    document.querySelector("#statsWPM").innerHTML = "words per minute: " + getWPM(sessionStats.charCount, sessionStats.examTime);
 }
 
 export function getAccuracy(hits, misses){
     return Number(((hits/(hits+misses))*100).toFixed(2));
 }
 
-export function getWPM(words, ms){
-    return Number((words/(ms/(1000*60))).toFixed(2));
+export function getWPM(chars, ms){
+    return Number((chars/(ms/(1000*60))/(avgWordLength+1)).toFixed(2));
 }
 
 export {runStatsTemplate, storedStatsTemplate, newStats, formatMS};
@@ -73,9 +74,6 @@ function newStats(){
 
     let runStats = JSON.parse(sessionStorage.getItem('runStats'));
     let localStats = localStorage.getItem('localStats') ? JSON.parse(localStorage.getItem('localStats')) : storedStatsTemplate;
-
-    //calculate what to show
-    //getProblems(runStats);
 
     //show current run stats
     updateDisplay(runStats);
@@ -99,8 +97,8 @@ function newStats(){
         else{localStats.bestAccuracy[1]++;}
     }
     else if(getAccuracy(runStats.hits, runStats.misses) > localStats.bestAccuracy[0]){localStats.bestAccuracy[0] = getAccuracy(runStats.hits, runStats.misses);}
-    if(localStats.bestWpm[0] < getWPM(runStats.wordCount, runStats.examTime)){
-        localStats.bestWpm[0] = getWPM(runStats.wordCount, runStats.examTime);
+    if(localStats.bestWpm[0] < getWPM(runStats.charCount, runStats.examTime)){
+        localStats.bestWpm[0] = getWPM(runStats.charCount, runStats.examTime);
         localStats.bestWpm[1] = runStats.wordCount;
     }  
 

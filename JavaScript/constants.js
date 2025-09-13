@@ -29,3 +29,4 @@ export const letters = 'abcdefghijklmnopqrstuvwyxz'.split('');
 export const nonLetters = "~`@#$%^&*()_+={}[]\\|<>.,!?;:-'\"\n".split('');
 export const numbers ="0123456789".split('');
 export const lowerNonLetters = '\`1234567890-=[]\\;\',./'.split('');
+export const avgWordLength = 6.41;

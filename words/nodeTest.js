@@ -96,6 +96,7 @@ function getAvgLength(words){
     let chars = 0;
     for(let word of words){
         chars += word.split('').length;
+        console.log(word + " was " + word.split('').length);
     }
     let length = chars / words.length;
     console.log(length);
