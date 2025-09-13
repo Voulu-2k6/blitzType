@@ -58,7 +58,7 @@ function getRelativeAccuracy(code){
     return Math.max((acc - 0.6)*2.5, 0);
 }
 
-function getWPM(code){
+function getKeyWPM(code){
     let wpm = pageStats.keyStats[keyMap[reverseKeyMap[code]]].wpm;
     if(!wpm){return -1;}
     return wpm;
@@ -102,7 +102,7 @@ export function getAdvancements(keys){
 
 function showKeyWPM(keyDisplay){
     for(let key of keyDisplay){
-        let WPM = Math.max(getWPM(key.id), 150);
+        let WPM = Math.max(getKeyWPM(key.id), 150);
         let mult = WPM/150;
         if(WPM != -1){
             let g = mult*255;
