@@ -401,5 +401,4 @@ function doKey(){ //for general adaptation, gives any possible key for selection
     preferences.key = worstKeys;
 }
 
-//words: left right hand targets, new files for words we parse.
 

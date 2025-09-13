@@ -66,6 +66,7 @@ export function getAccuracy(hits, misses){
 
 export function getWPM(chars, ms){
     return Number((chars/(ms/(1000*60))/(avgWordLength+1)).toFixed(2));
+    console.log(chars + ' see, it works!!');
 }
 
 export {runStatsTemplate, storedStatsTemplate, newStats, formatMS};
