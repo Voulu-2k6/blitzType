@@ -45,7 +45,8 @@ let storedStatsTemplate = {
                 hits: 0,
                 misses: 0,
                 accuracy: 0,
-                time: 0}]))
+                time: 0,
+                wpm: 0}]))
 }
 
 function formatMS(ms){
@@ -66,7 +67,6 @@ export function getAccuracy(hits, misses){
 
 export function getWPM(chars, ms){
     return Number((chars/(ms/(1000*60))/(avgWordLength+1)).toFixed(2));
-    console.log(chars + ' see, it works!!');
 }
 
 export {runStatsTemplate, storedStatsTemplate, newStats, formatMS};
@@ -88,6 +88,9 @@ function newStats(){
         localStats.keyStats[key].hits += runStats.keyStats[key].hits;
         localStats.keyStats[key].misses += runStats.keyStats[key].misses;
         localStats.keyStats[key].accuracy = localStats.keyStats[key].hits/(localStats.keyStats[key].hits + localStats.keyStats[key].misses);
+        localStats.keyStats[key].time += runStats.keyStats.time;
+        localStats.keyStats[key].wpm = (localStats.keyStats[key].hits / avgWordLength)/(localStats.keyStats[key].time/60000);
+        console.log(localStats.keyStats[key].wpm + " for " + key);
     }
 
     //compare bests
