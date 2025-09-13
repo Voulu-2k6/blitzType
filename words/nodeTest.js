@@ -17,7 +17,7 @@ async function getWords(){
         console.log('Finished reading.');
         console.log(lines);
         console.log('real?');
-        getAvgLength(lines);
+        getCharRelevancy(lines);
     });
 
     readStream.on('error', (err) => {
@@ -100,4 +100,26 @@ function getAvgLength(words){
     }
     let length = chars / words.length;
     console.log(length);
+}
+
+//finding the general relevancy for each character in my words.
+function getCharRelevancy(words){
+    let counts = new Array(26);
+    for(let i = 0; i < 26; i++){
+        counts[i] = 0;
+    }
+    for(let word of words){
+        for(let char of word.split('')){
+            counts[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+        }
+    }
+    console.log(counts);
+    let max = 0;
+    for(let i = 0; i < 26; i++){
+        if(counts[i] > max){max = counts[i];}
+    }
+    console.log(max);
+    for(let i = 0; i < 26; i++){
+        console.log(counts[i]/max);
+    }
 }

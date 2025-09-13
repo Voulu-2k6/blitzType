@@ -24,6 +24,15 @@ export const reverseShiftMap = { "Backquote": "~", "Digit1": "!", "Digit2": "@",
     "KeyH": "H", "KeyI": "I", "KeyJ": "J", "KeyK": "K", "KeyL": "L", "KeyM": "M", "KeyN": "N",
     "KeyO": "O", "KeyP": "P", "KeyQ": "Q", "KeyR": "R", "KeyS": "S", "KeyT": "T", "KeyU": "U",
     "KeyV": "V", "KeyW": "W", "KeyX": "X", "KeyY": "Y", "KeyZ": "Z"};
+export const keyRelevance = {'Backquote': 0.3, 'Backslash': 0.3, 'BracketLeft': 0.3, 'BracketRight': 0.3, 'Comma': 0.3, 'Digit0': 0.3, 'Digit1': 0.3,
+    'Digit2': 0.3, 'Digit3': 0.3, 'Digit4': 0.3, 'Digit5': 0.3, 'Digit6': 0.3, 'Digit7': 0.3, 'Digit8': 0.3,
+    'Digit9': 0.3, 'Equal': 0.3, 'KeyA': 0.595, 'KeyB': 0.113, 'KeyC': 0.362, 'KeyD': 0.235, 'KeyE': 1.000,
+    'KeyF': 0.135, 'KeyG': 0.170, 'KeyH': 0.189, 'KeyI': 0.623, 'KeyJ': 0.013, 'KeyK': 0.057, 'KeyL': 0.400,
+    'KeyM': 0.208, 'KeyN': 0.554, 'KeyO': 0.533, 'KeyP': 0.248, 'KeyQ': 0.013, 'KeyR': 0.604, 'KeyS': 0.450,
+    'KeyT': 0.627, 'KeyU': 0.237, 'KeyV': 0.109, 'KeyW': 0.083, 'KeyX': 0.026, 'KeyY': 0.161, 'KeyZ': 0.008,
+    'Minus': 0.3, 'Period': 0.3, 'Quote': 0.3, 'Semicolon': 0.3, 'Slash': 0.3, 'Space': 0.3, 'ShiftLeft': 0.3,
+    'ShiftRight': 0.3, 'Enter': 0.167
+};
 export const specialKeyCodes = ['Tab', 'CapsLock', 'Backspace', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight', 'AltLeft', 'AltRight', 'MetaLeft', 'MetaRight'];
 export const letters = 'abcdefghijklmnopqrstuvwyxz'.split('');
 export const nonLetters = "~`@#$%^&*()_+={}[]\\|<>.,!?;:-'\"\n".split('');

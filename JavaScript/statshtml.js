@@ -4,7 +4,7 @@
 //update problemkeys alg
 
 import { storedStatsTemplate, getAccuracy, getWPM } from "./stats.js";
-import { keyMap, reverseKeyMap } from "./constants.js";
+import { keyMap, reverseKeyMap, keyRelevance } from "./constants.js";
 
 let pageStats = storedStatsTemplate;
 
@@ -81,9 +81,10 @@ export function getAdvancements(keys){
     let localStats = JSON.parse(localStorage.getItem('localStats'));
     for(let key of keys){
         let keyStat = localStats.keyStats[keyMap[reverseKeyMap[key.id]]];
-        let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.hits >= 1200 && keyStat.wpm > 100);
-        let goldStandard = (keyStat.accuracy > 0.95 && keyStat.hits >= 500 ** keyStat.wpm > 90);
-        let silverStandard = (keyStat.accuracy > 0.92 && keyStat.hits >= 250 && keyStat.wpm > 70);
+        let relevance = keyRelevance[key.id];
+        let diamondStandard = (keyStat.accuracy > 0.97 && keyStat.hits >= 1200*relevance && keyStat.wpm > 100);
+        let goldStandard = (keyStat.accuracy > 0.95 && keyStat.hits >= 500*relevance && keyStat.wpm > 90);
+        let silverStandard = (keyStat.accuracy > 0.92 && keyStat.hits >= 250*relevance && keyStat.wpm > 70);
         if(diamondStandard){
             key.setAttribute('class','diamond');
         }
