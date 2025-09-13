@@ -36,7 +36,6 @@ if(document.querySelector("#makeExamButton")){
 
 //keystrokes listeners
 document.addEventListener('keydown', (e) => {
-    console.log('keydown detected');
     keyPress(e.code);
     if(examOn && !(specialKeyCodes.includes(e.code))){hitCheck(e);}
 });
@@ -46,7 +45,6 @@ document.addEventListener('keyup', (e) => {
 
 function scrapExam(){ 
     releaseNext(myExam[myProgress]);
-    console.log(myStats.keyStats);
     for(let code of Object.keys(myStats.keyStats)){
         myStats.keyStats[code].time = 0;
     }
@@ -349,7 +347,6 @@ function updateStats(hit, e){
         myStats.hits++;
         myStats.keyStats[e.code].hits++;
         myStats.keyStats[e.code].time += myProgress == 0 ? 0 : (Date.now() - charTimeHolder);
-        console.log(myStats.keyStats[e.code].time + ' for ' + e.code);
         if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].hits++;}
     }
     else{

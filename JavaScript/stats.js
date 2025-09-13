@@ -90,10 +90,6 @@ function newStats(){
         localStats.keyStats[key].accuracy = localStats.keyStats[key].hits/(localStats.keyStats[key].hits + localStats.keyStats[key].misses);
         localStats.keyStats[key].time += runStats.keyStats[key].time;
         localStats.keyStats[key].wpm = (localStats.keyStats[key].hits / avgWordLength)/(localStats.keyStats[key].time/60000);
-        let readMe = localStats.keyStats[key];
-        console.log(readMe.wpm + " for " + key);
-        console.log(readMe.hits + " in " + readMe.time);
-        console.log(runStats.keyStats[key].time + ' for ' + runStats.keyStats[key].hits);
     }
 
     //compare bests
