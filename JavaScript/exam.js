@@ -29,7 +29,7 @@ if(localStorage.getItem('localStats')){getAdvancements(myKeystrokes);}
 //exam button listener 
 if(document.querySelector("#makeExamButton")){
     document.querySelector("#makeExamButton").addEventListener('click', () => {
-        if(examOn){releaseNext(myExam[myProgress]);} 
+        if(examOn){scrapExam();} 
         exam();
     });
 }
@@ -43,6 +43,14 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', (e) => {
     keyRelease(e.code);
 });
+
+function scrapExam(){ 
+    releaseNext(myExam[myProgress]);
+    for(let code in Object.keys(myStats.keyStats)){
+        myStats.keyStats[code].time = 0;
+    }
+    console.log(myStats.keyStats);
+}
 
 function exam(){
     getPreferences(); //pulls 
