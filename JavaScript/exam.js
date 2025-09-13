@@ -198,8 +198,8 @@ function endExam(){
 
 function onHit(e){
     myChars[myProgress].setAttribute('style', 'background-color: rgb(255, 102, 0);');
-    myProgress++;
     updateStats(true, e);
+    myProgress++;
     charTimeHolder = Date.now();
 }
 
@@ -348,7 +348,7 @@ function updateStats(hit, e){
     if(hit){
         myStats.hits++;
         myStats.keyStats[e.code].hits++;
-        myStats.keyStats[e.code].time += (Date.now() - charTimeHolder);
+        myStats.keyStats[e.code].time += myProgress == 0 ? 0 : (Date.now() - charTimeHolder);
         console.log(myStats.keyStats[e.code].time + ' for ' + e.code);
         if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].hits++;}
     }
