@@ -17,6 +17,7 @@ let myLines = [];
 let myChars = [];
 let myProgress = 0;
 let examOn = false;
+let charTimeHolder;
 
 //for recording stats
 import {runStatsTemplate} from '/blitzType/JavaScript/stats.js';
@@ -112,6 +113,7 @@ function startExam(){
     examOn = true;
     document.removeEventListener('keydown', startTimer);
     document.addEventListener('keydown', startTimer);
+    charTimeHolder = Date.now();
 }
 
 function keyPress(key){
@@ -191,6 +193,7 @@ function onHit(e){
     myChars[myProgress].setAttribute('style', 'background-color: rgb(255, 102, 0);');
     myProgress++;
     updateStats(true, e);
+    charTimeHolder = Date.now();
 }
 
 function onMiss(e){
@@ -329,14 +332,16 @@ function startTimer() { //virtual stopwatch integration possible
 }
 
 function endTimer() { 
-  clearInterval(timerInterval);
-  myStats.examTime = Date.now() - startTimestamp;
+    clearInterval(timerInterval);
+    myStats.examTime = Date.now() - startTimestamp;
 }
 
 function updateStats(hit, e){
     if(hit){
         myStats.hits++;
         myStats.keyStats[e.code].hits++;
+        myStats.keyStats[e.code].time += (Date.now() - charTimeHolder);
+        console.log(myStats.keyStats[e.code].time + ' for ' + e.code);
         if(e.key in shiftMap){myStats.keyStats['ShiftLeft'].hits++;}
     }
     else{
