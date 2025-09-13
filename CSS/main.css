@@ -115,14 +115,15 @@ section {
     flex-wrap: wrap;
 }
 .keyDisplay {
-    margin-bottom: 100px;
-
     width: 90%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#homeKeyDisplay {
+    margin-bottom: 100px;
 }
 .keyDisplay div {
     display: flex;
