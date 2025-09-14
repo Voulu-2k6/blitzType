@@ -2,6 +2,8 @@ Tate Sorensen, Summer 2025
 
 This project aims to build a fun and dynamic way to improve your typing skills.
 
+Link to the project: https://voulu-2k6.github.io/blitzType/
+
 Tools used in this project:
     HTML/CSS/JavaScript
 *This project relies on browser cookies to store user data. 
@@ -22,13 +24,14 @@ Known bugs/tweaks, by file:
 
     settingshtml.js
         targets do not show on load
+        everything is broken internally
 
     statshtml.js
         need to format our date object
         need to fix css display
+        wpm is wrong
 
 Iplementing features: 
-    Settings.html: implement cycling example line
     Settings.html: implement a key for the display at bottom
     Settings.html: clicking shift puts capitals at 100, enter a popup suggesting endless
     Settings.html: implement warning for selecting key with no permitted keys
@@ -44,13 +47,6 @@ Iplementing features:
     exam.js:
         protection against multiple misses for one key. 
         miss subtraction as a way to combat acc fatigue.
-        cpm for each character, use for mastery
-        adapt mastery threshold by taking how often each character shows up in our words
-
-
-UI changes: 
-
-
 
 
 
