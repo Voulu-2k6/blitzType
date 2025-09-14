@@ -27,9 +27,7 @@ Known bugs/tweaks, by file:
         everything is broken internally
 
     statshtml.js
-        need to format our date object
         need to fix css display
-        wpm is wrong
 
 Iplementing features: 
     Settings.html: implement a key for the display at bottom
