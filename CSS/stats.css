@@ -1,7 +1,7 @@
 #statsTop{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #statsTop > div{
@@ -12,7 +12,8 @@
 }
 
 #statsTop p{
-    margin: 16px;
+    padding: 8px;
+    margin: 0 10px;
 }
 
 #keystrokes {
