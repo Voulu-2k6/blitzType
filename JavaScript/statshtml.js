@@ -19,7 +19,7 @@ for(let statBox of statsBoxes){
         statBox.innerHTML += getMinutes(pageStats.totalTime);
     }
     else if(statBox.id == 'avgWPM'){
-        statBox.innerHTML += getWPM(pageStats.totalWords, pageStats.totalTime) + ' words per minute';
+        statBox.innerHTML += getWPM(pageStats.totalHits, pageStats.totalTime) + ' words per minute';
     }
     else if(statBox.id == 'bestWPM'){
         statBox.innerHTML += pageStats.bestWpm[0] + ` words per minute (${pageStats.bestWpm[1]} words)`;
