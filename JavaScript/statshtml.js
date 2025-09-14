@@ -40,13 +40,18 @@ let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
 showKeyAcc(leftKeyDisplay);
 
 let rightKeyDisplay = document.querySelectorAll('#keyDisplay2 .none');
-getAdvancements(rightKeyDisplay);
+showKeyWPM(rightKeyDisplay);
 
 let bottomKeyDisplay = document.querySelectorAll('#keyDisplay3 .none');
-showKeyWPM(bottomKeyDisplay);
+getAdvancements(bottomKeyDisplay);
 
 function formatStartDay(ms){
-    return new Date(ms);
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    let date = new Date(ms);
+    return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 }
 function getMinutes(ms){
     return Math.ceil(ms/60000);
