@@ -6,6 +6,7 @@ Link to the project: https://voulu-2k6.github.io/blitzType/
 
 Tools used in this project:
     HTML/CSS/JavaScript
+    
 *This project relies on browser cookies to store user data. 
 
 Features:
