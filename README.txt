@@ -24,10 +24,6 @@ Known bugs/tweaks, by file:
 
     settingshtml.js
         targets do not show on load
-        everything is broken internally
-
-    statshtml.js
-        need to fix css display
 
 Iplementing features: 
     Settings.html: implement a key for the display at bottom

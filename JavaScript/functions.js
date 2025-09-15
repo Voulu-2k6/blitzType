@@ -89,6 +89,7 @@ export function getNewLine(words){
             }
             else{
                 myWord = getNumberWith(reverseKeyMap[myChar]);
+                console.log('we selected a digit: ' + myChar + ', but we couldn\'nt find ' + reverseShiftMap[myChar]);
             }
         }
         //now myChar can be any special code.
