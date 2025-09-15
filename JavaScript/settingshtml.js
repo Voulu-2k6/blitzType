@@ -32,20 +32,20 @@ if(userSettings){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
-    pageLoadSliders();
+    pageLoadSliders(true);
 
     let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
     setTargetKey(targetedKey);
 }
 
-function pageLoadSliders(){
+function pageLoadSliders(onLoad){
     for(const setting of ['Capitals', 'Numbers']){
         document.querySelector(`#${setting}Holder`).innerHTML = (Number(preferences[setting])*100) + '%';
         if(preferences[setting] > 0){
             let button = setting == 'Capitals' ? mySliderButtons[0] : mySliderButtons[1];
             let type = setting == 'Capitals' ? 'capital' : 'digit';
             let value = preferences[setting];
-            generateSlider(type, button);
+            if(onLoad){generateSlider(type, button);}
             let updateMe = document.querySelector(`#slider${type}`);
             updateMe.value = value*100;
             updateSliderPrefs(false, updateMe);
@@ -201,7 +201,7 @@ function setTargetKey(key){
         }
         else if(key == 'ShiftLeft'){
             preferences.Capitals = 1;
-            pageLoadSliders();
+            pageLoadSliders(false);
         }
         else{
             preferences.key.push(key);
