@@ -230,7 +230,7 @@ function getNewWord(){
     //now myChar can be any number code, any special code.
     //if we have a number code, either numbers or that special are on or both. so, 
     else if(numbers.includes(reverseKeyMap[myChar])){
-        if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers()){
+        if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers){
             myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
         }
         else if(!preferences.mySpecials.includes(reverseShiftMap[myChar]) && preferences.Numbers == 0){
