@@ -99,8 +99,19 @@ export function getNewLine(words){
         //now myChar can be any special code.
         else{
             let choices = [];
+
             for(let tryMe of [reverseKeyMap[myChar], reverseShiftMap[myChar]]){
-                if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+                switch(tryMe){
+                    case "[":
+                    case "]": if (preferences.mySpecials.includes('[]')){choices.push('[]')} break;
+                    case "<":
+                    case ">": if (preferences.mySpecials.includes('<>')){choices.push('<>')} break;
+                    case "(":
+                    case ")": if (preferences.mySpecials.includes('()')){choices.push('()')} break;
+                    case "{":
+                    case "}": if (preferences.mySpecials.includes('{}')){choices.push('{}')} break;
+                    default: if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+                }
             }
             if(choices.length > 0){
                 myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
