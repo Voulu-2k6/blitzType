@@ -191,6 +191,7 @@ function setTargetKey(key){
     if(key != 'Space'){
         let newKey = document.querySelector(`#${key}`);
         key = key === 'shiftRight' ? 'shiftLeft' : key;
+        console.log(key);
 
         newKey.setAttribute('class', 'target');
         newKey.setAttribute('style', '');
