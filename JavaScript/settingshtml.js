@@ -32,21 +32,30 @@ if(userSettings){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
+    if(preferences.target){
+        let setOn = document.querySelector(`#${preferences.target}`);
+        updateTargetPreference(setOn);
+    }
+
+    pageLoadSliders(true);
+
+    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
+    setTargetKey(targetedKey);
+}
+
+function pageLoadSliders(onLoad){
     for(const setting of ['Capitals', 'Numbers']){
         document.querySelector(`#${setting}Holder`).innerHTML = (Number(preferences[setting])*100) + '%';
         if(preferences[setting] > 0){
             let button = setting == 'Capitals' ? mySliderButtons[0] : mySliderButtons[1];
             let type = setting == 'Capitals' ? 'capital' : 'digit';
             let value = preferences[setting];
-            generateSlider(type, button);
+            if(onLoad){generateSlider(type, button);}
             let updateMe = document.querySelector(`#slider${type}`);
             updateMe.value = value*100;
             updateSliderPrefs(false, updateMe);
         }
     }
-
-    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
-    setTargetKey(targetedKey);
 }
 
 //show relative accuracies for better indication of what to target on stats page
@@ -72,12 +81,12 @@ function switchListener(sw, pageLoad){
     if(on){
         let newSpot = document.querySelector(`#${rest}Off`);
         newSpot.appendChild(clone);
-        if(!pageLoad){updateSpecial(myChar, true); updatePreview();}
+        if(!pageLoad){updateSpecial(myChar, true); doPreview();}
     }
     else{
         let newSpot = document.querySelector(`#${rest}n`);
         newSpot.appendChild(clone);
-        if(!pageLoad){updateSpecial(myChar, false); updatePreview();}
+        if(!pageLoad){updateSpecial(myChar, false); doPreview();}
     }
     sw.remove();
     clone.addEventListener('click', () => {switchListener(clone, false);})
@@ -168,6 +177,7 @@ function updateTargetPreference(button){
     }
     swapButtonVisual(button, value);
     pushNewPref();
+    doPreview();
 }
 
 function swapButtonVisual(button, value){
@@ -185,12 +195,23 @@ function setTargetKey(key){
     if(oldKey){oldKey.setAttribute('class', 'none');}
     if(key != 'Space'){
         let newKey = document.querySelector(`#${key}`);
-        key = key === 'shiftRight' ? 'shiftLeft' : key;
+        key = key === 'ShiftRight' ? 'ShiftLeft' : key;
+        console.log(key);
 
         newKey.setAttribute('class', 'target');
         newKey.setAttribute('style', '');
         preferences.key = []; 
-        preferences.key.push(key);
+        if(key == 'Enter'){
+            console.log('Try endless mode!');
+        }
+        else if(key == 'ShiftLeft'){
+            preferences.Capitals = 1;
+            pageLoadSliders(false);
+        }
+        else{
+            preferences.key.push(key);
+        }
+
         if(preferences.target){
             document.querySelector(`#${preferences.target}`).setAttribute('style', '');
             preferences.target = null;
@@ -200,6 +221,7 @@ function setTargetKey(key){
         preferences.key = null;
     }
     pushNewPref();
+    doPreview();
     showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
 }
 
@@ -215,11 +237,17 @@ async function updatePreview(scopePreferences){
 
 //cycle preview
 let timerInterval = setInterval(() => {
-        let scopePreferences = getPreferences(JSON.parse(localStorage.getItem('userPreferences')));
-        updatePreview(scopePreferences);
+        doPreview();
 }, 10000);
-// preference updater
 
+function doPreview(){
+    let scopePreferences = getPreferences(JSON.parse(localStorage.getItem('userPreferences')));
+    if(scopePreferences){
+        updatePreview(scopePreferences);
+    }
+}
+
+// preference updater
 function pushNewPref(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
 }

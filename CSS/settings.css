@@ -49,7 +49,10 @@ main{
     align-items: center;
 }
 #puncOn, #specialOn {
-    border-bottom: 2px solid orangered;
+    border-bottom: 1px solid orangered;
+}
+#puncOff, #specialOff {
+    border-top: 1px solid orangered;
 }
  .switchHolder{
     flex-grow: 1;

@@ -84,7 +84,7 @@ export function createExam(){
     let characters = 0;
     for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
     for(let i = 1; i < preferences.Words; i++){
-        if(!['/', '\\', "|", '-', '=', '+', '*', '^', '&'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^', '&', '_'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
         characters += addMe.length;
         if(characters > 50){
@@ -218,38 +218,62 @@ function getNewWord(){
 
     let myWord = '';
     let doSpecialize = preferences.mySpecials.length > 0 ? true : false;
+    let doNumber = preferences.Numbers > Math.random() ? true : false;
 
     //assume getWordWith only works with letters.
-    //If myChar was a letter, get a normal word with it.
     if(myChar == null){
-        myWord = getWordWith(null);
+        myWord = doNumber ? getNumberWith(null) : getWordWith(null);
     }
+    //If myChar was a letter, get a normal word with it.
     else if(letters.includes(reverseKeyMap[myChar])){
         myWord = getWordWith(reverseKeyMap[myChar]);
     }
     //now myChar can be any number code, any special code.
     //if we have a number code, either numbers or that special are on or both. so, 
     else if(numbers.includes(reverseKeyMap[myChar])){
-        if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers()){
+        if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers){
             myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
+            doSpecialize = false;
         }
-        else if(!preferences.mySpecials.includes(reverseShiftMap[myChar]) && preferences.Numbers == 0){
-            myWord = getWordWith(null);
+        else if(preferences.mySpecials.includes(reverseShiftMap[myChar])){
+            myWord = specialize(getNumberWith(reverseKeyMap[myChar]), reverseShiftMap[myChar]);
+            doSpecialize = false;
         }
-        else{
+        else if(Math.random() < preferences.Numbers){
             myWord = getNumberWith(reverseKeyMap[myChar]);
         }
-        doSpecialize = false;
+        else{
+            myWord = getWordWith(null);
+            doSpecialize = false;
+            console.log('we selected a digit: ' + myChar + ', but we couldn\'nt find ' + reverseShiftMap[myChar]);
+        }
     }
     //now myChar can be any special code.
     else{
         let choices = [];
+
         for(let tryMe of [reverseKeyMap[myChar], reverseShiftMap[myChar]]){
-            if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+            switch(tryMe){
+                case "[":
+                case "]": if (preferences.mySpecials.includes('[]')){choices.push('[]')} break;
+                case "<":
+                case ">": if (preferences.mySpecials.includes('<>')){choices.push('<>')} break;
+                case "(":
+                case ")": if (preferences.mySpecials.includes('()')){choices.push('()')} break;
+                case "{":
+                case "}": if (preferences.mySpecials.includes('{}')){choices.push('{}')} break;
+                default: if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+            }
         }
-        myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
-        doSpecialize = false;
-        console.log(choices + '. if this is empty, some logisitical error occurred.');
+        if(choices.length > 0){
+            myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
+            doSpecialize = false;
+        }
+        else{
+            myWord = getWordWith(null);
+            console.log('we selected a key but haven\'t allowed it\'s characters.');
+            console.log(myChar + ' ' + reverseKeyMap[myChar] + ' ' + reverseShiftMap[myChar]);
+        }
     }
 
     let rand = Math.random() > 0.7;
@@ -268,13 +292,17 @@ function toTitleCase(word){
 function specialize(myWord, myChar){
     switch(myChar){
         case "[":
-        case "]": myWord = "[" + myWord + "]"; break;
+        case "]": 
+        case "[]": myWord = "[" + myWord + "]"; break;
         case "<":
-        case ">": myWord = "<" + myWord + ">"; break;
+        case ">": 
+        case "<>": myWord = "<" + myWord + ">"; break;
         case "(":
-        case ")": myWord = "(" + myWord + ")"; break;
+        case ")": 
+        case "()": myWord = "(" + myWord + ")"; break;
         case "{":
-        case "}": myWord = "{" + myWord + "}"; break;
+        case "}": 
+        case "{}": myWord = "{" + myWord + "}"; break;
         case "\"": myWord = "\"" + myWord + "\""; break;
         case "'": myWord = "'" + myWord + "'"; break;
         case "`": myWord = '`' + myWord + "`"; break;
@@ -300,11 +328,10 @@ function getWordWith(myChar){
 }
 
 function getNumberWith(myDigit){ 
-    let myNum = Number(myDigit);
+    let myNum = myDigit ? String(myDigit) : String(Math.floor(Math.random()*10));
     for(let i = 0; i < 2; i++) //adjust i for longer number strings
     {
-        myNum *= 10;
-        myNum += Math.floor(Math.random()*10)
+        myNum += String(Math.floor(Math.random()*10));
     }
     return String(myNum);
 }
@@ -318,7 +345,7 @@ function getNewLine(){
     let myRow = [addMe];
     let characters = addMe.length;
     while(characters < 50){
-        if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^', '_', '&'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
         addMe = getNewWord();
         characters += addMe.length;
         if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); myRow.push('\n'); return myRow;}
@@ -359,7 +386,7 @@ function updateStats(hit, e){
 }
 
 function getNumWords(){
-    return (myLines[0].join('').split(/[\/\\|\-=+\*^ ]/)).length;
+    return (myLines[0].join('').split(/[\/\\|\-=+\*^ _&]/)).length;
 }
 
 import {newStats} from '/blitzType/JavaScript/stats.js';

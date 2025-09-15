@@ -19,7 +19,7 @@ for(let statBox of statsBoxes){
         statBox.innerHTML += getMinutes(pageStats.totalTime);
     }
     else if(statBox.id == 'avgWPM'){
-        statBox.innerHTML += getWPM(pageStats.totalWords, pageStats.totalTime) + ' words per minute';
+        statBox.innerHTML += getWPM(pageStats.totalHits, pageStats.totalTime) + ' words per minute';
     }
     else if(statBox.id == 'bestWPM'){
         statBox.innerHTML += pageStats.bestWpm[0] + ` words per minute (${pageStats.bestWpm[1]} words)`;
@@ -40,13 +40,18 @@ let leftKeyDisplay = document.querySelectorAll('#keyDisplay1 .none');
 showKeyAcc(leftKeyDisplay);
 
 let rightKeyDisplay = document.querySelectorAll('#keyDisplay2 .none');
-getAdvancements(rightKeyDisplay);
+showKeyWPM(rightKeyDisplay);
 
 let bottomKeyDisplay = document.querySelectorAll('#keyDisplay3 .none');
-showKeyWPM(bottomKeyDisplay);
+getAdvancements(bottomKeyDisplay);
 
 function formatStartDay(ms){
-    return new Date(ms);
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    let date = new Date(ms);
+    return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 }
 function getMinutes(ms){
     return Math.ceil(ms/60000);

@@ -1,17 +1,31 @@
-#statsTop > div{
-    border-bottom: 1px solid orangered;
-
+#statsTop{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+#statsTop > div{
+
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
 }
 
 #statsTop p{
-    margin: 16px;
+    padding: 8px;
+    margin: 0 10px;
 }
 
 #keystrokes {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;
+}
+
+#timeBox {
+    border-right: 1px solid orangered;
+}
+
+#accBox {
+    border-left: 1px solid orangered;
 }

@@ -6,6 +6,7 @@ Link to the project: https://voulu-2k6.github.io/blitzType/
 
 Tools used in this project:
     HTML/CSS/JavaScript
+    
 *This project relies on browser cookies to store user data. 
 
 Features:
@@ -23,30 +24,15 @@ Known bugs/tweaks, by file:
         endless timer starts when line loads, not on first press
 
     settingshtml.js
-        targets do not show on load
-        everything is broken internally
-
-    statshtml.js
-        need to format our date object
-        need to fix css display
-        wpm is wrong
+        Show warnings for selecting enter or selecting a code that doesn't tie to a key
 
 Iplementing features: 
-    Settings.html: implement a key for the display at bottom
-    Settings.html: clicking shift puts capitals at 100, enter a popup suggesting endless
-    Settings.html: implement warning for selecting key with no permitted keys
 
-    Stats.html: implement hovering over keymap for stats/stats needed for level up
-
-    index.html: implement animations for line movement
-    index.html: implement animations for new high scores
-    index.html: implement animations for levelling up a key
-    index.html: implement animations for which adjustment keys are being run
-    index.html: warning that small settings override big 
+    Stats.html: label keystrokes
+    Stats.html: general milestones for levelling up
 
     exam.js:
         protection against multiple misses for one key. 
-        miss subtraction as a way to combat acc fatigue.
 
 
 
