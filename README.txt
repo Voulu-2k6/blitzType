@@ -23,13 +23,12 @@ Known bugs/tweaks, by file:
         endless timer starts when line loads, not on first press
 
     settingshtml.js
-        targets do not show on load
+        Show warnings for selecting enter or selecting a code that doesn't tie to a key
 
 Iplementing features: 
-    Settings.html: clicking shift puts capitals at 100, enter a popup suggesting endless
-    Settings.html: implement warning for selecting key with no permitted keys
 
     Stats.html: label keystrokes
+    Stats.html: general milestones for levelling up
 
     exam.js:
         protection against multiple misses for one key. 

@@ -218,12 +218,13 @@ function getNewWord(){
 
     let myWord = '';
     let doSpecialize = preferences.mySpecials.length > 0 ? true : false;
+    let doNumber = preferences.Numbers > 0 && preferences.Numbers > Math.random() ? true : false;
 
     //assume getWordWith only works with letters.
-    //If myChar was a letter, get a normal word with it.
     if(myChar == null){
-        myWord = getWordWith(null);
+        myWord = doNumber ? getNumberWith(null) : getWordWith(null);
     }
+    //If myChar was a letter, get a normal word with it.
     else if(letters.includes(reverseKeyMap[myChar])){
         myWord = getWordWith(reverseKeyMap[myChar]);
     }
@@ -327,7 +328,7 @@ function getWordWith(myChar){
 }
 
 function getNumberWith(myDigit){ 
-    let myNum = String(myDigit);
+    let myNum = myDigit ? String(myDigit) : String(Math.floor(Math.random()*10));
     for(let i = 0; i < 2; i++) //adjust i for longer number strings
     {
         myNum += String(Math.floor(Math.random()*10));
