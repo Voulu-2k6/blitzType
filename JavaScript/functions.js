@@ -109,6 +109,7 @@ export function getNewLine(words){
             else{
                 myWord = getWordWith(null);
                 console.log('we selected a key but haven\'t allowed it\'s characters.');
+                console.log(myChar + ' ' + reverseKeyMap[myChar] + ' ' + reverseShiftMap[myChar]);
             }
         }
     
