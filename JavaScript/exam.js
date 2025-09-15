@@ -218,7 +218,7 @@ function getNewWord(){
 
     let myWord = '';
     let doSpecialize = preferences.mySpecials.length > 0 ? true : false;
-    let doNumber = preferences.Numbers > 0 && preferences.Numbers > Math.random() ? true : false;
+    let doNumber = preferences.Numbers > Math.random() ? true : false;
 
     //assume getWordWith only works with letters.
     if(myChar == null){
