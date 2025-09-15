@@ -32,6 +32,11 @@ if(userSettings){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
+    if(preferences.target){
+        let setOn = document.querySelector(`#${preferences.target}`);
+        updateTargetPreference(setOn);
+    }
+
     pageLoadSliders(true);
 
     let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
