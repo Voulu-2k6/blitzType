@@ -168,6 +168,7 @@ function updateTargetPreference(button){
     }
     swapButtonVisual(button, value);
     pushNewPref();
+    doPreview();
 }
 
 function swapButtonVisual(button, value){
@@ -200,6 +201,7 @@ function setTargetKey(key){
         preferences.key = null;
     }
     pushNewPref();
+    doPreview();
     showKeyAcc(document.querySelectorAll(".keyDisplay .none"));
 }
 
