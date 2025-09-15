@@ -94,7 +94,7 @@ export function getNewLine(words){
             }
             myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
             doSpecialize = false;
-            console.log(choices + '. if this is empty, some logisitical error occurred.');
+            console.log('[' + choices + ']. if this is empty, some logisitical error occurred.');
         }
     
         let rand = Math.random() > 0.7;
