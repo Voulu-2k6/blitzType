@@ -30,28 +30,63 @@ export function getNewLine(words){
         return myWord;}
 
     function getWordWith(myChar){
-        let myWord = '';
-        do{myWord = words[Math.floor((Math.random()*words.length))];}
-        while(myWord.indexOf(myChar) < 0)
-        return myWord;}
+        let word;
+        if(myChar == null){
+            word = words[Math.floor((Math.random()*words.length))];
+        }
+        else{
+            do{word = words[Math.floor((Math.random()*words.length))];}
+            while(word.indexOf(myChar) < 0)
+        }
+        return (Math.random() < preferences.Capitals) ? toTitleCase(word) : word;
+    }
 
     function getASpecial(){
         return preferences.mySpecials[Math.floor(Math.random()*preferences.mySpecials.length)];}
 
     function getNewWord(){
+        let myChar = preferences.key ? preferences.key[Math.floor(Math.random()*preferences.key.length)] : null;
+    
         let myWord = '';
-
-        //word or number?
-        if(Math.random() >= preferences.Numbers){
-            myWord = letters.includes(preferences.key) ? getWordWith(preferences.key) : words[Math.floor((Math.random()*words.length))]; //required key?
-            if(Math.random() < preferences.Capitals || preferences.key == 'LeftShift'){myWord = toTitleCase(myWord);} //uppercase?
+        let doSpecialize = preferences.mySpecials.length > 0 ? true : false;
+    
+        //assume getWordWith only works with letters.
+        //If myChar was a letter, get a normal word with it.
+        if(myChar == null){
+            myWord = getWordWith(null);
         }
-        else{myWord = String(Number(Math.floor(Math.random()*1000)));}
-
-        //specialize
-        if(nonLetters.includes(preferences.key) && Math.random() > 0.7){myWord = specialize(myWord, preferences.key);}//required key?
-        else if((preferences.mySpecials.length > 0) && Math.random() > 0.7){myWord = specialize(myWord, getASpecial().substring(0,1));}
-        return myWord;}
+        else if(letters.includes(reverseKeyMap[myChar])){
+            myWord = getWordWith(reverseKeyMap[myChar]);
+        }
+        //now myChar can be any number code, any special code.
+        //if we have a number code, either numbers or that special are on or both. so, 
+        else if(numbers.includes(reverseKeyMap[myChar])){
+            if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers()){
+                myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
+            }
+            else if(!preferences.mySpecials.includes(reverseShiftMap[myChar]) && preferences.Numbers == 0){
+                myWord = getWordWith(null);
+            }
+            else{
+                myWord = getNumberWith(reverseKeyMap[myChar]);
+            }
+            doSpecialize = false;
+        }
+        //now myChar can be any special code.
+        else{
+            let choices = [];
+            for(let tryMe of [reverseKeyMap[myChar], reverseShiftMap[myChar]]){
+                if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+            }
+            myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
+            doSpecialize = false;
+            console.log(choices + '. if this is empty, some logisitical error occurred.');
+        }
+    
+        let rand = Math.random() > 0.7;
+        myWord = (doSpecialize && rand) ? specialize(myWord, getASpecial()) : myWord;
+        return myWord;
+    }
 
     //real code
     let myRow = [];
