@@ -83,12 +83,16 @@ export function getNewLine(words){
                 myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
                 doSpecialize = false;
             }
-            else if(!preferences.mySpecials.includes(reverseShiftMap[myChar]) && preferences.Numbers == 0){
-                myWord = getWordWith(null);
+            else if(preferences.mySpecials.includes(reverseShiftMap[myChar])){
+                myWord = specialize(getNumberWith(reverseKeyMap[myChar]), reverseShiftMap[myChar]);
                 doSpecialize = false;
             }
-            else{
+            else if(Math.random() < preferences.Numbers){
                 myWord = getNumberWith(reverseKeyMap[myChar]);
+            }
+            else{
+                myWord = getWordWith(null);
+                doSpecialize = false;
                 console.log('we selected a digit: ' + myChar + ', but we couldn\'nt find ' + reverseShiftMap[myChar]);
             }
         }
