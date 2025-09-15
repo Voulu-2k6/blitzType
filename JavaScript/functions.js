@@ -47,11 +47,10 @@ export function getNewLine(words){
     }
 
     function getNumberWith(myDigit){ 
-        let myNum = Number(myDigit);
+        let myNum = String(myDigit);
         for(let i = 0; i < 2; i++) //adjust i for longer number strings
         {
-            myNum *= 10;
-            myNum += Math.floor(Math.random()*10)
+            myNum += String(Math.floor(Math.random()*10));
         }
         return String(myNum);
     }
