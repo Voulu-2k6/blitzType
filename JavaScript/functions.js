@@ -41,6 +41,20 @@ export function getNewLine(words){
         return (Math.random() < preferences.Capitals) ? toTitleCase(word) : word;
     }
 
+    function getNumberWith(myDigit){ 
+        let myNum = Number(myDigit);
+        for(let i = 0; i < 2; i++) //adjust i for longer number strings
+        {
+            myNum *= 10;
+            myNum += Math.floor(Math.random()*10)
+        }
+        return String(myNum);
+    }
+
+    function toTitleCase(word){
+        return (word.substring(0,1).toUpperCase()) + word.substring(1);
+    }
+
     function getASpecial(){
         return preferences.mySpecials[Math.floor(Math.random()*preferences.mySpecials.length)];}
 
