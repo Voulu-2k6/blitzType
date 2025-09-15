@@ -250,12 +250,29 @@ function getNewWord(){
     //now myChar can be any special code.
     else{
         let choices = [];
+
         for(let tryMe of [reverseKeyMap[myChar], reverseShiftMap[myChar]]){
-            if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+            switch(tryMe){
+                case "[":
+                case "]": if (preferences.mySpecials.includes('[]')){choices.push('[]')} break;
+                case "<":
+                case ">": if (preferences.mySpecials.includes('<>')){choices.push('<>')} break;
+                case "(":
+                case ")": if (preferences.mySpecials.includes('()')){choices.push('()')} break;
+                case "{":
+                case "}": if (preferences.mySpecials.includes('{}')){choices.push('{}')} break;
+                default: if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
+            }
         }
-        myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
-        doSpecialize = false;
-        console.log(choices + '. if this is empty, some logisitical error occurred.');
+        if(choices.length > 0){
+            myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
+            doSpecialize = false;
+        }
+        else{
+            myWord = getWordWith(null);
+            console.log('we selected a key but haven\'t allowed it\'s characters.');
+            console.log(myChar + ' ' + reverseKeyMap[myChar] + ' ' + reverseShiftMap[myChar]);
+        }
     }
 
     let rand = Math.random() > 0.7;
