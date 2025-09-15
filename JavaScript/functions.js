@@ -15,7 +15,7 @@ export function getNewLine(words){
             case "[]": myWord = "[" + myWord + "]"; break;
             case "<":
             case ">": 
-            case "<>": myWord = "<" + myWord + ">"; break;
+            case "<>": myWord = "&lt;" + myWord + "&gt;"; break;
             case "(":
             case ")": 
             case "()": myWord = "(" + myWord + ")"; break;
@@ -125,7 +125,7 @@ export function getNewLine(words){
     while(characters < 50){
         let addMe = getNewWord();
         characters += addMe.length;
-        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
+        addMe = ['/', '\\', "|", '-', '=', '+', '*', '^', '_', '&'].includes(addMe.substring(addMe.length-1)) ? addMe : addMe + ' ';
         myRow.push(addMe);
     }
     myRow = myRow.join(''); 

@@ -84,7 +84,7 @@ export function createExam(){
     let characters = 0;
     for(let char of getNewWord().split('')){myRow.push(char); characters++;} //first word on create
     for(let i = 1; i < preferences.Words; i++){
-        if(!['/', '\\', "|", '-', '=', '+', '*', '^', '&'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^', '&', '_'].includes(myRow[myRow.length-1])){myRow.push(' '); characters++;}
         let addMe = getNewWord();
         characters += addMe.length;
         if(characters > 50){
@@ -327,7 +327,7 @@ function getNewLine(){
     let myRow = [addMe];
     let characters = addMe.length;
     while(characters < 50){
-        if(!['/', '\\', "|", '-', '=', '+', '*', '^'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
+        if(!['/', '\\', "|", '-', '=', '+', '*', '^', '_', '&'].includes(addMe.substring(addMe.length-1))){myRow.push(' ');}//did prev word end in the following which take the place of space? 
         addMe = getNewWord();
         characters += addMe.length;
         if(characters >= 50){myRow = myRow.join('').split(''); myRow.pop(); myRow.push('\n'); return myRow;}
@@ -368,7 +368,7 @@ function updateStats(hit, e){
 }
 
 function getNumWords(){
-    return (myLines[0].join('').split(/[\/\\|\-=+\*^ ]/)).length;
+    return (myLines[0].join('').split(/[\/\\|\-=+\*^ _&]/)).length;
 }
 
 import {newStats} from '/blitzType/JavaScript/stats.js';
