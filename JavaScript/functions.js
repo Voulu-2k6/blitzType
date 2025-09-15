@@ -102,9 +102,14 @@ export function getNewLine(words){
             for(let tryMe of [reverseKeyMap[myChar], reverseShiftMap[myChar]]){
                 if(preferences.mySpecials.includes(tryMe)){choices.push(tryMe);}
             }
-            myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
-            doSpecialize = false;
-            console.log('[' + choices + ']. if this is empty, some logisitical error occurred.');
+            if(choices.length > 0){
+                myWord = specialize(getWordWith(null), choices[Math.floor(Math.random()*choices.length)]);
+                doSpecialize = false;
+            }
+            else{
+                myWord = getWordWith(null);
+                console.log('we selected a key but haven\'t allowed it\'s characters.');
+            }
         }
     
         let rand = Math.random() > 0.7;
