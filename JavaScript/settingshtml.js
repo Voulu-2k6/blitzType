@@ -32,6 +32,13 @@ if(userSettings){
         switchListener(document.querySelector(`#${switchMap.get(spec)}`), true);
     }
 
+    pageLoadSliders();
+
+    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
+    setTargetKey(targetedKey);
+}
+
+function pageLoadSliders(){
     for(const setting of ['Capitals', 'Numbers']){
         document.querySelector(`#${setting}Holder`).innerHTML = (Number(preferences[setting])*100) + '%';
         if(preferences[setting] > 0){
@@ -44,9 +51,6 @@ if(userSettings){
             updateSliderPrefs(false, updateMe);
         }
     }
-
-    let targetedKey = userSettings.key && userSettings.key.length == 1 ? userSettings.key[0] : 'Space';
-    setTargetKey(targetedKey);
 }
 
 //show relative accuracies for better indication of what to target on stats page
@@ -191,7 +195,17 @@ function setTargetKey(key){
         newKey.setAttribute('class', 'target');
         newKey.setAttribute('style', '');
         preferences.key = []; 
-        preferences.key.push(key);
+        if(key == 'enter'){
+            console.log('Try endless mode!');
+        }
+        else if(key == 'shiftLeft'){
+            preferences.Capitals = 1;
+            pageLoadSliders();
+        }
+        else{
+            preferences.key.push(key);
+        }
+
         if(preferences.target){
             document.querySelector(`#${preferences.target}`).setAttribute('style', '');
             preferences.target = null;
