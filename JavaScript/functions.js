@@ -1,6 +1,6 @@
 // built specifically to export a function built for the main exam
 
-import {letters, numbers, keyMap, reverseKeyMap} from '/blitzType/JavaScript/constants.js';
+import {letters, numbers, keyMap, reverseKeyMap, reverseShiftMap} from '/blitzType/JavaScript/constants.js';
 
 export function getNewLine(words){
     let preferences = JSON.parse(localStorage.getItem('userPreferences'));
