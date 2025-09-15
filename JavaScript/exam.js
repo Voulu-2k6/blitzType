@@ -268,13 +268,17 @@ function toTitleCase(word){
 function specialize(myWord, myChar){
     switch(myChar){
         case "[":
-        case "]": myWord = "[" + myWord + "]"; break;
+        case "]": 
+        case "[]": myWord = "[" + myWord + "]"; break;
         case "<":
-        case ">": myWord = "<" + myWord + ">"; break;
+        case ">": 
+        case "<>": myWord = "<" + myWord + ">"; break;
         case "(":
-        case ")": myWord = "(" + myWord + ")"; break;
+        case ")": 
+        case "()": myWord = "(" + myWord + ")"; break;
         case "{":
-        case "}": myWord = "{" + myWord + "}"; break;
+        case "}": 
+        case "{}": myWord = "{" + myWord + "}"; break;
         case "\"": myWord = "\"" + myWord + "\""; break;
         case "'": myWord = "'" + myWord + "'"; break;
         case "`": myWord = '`' + myWord + "`"; break;

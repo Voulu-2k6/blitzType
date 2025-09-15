@@ -11,13 +11,17 @@ export function getNewLine(words){
     function specialize(myWord, myChar){
         switch(myChar){
             case "[":
-            case "]": myWord = "[" + myWord + "]"; break;
+            case "]": 
+            case "[]": myWord = "[" + myWord + "]"; break;
             case "<":
-            case ">": myWord = "&lt;" + myWord + "&gt;"; break;
+            case ">": 
+            case "<>": myWord = "<" + myWord + ">"; break;
             case "(":
-            case ")": myWord = "(" + myWord + ")"; break;
+            case ")": 
+            case "()": myWord = "(" + myWord + ")"; break;
             case "{":
-            case "}": myWord = "{" + myWord + "}"; break;
+            case "}": 
+            case "{}": myWord = "{" + myWord + "}"; break;
             case "\"": myWord = "\"" + myWord + "\""; break;
             case "'": myWord = "'" + myWord + "'"; break;
             case "`": myWord = '`' + myWord + "`"; break;
@@ -27,7 +31,8 @@ export function getNewLine(words){
             case "$": myWord = myChar + myWord; break;
             default: myWord += myChar;
         }
-        return myWord;}
+        return myWord;
+    }
 
     function getWordWith(myChar){
         let word;
