@@ -82,14 +82,15 @@ export function getNewLine(words){
         else if(numbers.includes(reverseKeyMap[myChar])){
             if(preferences.mySpecials.includes(reverseShiftMap[myChar]) && Math.random() > preferences.Numbers){
                 myWord = specialize(getWordWith(null), reverseShiftMap[myChar]);
+                doSpecialize = false;
             }
             else if(!preferences.mySpecials.includes(reverseShiftMap[myChar]) && preferences.Numbers == 0){
                 myWord = getWordWith(null);
+                doSpecialize = false;
             }
             else{
                 myWord = getNumberWith(reverseKeyMap[myChar]);
             }
-            doSpecialize = false;
         }
         //now myChar can be any special code.
         else{

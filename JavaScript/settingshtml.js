@@ -190,16 +190,16 @@ function setTargetKey(key){
     if(oldKey){oldKey.setAttribute('class', 'none');}
     if(key != 'Space'){
         let newKey = document.querySelector(`#${key}`);
-        key = key === 'shiftRight' ? 'shiftLeft' : key;
+        key = key === 'ShiftRight' ? 'ShiftLeft' : key;
         console.log(key);
 
         newKey.setAttribute('class', 'target');
         newKey.setAttribute('style', '');
         preferences.key = []; 
-        if(key == 'enter'){
+        if(key == 'Enter'){
             console.log('Try endless mode!');
         }
-        else if(key == 'shiftLeft'){
+        else if(key == 'ShiftLeft'){
             preferences.Capitals = 1;
             pageLoadSliders();
         }
