@@ -72,12 +72,12 @@ function switchListener(sw, pageLoad){
     if(on){
         let newSpot = document.querySelector(`#${rest}Off`);
         newSpot.appendChild(clone);
-        if(!pageLoad){updateSpecial(myChar, true); updatePreview();}
+        if(!pageLoad){updateSpecial(myChar, true); doPreview();}
     }
     else{
         let newSpot = document.querySelector(`#${rest}n`);
         newSpot.appendChild(clone);
-        if(!pageLoad){updateSpecial(myChar, false); updatePreview();}
+        if(!pageLoad){updateSpecial(myChar, false); doPreview();}
     }
     sw.remove();
     clone.addEventListener('click', () => {switchListener(clone, false);})
@@ -215,11 +215,17 @@ async function updatePreview(scopePreferences){
 
 //cycle preview
 let timerInterval = setInterval(() => {
-        let scopePreferences = getPreferences(JSON.parse(localStorage.getItem('userPreferences')));
-        updatePreview(scopePreferences);
+        doPreview();
 }, 10000);
-// preference updater
 
+function doPreview(){
+    let scopePreferences = getPreferences(JSON.parse(localStorage.getItem('userPreferences')));
+    if(scopePreferences){
+        updatePreview(scopePreferences);
+    }
+}
+
+// preference updater
 function pushNewPref(){
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
 }
